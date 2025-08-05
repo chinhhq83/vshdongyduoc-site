@@ -1,0 +1,7 @@
+{
+      "routes": [
+        { "src": "/kien-thuc/(.*)", "dest": "/kien-thuc/$1" },
+        { "src": "/(.*)", "dest": "/$1" },
+        { "src": "^www.vshdongyduoc.org/(.*)$", "dest": "https://vshdongyduoc.org/$1", "status": 301 }
+      ]
+    }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liên hệ - Viện Sinh Hóa Đông Y Dược</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+ <header>
+  <div class="header-left">
+    <h1>Viện Sinh Hóa Đông Y Dược</h1>
+    <p>Tinh Hoa Cổ Truyền - Khoa Học Kiểm Chứng</p>
+  </div>
+  <div class="header-center">
+    <img src="images/logo.png" alt="Logo Viện Sinh Hóa Đông Y Dược" />
+  </div>
+  <nav class="header-right">
+    <a href="index.html">Trang chủ</a>
+    <a href="gioi-thieu.html">Giới thiệu</a>
+    <a href="du-an-noi-bat.html">Dự án nổi bật</a>
+    <a href="dang-ky-thu-nghiem.html">Đăng ký thử nghiệm</a>
+    <a href="lien-he.html">Liên hệ</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Liên hệ Viện Sinh Hóa Đông Y Dược</h1>
+
+  <p><strong>Địa chỉ:</strong> Khu tái định cư, P. Quyết Thắng, T. Thái Nguyên</p>
+  <p><strong>Email:</strong> <a href="mailto:vs.hd@vshdongyduoc.org">vs.hd@vshdongyduoc.org</a></p>
+  <p><strong>Điện thoại:</strong> <a href="tel:+84938575161">+84 938 575 161</a></p>
+
+  <p>Vui lòng điền thông tin vào biểu mẫu dưới đây. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.</p>
+
+   <form action="https://formsubmit.co/vs.hd@vshdongyduoc.org" method="POST">
+    <!-- Bảo mật và tuỳ chọn -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="box">
+    <input type="hidden" name="_subject" value="Thông điệp từ website vshdongyduoc.org">
+    <input type="hidden" name="_next" value="https://vshdongyduoc.org/thank-you.html">
+
+    <label for="name">Họ và tên:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Số điện thoại:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9+()\- ]{9,15}" required placeholder="VD: +84901234567" />
+
+    <label for="message">Nội dung:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Gửi liên hệ</button>
+  </form>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      const phone = document.getElementById('phone').value.trim();
+      const phonePattern = /^[0-9+()\- ]{9,15}$/;
+      if (!phonePattern.test(phone)) {
+        alert('Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.');
+        event.preventDefault();
+      }
+    });
+  </script>
+</main>
+
+<footer>
+  <p>© 2025 Viện Sinh Hóa Đông Y Dược. Bản quyền nội dung thuộc Viện Sinh Hóa Đông Y Dược.</p>
+</footer>
+</body>
+</html>
