@@ -125,5 +125,28 @@
       "destination": "/kien-thuc",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/dog-joint/products/:slug",
+      "destination": "/dog-joint/products/:slug/index.html"
+    },
+    {
+      "source": "/dog-joint/evidence/:slug",
+      "destination": "/dog-joint/evidence/:slug/index.html"
+    },
+    {
+      "source": "/dog-joint/research/:slug",
+      "destination": "/dog-joint/research/:slug/index.html"
+    },
+    {
+      "source": "/scientific-methodology",
+      "destination": "/scientific-methodology/index.html"
+    },
+    {
+      "source": "/how-we-evaluate-products",
+      "destination": "/how-we-evaluate-products/index.html"
+    }
   ]
+
 }
