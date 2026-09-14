@@ -19,6 +19,111 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "vshdongyduoc.org"
+        }
+      ],
+      "destination": "https://www.vshdongyduoc.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao-chat-luong",
+      "destination": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/dong-trung-ha-thao/dong-trung-ha-thao-chua-ung-thu",
+      "destination": "/kien-thuc/dong-trung-ha-thao/dong-trung-ha-thao-va-ung-thu",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/dong-trung-ha-thao-la-gi",
+      "destination": "/kien-thuc/dong-trung-ha-thao/dong-trung-ha-thao-la-gi",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/cong-dung-dong-trung-ha-thao",
+      "destination": "/kien-thuc/dong-trung-ha-thao/cong-dung-dong-trung-ha-thao",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/loi-ich-suc-khoe",
+      "destination": "/kien-thuc/dong-trung-ha-thao/loi-ich-suc-khoe",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/an-toan-tac-dung-phu",
+      "destination": "/kien-thuc/dong-trung-ha-thao/an-toan-tac-dung-phu",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/cach-su-dung",
+      "destination": "/kien-thuc/dong-trung-ha-thao/cach-su-dung",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/chon-dong-trung-ha-thao",
+      "destination": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/so-sanh-thuc-pham-bo-sung",
+      "destination": "/kien-thuc/dong-trung-ha-thao/so-sanh-thuc-pham-bo-sung",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/gia-tri-van-hoa",
+      "destination": "/kien-thuc/dong-trung-ha-thao/gia-tri-van-hoa",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/cau-chuyen-nguoi-dung",
+      "destination": "/kien-thuc/dong-trung-ha-thao/cau-chuyen-nguoi-dung",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/tim-mach-huyet-ap",
+      "destination": "/kien-thuc/huyet-ap",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc/tieu-duong-luc-vi",
+      "destination": "/kien-thuc/tieu-duong",
+      "permanent": true
+    },
+    {
+      "source": "/cordycepin.html",
+      "destination": "/kien-thuc/dong-trung-ha-thao/cordycepin",
+      "permanent": true
+    },
+    {
+      "source": "/kien-thuc-suc-khoe",
+      "destination": "/kien-thuc",
+      "permanent": true
     }
   ]
 }
