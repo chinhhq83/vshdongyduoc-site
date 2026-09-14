@@ -73,6 +73,7 @@ content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-
   border-radius:8px;
 }
 </style>
+<script defer src="/analytics.js"></script>
 </head>
 
 <body>
@@ -374,5 +375,14 @@ vs.hd@vshdongyduoc.org
 </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.VSHAnalytics) {
+    window.VSHAnalytics.track('page_view', {
+      page_type: 'dog_joint_research'
+    });
+  }
+});
+</script>
 </body>
 </html>
