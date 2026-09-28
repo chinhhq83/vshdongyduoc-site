@@ -16,8 +16,7 @@ body {
   background-color: #fff;
 }
 
-/* Header & nav - Migrated to Tailwind */
-/*
+/* Header & nav */
 header {
   background: #2d5c39;
   color: white;
@@ -32,6 +31,7 @@ header img {
   height: 70px;
 }
 
+/* Chỉ màu trắng cho nav a trong header */
 nav a {
   color: white;
   margin: 0 15px;
@@ -45,7 +45,6 @@ nav a:hover, nav a:focus {
   text-decoration: underline;
   outline: none;
 }
-*/
 
 /* Container */
 .container {
@@ -148,8 +147,7 @@ form button:hover, form button:focus {
   outline: none;
 }
 
-/* Footer - Migrated to Tailwind */
-/*
+/* Footer */
 footer {
   background: #222;
   color: white;
@@ -158,11 +156,8 @@ footer {
   font-size: 15px;
   box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
 }
-*/
 
 /* Responsive */
-/* Header Media Queries - Migrated to Tailwind */
-/*
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -178,6 +173,7 @@ footer {
   }
 }
 
+/* Phần header thêm các lớp .header-left, .header-center, .header-right nếu có */
 .header-left {
   display: flex;
   flex-direction: column;

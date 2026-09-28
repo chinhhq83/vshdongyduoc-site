@@ -1,33 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /node_modules/
-Disallow: /mẫu/
-Disallow: /kien-thuc/dong-trung-ha-thao/old/
 
-# Trình thu thập của các công cụ AI – cho phép trích dẫn nội dung
-User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: Claude-User
-Allow: /
-User-agent: Claude-SearchBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: Perplexity-User
-Allow: /
-User-agent: Google-Extended
-Allow: /
-User-agent: Applebot-Extended
-Allow: /
-User-agent: Bingbot
-Allow: /
-User-agent: CCBot
-Allow: /
-
-Sitemap: https://www.vshdongyduoc.org/sitemap.xml
+Sitemap: https://vshdongyduoc.org/sitemap.xml

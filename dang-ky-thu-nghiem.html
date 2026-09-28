@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Liên hệ - Viện Sinh Hóa Đông Y Dược</title>
+  <title>Đăng ký thử nghiệm - Viện Sinh Hóa Đông Y Dược</title>
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
@@ -26,15 +26,8 @@
 </header>
 
 <main class="container">
-  <h1>Liên hệ Viện Sinh Hóa Đông Y Dược</h1>
-
-  <p><strong>Địa chỉ:</strong> Khu tái định cư, P. Quyết Thắng, T. Thái Nguyên</p>
-  <p><strong>Email:</strong> <a href="mailto:vs.hd@vshdongyduoc.org">vs.hd@vshdongyduoc.org</a></p>
-  <p><strong>Điện thoại:</strong> <a href="tel:+84938575161">+84 938 575 161</a></p>
-
-  <p>Vui lòng điền thông tin vào biểu mẫu dưới đây. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.</p>
-
-   <form action="https://formsubmit.co/vs.hd@vshdongyduoc.org" method="POST">
+  <h1>Đăng ký thử nghiệm</h1>
+  <form action="https://formsubmit.co/vs.hd@vshdongyduoc.org" method="POST">
     <!-- Bảo mật và tuỳ chọn -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="box">
@@ -49,6 +42,16 @@
 
     <label for="phone">Số điện thoại:</label>
     <input type="tel" id="phone" name="phone" pattern="[0-9+()\- ]{9,15}" required placeholder="VD: +84901234567" />
+
+
+    <label for="project">Chọn dự án thử nghiệm:</label>
+    <select id="project" name="project" required>
+      <option value="">-- Chọn dự án --</option>
+      <option value="du-an-1">Dự án nghiên cứu Đông trùng hạ thảo</option>
+      <option value="du-an-2">Dự án điều trị tiểu đường</option>
+      <option value="du-an-3">Dự án hỗ trợ gan nhiễm mỡ</option>
+      <option value="du-an-4">Dự án công nghệ sinh học</option>
+    </select>
 
     <label for="message">Nội dung:</label>
     <textarea id="message" name="message" rows="5" required></textarea>
@@ -68,7 +71,7 @@
 </main>
 
 <footer>
-  <p>© 2025 Viện Sinh Hóa Đông Y Dược. Bản quyền nội dung thuộc Viện Sinh Hóa Đông Y Dược.</p>
+  <p>© 2025 Viện Sinh Hóa Đông Y Dược.</p>
 </footer>
 </body>
 </html>
