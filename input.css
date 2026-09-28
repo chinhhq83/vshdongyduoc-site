@@ -1,0 +1,4 @@
+/* input.css - File gốc để Tailwind build CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

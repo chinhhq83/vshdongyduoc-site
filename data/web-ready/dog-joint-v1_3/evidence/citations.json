@@ -1,0 +1,114 @@
+{
+  "CIT_META_2022": {
+    "title": "A 2022 Systematic Review and Meta-Analysis of Enriched Therapeutic Diets and Nutraceuticals in Canine and Feline Osteoarthritis",
+    "year": 2022,
+    "pmid": "36142319",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36142319/",
+    "doi": null,
+    "notes": "Systematic review/meta-analysis; reported clearer analgesic efficacy for omega-3 and a marked non-effect for chondroitin-glucosamine nutraceuticals."
+  },
+  "CIT_GC_2007": {
+    "title": "Randomised double-blind, positive-controlled trial to assess the efficacy of glucosamine/chondroitin sulfate for the treatment of dogs with osteoarthritis",
+    "year": 2007,
+    "pmid": "16647870",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16647870/",
+    "doi": "10.1016/j.tvjl.2006.02.015",
+    "notes": "Older canine trial reported improvements with glucosamine/chondroitin versus positive control context."
+  },
+  "CIT_OMEGA_2010_1": {
+    "title": "Evaluation of the effects of dietary supplementation with fish oil omega-3 fatty acids on weight bearing in dogs with osteoarthritis",
+    "year": 2010,
+    "pmid": "20043801",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20043801/",
+    "doi": "10.2460/javma.236.1.67",
+    "notes": "Randomized double-blinded controlled clinical trial in client-owned dogs."
+  },
+  "CIT_OMEGA_2010_2": {
+    "title": "Multicenter veterinary practice assessment of the effects of omega-3 fatty acids on osteoarthritis in dogs",
+    "year": 2010,
+    "pmid": "20043800",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20043800/",
+    "doi": "10.2460/javma.236.1.59",
+    "notes": "Randomized double-blinded controlled multicenter clinical trial."
+  },
+  "CIT_GLM_2003": {
+    "title": "Influence of green lipped mussels (Perna canaliculus) in alleviating signs of arthritis in dogs",
+    "year": 2003,
+    "pmid": "15136981",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15136981/",
+    "doi": null,
+    "notes": "Double-blind clinical study reported improvements in total arthritis score and some joint signs."
+  },
+  "CIT_GLM_2009": {
+    "title": "Evaluating Complementary Therapies for Canine Osteoarthritis Part I: Green-lipped Mussel (Perna canaliculus)",
+    "year": 2009,
+    "pmid": "18955269",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18955269/",
+    "doi": "10.1093/ecam/nem136",
+    "notes": "Randomized double-controlled double-blinded clinical trial."
+  },
+  "CIT_UCII_2019": {
+    "title": "Evaluation of the Effects of Undenatured Type II Collagen (UC-II) as Compared to Robenacoxib on the Mobility Impairment Induced by Osteoarthritis in Dogs",
+    "year": 2019,
+    "pmid": "31487772",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31487772/",
+    "doi": null,
+    "notes": "Randomized controlled prospective study; positive mobility findings, with important design and comparator limitations."
+  },
+  "CIT_UCII_BOS_2024": {
+    "title": "Effects of a feed supplement, containing undenatured type II collagen (UC II) and Boswellia Serrata, in the management of mild/moderate mobility disorders in dogs",
+    "year": 2024,
+    "pmid": "39475935",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39475935/",
+    "doi": "10.1371/journal.pone.0305697",
+    "notes": "Randomized double-blind placebo-controlled cross-over trial of a combination formula."
+  },
+  "CIT_EGG_2019": {
+    "title": "Placebo-controlled pilot study of the effects of an eggshell membrane-based supplement on mobility and serum biomarkers in dogs with osteoarthritis",
+    "year": 2019,
+    "pmid": "31685140",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31685140/",
+    "doi": "10.1016/j.tvjl.2019.105379",
+    "notes": "Small pilot trial; authors noted results were not definitive."
+  },
+  "CIT_EGG_2025": {
+    "title": "Efficacy of a joint supplement containing eggshell membrane among other ingredients to improve the mobility of dogs with osteoarthritis",
+    "year": 2025,
+    "pmid": "40530040",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40530040/",
+    "doi": null,
+    "notes": "Randomized placebo-controlled trial of a multi-ingredient supplement, so effects cannot be assigned to eggshell membrane alone."
+  },
+  "CIT_BOS_CUR_2021": {
+    "title": "Clinical efficacy of Curcuvet and Boswellic acid combined with conventional nutraceutical product: An aid to canine osteoarthritis",
+    "year": 2021,
+    "pmid": "34048452",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34048452/",
+    "doi": null,
+    "notes": "Small randomized study of combination therapy; does not isolate Boswellia or curcumin."
+  },
+  "CIT_TURMERIC_2003": {
+    "title": "Randomised, double-blind, placebo-controlled parallel group study of P54FP for the treatment of dogs with osteoarthritis",
+    "year": 2003,
+    "pmid": "12723628",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12723628/",
+    "doi": "10.1136/vr.152.15.457",
+    "notes": "Trial of a specific turmeric extract preparation; applicability to generic turmeric products is limited."
+  },
+  "CIT_MULTI_2022": {
+    "title": "Efficacy of a dietary supplement in dogs with osteoarthritis: A randomized placebo-controlled, double-blind clinical trial",
+    "year": 2022,
+    "pmid": "35171954",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35171954/",
+    "doi": "10.1371/journal.pone.0263971",
+    "notes": "Positive trial of a multi-ingredient formula; cannot attribute outcomes to individual ingredients."
+  },
+  "CIT_ASU_2009": {
+    "title": "Protective effects of total fraction of avocado/soybean unsaponifiables on the structural changes in experimental dog osteoarthritis",
+    "year": 2009,
+    "pmid": "19291317",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19291317/",
+    "doi": null,
+    "notes": "Experimental induced-OA dog model, not a client-owned clinical outcomes trial."
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "learning_modes": {
+    "by_letters": [
+      {
+        "letter": "A",
+        "name_en": "Letter A",
+        "name_vi": "Chữ A",
+        "grade": "Mầm non - Lớp 1",
+        "free": true,
+        "words": [
+          { "en": "Apple", "vi": "Quả táo", "image": "/song-ngu-cho-be/words/A/apple.webp", "sentence": "I like the red apple." },
+          { "en": "Ant", "vi": "Con kiến", "image": "/song-ngu-cho-be/words/A/ant.webp", "sentence": "The ant is very small." },
+          { "en": "Arm", "vi": "Cánh tay", "image": "/song-ngu-cho-be/words/A/arm.webp", "sentence": "I have two arms." },
+          { "en": "Alligator", "vi": "Cá sấu", "image": "/song-ngu-cho-be/words/A/alligator.webp", "sentence": "The alligator is big." },
+          { "en": "Astronaut", "vi": "Phi hành gia", "image": "/song-ngu-cho-be/words/A/astronaut.webp", "sentence": "The astronaut flies to the moon." }
+        ]
+      },
+      {
+        "letter": "B",
+        "name_en": "Letter B",
+        "name_vi": "Chữ B",
+        "free": false,
+        "words": [
+          { "en": "Ball", "vi": "Quả bóng", "image": "/song-ngu-cho-be/words/B/ball.webp", "sentence": "The ball is red." },
+          { "en": "Book", "vi": "Quyển sách", "image": "/song-ngu-cho-be/words/B/book.webp", "sentence": "I read a book." },
+          { "en": "Bird", "vi": "Con chim", "image": "/song-ngu-cho-be/words/B/bird.webp", "sentence": "The bird can fly." },
+          { "en": "Banana", "vi": "Quả chuối", "image": "/song-ngu-cho-be/words/B/banana.webp", "sentence": "The banana is yellow." },
+          { "en": "Bus", "vi": "Xe buýt", "image": "/song-ngu-cho-be/words/B/bus.webp", "sentence": "The bus is big." },
+          { "en": "Bear", "vi": "Con gấu", "image": "/song-ngu-cho-be/words/B/bear.webp", "sentence": "The bear is brown." }
+        ]
+        },
+      {
+        "letter": "C",
+        "name_en": "Letter C",
+        "name_vi": "Chữ C",
+        "free": false,
+        "words": [
+          { "en": "Cat", "vi": "Con mèo", "image": "/song-ngu-cho-be/words/C/cat.webp", "sentence": "The cat is cute." },
+          { "en": "Car", "vi": "Xe hơi", "image": "/song-ngu-cho-be/words/C/car.webp", "sentence": "The car is fast." },
+          { "en": "Cake", "vi": "Bánh sinh nhật", "image": "/song-ngu-cho-be/words/C/cake.webp", "sentence": "I eat cake." },
+          { "en": "Cow", "vi": "Con bò", "image": "/song-ngu-cho-be/words/C/cow.webp", "sentence": "The cow says moo." },
+          { "en": "Candy", "vi": "Kẹo", "image": "/song-ngu-cho-be/words/C/candy.webp", "sentence": "Candy is sweet." }
+        ]
+      },
+      {
+        "letter": "D",
+        "name_en": "Letter D",
+        "name_vi": "Chữ D",
+        "free": false,
+        "words": [
+          { "en": "Dog", "vi": "Con chó", "image": "/song-ngu-cho-be/words/D/dog.webp", "sentence": "The dog is my friend." },
+          { "en": "Duck", "vi": "Con vịt", "image": "/song-ngu-cho-be/words/D/duck.webp", "sentence": "The duck swims." },
+          { "en": "Doll", "vi": "Búp bê", "image": "/song-ngu-cho-be/words/D/doll.webp", "sentence": "The doll is pretty." },
+          { "en": "Door", "vi": "Cánh cửa", "image": "/song-ngu-cho-be/words/D/door.webp", "sentence": "Open the door." },
+          { "en": "Drum", "vi": "Cái trống", "image": "/song-ngu-cho-be/words/D/drum.webp", "sentence": "I play the drum." }
+        ]
+      },
+      {
+        "letter": "E",
+        "name_en": "Letter E",
+        "name_vi": "Chữ E",
+        "free": false,
+        "words": [
+          { "en": "Egg", "vi": "Quả trứng", "image": "/song-ngu-cho-be/words/E/egg.webp", "sentence": "I eat an egg." },
+          { "en": "Elephant", "vi": "Con voi", "image": "/song-ngu-cho-be/words/E/elephant.webp", "sentence": "The elephant is big." },
+          { "en": "Ear", "vi": "Tai", "image": "/song-ngu-cho-be/words/E/ear.webp", "sentence": "I have two ears." },
+          { "en": "Eye", "vi": "Mắt", "image": "/song-ngu-cho-be/words/E/eye.webp", "sentence": "I see with my eyes." },
+          { "en": "Eagle", "vi": "Con đại bàng", "image": "/song-ngu-cho-be/words/E/eagle.webp", "sentence": "The eagle flies high." }
+        ]
+      },
+      {
+        "letter": "F",
+        "name_en": "Letter F",
+        "name_vi": "Chữ F",
+        "free": false,
+        "words": [
+          { "en": "Fish", "vi": "Con cá", "image": "/song-ngu-cho-be/words/F/fish.webp", "sentence": "The fish swims." },
+          { "en": "Frog", "vi": "Con ếch", "image": "/song-ngu-cho-be/words/F/frog.webp", "sentence": "The frog jumps." },
+          { "en": "Flower", "vi": "Bông hoa", "image": "/song-ngu-cho-be/words/F/flower.webp", "sentence": "The flower is beautiful." },
+          { "en": "Fan", "vi": "Cái quạt", "image": "/song-ngu-cho-be/words/F/fan.webp", "sentence": "The fan is cool." },
+          { "en": "Fox", "vi": "Con cáo", "image": "/song-ngu-cho-be/words/F/fox.webp", "sentence": "The fox is clever." }
+        ]
+      },
+      {
+        "letter": "G",
+        "name_en": "Letter G",
+        "name_vi": "Chữ G",
+        "free": false,
+        "words": [
+          { "en": "Girl", "vi": "Bé gái", "image": "/song-ngu-cho-be/words/G/girl.webp", "sentence": "The girl is happy." },
+          { "en": "Goat", "vi": "Con dê", "image": "/song-ngu-cho-be/words/G/goat.webp", "sentence": "The goat eats grass." },
+          { "en": "Grapes", "vi": "Chùm nho", "image": "/song-ngu-cho-be/words/G/grapes.webp", "sentence": "I like grapes." },
+          { "en": "Gift", "vi": "Món quà", "image": "/song-ngu-cho-be/words/G/gift.webp", "sentence": "This is a gift." },
+          { "en": "Giraffe", "vi": "Hươu cao cổ", "image": "/song-ngu-cho-be/words/G/giraffe.webp", "sentence": "The giraffe is tall." }
+        ]
+      },
+      {
+        "letter": "H",
+        "name_en": "Letter H",
+        "name_vi": "Chữ H",
+        "free": false,
+        "words": [
+          { "en": "Hat", "vi": "Cái mũ", "image": "/song-ngu-cho-be/words/H/hat.webp", "sentence": "I wear a hat." },
+          { "en": "House", "vi": "Ngôi nhà", "image": "/song-ngu-cho-be/words/H/house.webp", "sentence": "This is my house." },
+          { "en": "Horse", "vi": "Con ngựa", "image": "/song-ngu-cho-be/words/H/horse.webp", "sentence": "The horse runs fast." },
+          { "en": "Hand", "vi": "Bàn tay", "image": "/song-ngu-cho-be/words/H/hand.webp", "sentence": "I have two hands." },
+          { "en": "Hippo", "vi": "Hà mã", "image": "/song-ngu-cho-be/words/H/hippo.webp", "sentence": "The hippo is big." }
+        ]
+      },
+      {
+        "letter": "I",
+        "name_en": "Letter I",
+        "name_vi": "Chữ I",
+        "free": false,
+        "words": [
+          { "en": "Ice cream", "vi": "Kem", "image": "/song-ngu-cho-be/words/I/icecream.webp", "sentence": "I love ice cream." },
+          { "en": "Ice", "vi": "Đá lạnh", "image": "/song-ngu-cho-be/words/I/ice.webp", "sentence": "The ice is cold." },
+          { "en": "Iguana", "vi": "Kỳ nhông", "image": "/song-ngu-cho-be/words/I/iguana.webp", "sentence": "The iguana is green." },
+          { "en": "Insect", "vi": "Côn trùng", "image": "/song-ngu-cho-be/words/I/insect.webp", "sentence": "The insect is small." },
+          { "en": "Island", "vi": "Hòn đảo", "image": "/song-ngu-cho-be/words/I/island.webp", "sentence": "The island is beautiful." }
+        ]
+      },
+      {
+        "letter": "J",
+        "name_en": "Letter J",
+        "name_vi": "Chữ J",
+        "free": false,
+        "words": [
+          { "en": "Juice", "vi": "Nước ép", "image": "/song-ngu-cho-be/words/J/juice.webp", "sentence": "I drink juice." },
+          { "en": "Jam", "vi": "Mứt", "image": "/song-ngu-cho-be/words/J/jam.webp", "sentence": "I like jam." },
+          { "en": "Jellyfish", "vi": "Con sứa", "image": "/song-ngu-cho-be/words/J/jellyfish.webp", "sentence": "The jellyfish swims." },
+          { "en": "Jump", "vi": "Nhảy", "image": "/song-ngu-cho-be/words/J/jump.webp", "sentence": "I can jump." },
+          { "en": "Jeep", "vi": "Xe Jeep", "image": "/song-ngu-cho-be/words/J/jeep.webp", "sentence": "The jeep is big." }
+        ]
+      },
+      {
+        "letter": "K",
+        "name_en": "Letter K",
+        "name_vi": "Chữ K",
+        "free": false,
+        "words": [
+          { "en": "Kite", "vi": "Cánh diều", "image": "/song-ngu-cho-be/words/K/kite.webp", "sentence": "I fly a kite." },
+          { "en": "Key", "vi": "Chìa khóa", "image": "/song-ngu-cho-be/words/K/key.webp", "sentence": "This is a key." },
+          { "en": "Kangaroo", "vi": "Chuột túi", "image": "/song-ngu-cho-be/words/K/kangaroo.webp", "sentence": "The kangaroo jumps." },
+          { "en": "King", "vi": "Ông vua", "image": "/song-ngu-cho-be/words/K/king.webp", "sentence": "The king wears a crown." },
+          { "en": "Kitten", "vi": "Mèo con", "image": "/song-ngu-cho-be/words/K/kitten.webp", "sentence": "The kitten is cute." }
+        ]
+      },
+      {
+        "letter": "L",
+        "name_en": "Letter L",
+        "name_vi": "Chữ L",
+        "free": false,
+        "words": [
+          { "en": "Lion", "vi": "Sư tử", "image": "/song-ngu-cho-be/words/L/lion.webp", "sentence": "The lion is strong." },
+          { "en": "Ladybug", "vi": "Con bọ rùa", "image": "/song-ngu-cho-be/words/L/ladybug.webp", "sentence": "The ladybug is red." },
+          { "en": "Lamp", "vi": "Cái đèn", "image": "/song-ngu-cho-be/words/L/lamp.webp", "sentence": "The lamp is bright." },
+          { "en": "Lollipop", "vi": "Kẹo mút", "image": "/song-ngu-cho-be/words/L/lollipop.webp", "sentence": "I eat a lollipop." },
+          { "en": "Leaf", "vi": "Chiếc lá", "image": "/song-ngu-cho-be/words/L/leaf.webp", "sentence": "The leaf is green." }
+        ]
+      },
+      {
+        "letter": "M",
+        "name_en": "Letter M",
+        "name_vi": "Chữ M",
+        "free": false,
+        "words": [
+          { "en": "Monkey", "vi": "Con khỉ", "image": "/song-ngu-cho-be/words/M/monkey.webp", "sentence": "The monkey is funny." },
+          { "en": "Milk", "vi": "Sữa", "image": "/song-ngu-cho-be/words/M/milk.webp", "sentence": "I drink milk." },
+          { "en": "Moon", "vi": "Mặt trăng", "image": "/song-ngu-cho-be/words/M/moon.webp", "sentence": "The moon is big." },
+          { "en": "Mouse", "vi": "Con chuột", "image": "/song-ngu-cho-be/words/M/mouse.webp", "sentence": "The mouse is small." },
+          { "en": "Money", "vi": "Tiền", "image": "/song-ngu-cho-be/words/M/money.webp", "sentence": "I save my money." },
+          { "en": "Mango", "vi": "Quả xoài", "image": "/song-ngu-cho-be/words/M/mango.webp", "sentence": "The mango is sweet." }
+        ]
+      },
+      {
+        "letter": "N",
+        "name_en": "Letter N",
+        "name_vi": "Chữ N",
+        "free": false,
+        "words": [
+          { "en": "Nest", "vi": "Tổ chim", "image": "/song-ngu-cho-be/words/N/nest.webp", "sentence": "The bird has a nest." },
+          { "en": "Nose", "vi": "Cái mũi", "image": "/song-ngu-cho-be/words/N/nose.webp", "sentence": "This is my nose." },
+          { "en": "Nail", "vi": "Móng tay", "image": "/song-ngu-cho-be/words/N/nail.webp", "sentence": "My nail is clean." },
+          { "en": "Noodle", "vi": "Mì", "image": "/song-ngu-cho-be/words/N/noodle.webp", "sentence": "I eat noodles." },
+          { "en": "Nut", "vi": "Hạt", "image": "/song-ngu-cho-be/words/N/nut.webp", "sentence": "The nut is small." }
+        ]
+      },
+      {
+        "letter": "O",
+        "name_en": "Letter O",
+        "name_vi": "Chữ O",
+        "free": false,
+        "words": [
+          { "en": "Octopus", "vi": "Bạch tuộc", "image": "/song-ngu-cho-be/words/O/octopus.webp", "sentence": "The octopus swims." },
+          { "en": "Orange", "vi": "Quả cam", "image": "/song-ngu-cho-be/words/O/orange.webp", "sentence": "I eat an orange." },
+          { "en": "Owl", "vi": "Con cú", "image": "/song-ngu-cho-be/words/O/owl.webp", "sentence": "The owl is awake." },
+          { "en": "Ocean", "vi": "Biển", "image": "/song-ngu-cho-be/words/O/ocean.webp", "sentence": "The ocean is blue." },
+          { "en": "Ox", "vi": "Con bò đực", "image": "/song-ngu-cho-be/words/O/ox.webp", "sentence": "The ox is strong." }
+        ]
+      },
+      {
+        "letter": "P",
+        "name_en": "Letter P",
+        "name_vi": "Chữ P",
+        "free": false,
+        "words": [
+          { "en": "Pig", "vi": "Con lợn", "image": "/song-ngu-cho-be/words/P/pig.webp", "sentence": "The pig is pink." },
+          { "en": "Panda", "vi": "Gấu trúc", "image": "/song-ngu-cho-be/words/P/panda.webp", "sentence": "The panda is black and white." },
+          { "en": "Parrot", "vi": "Con vẹt", "image": "/song-ngu-cho-be/words/P/parrot.webp", "sentence": "The parrot is colorful." },
+          { "en": "Penguin", "vi": "Chim cánh cụt", "image": "/song-ngu-cho-be/words/P/penguin.webp", "sentence": "The penguin swims." },
+          { "en": "Pencil", "vi": "Cây bút chì", "image": "/song-ngu-cho-be/words/P/pencil.webp", "sentence": "I write with a pencil." }
+        ]
+      },
+      {
+        "letter": "Q",
+        "name_en": "Letter Q",
+        "name_vi": "Chữ Q",
+        "free": false,
+        "words": [
+          { "en": "Queen", "vi": "Nữ hoàng", "image": "/song-ngu-cho-be/words/Q/queen.webp", "sentence": "The queen wears a crown." },
+          { "en": "Quilt", "vi": "Chăn bông", "image": "/song-ngu-cho-be/words/Q/quilt.webp", "sentence": "The quilt is warm." },
+          { "en": "Question", "vi": "Câu hỏi", "image": "/song-ngu-cho-be/words/Q/question.webp", "sentence": "I ask a question." },
+          { "en": "Quack", "vi": "Tiếng vịt kêu", "image": "/song-ngu-cho-be/words/Q/quack.webp", "sentence": "The duck quacks." },
+          { "en": "Quiet", "vi": "Yên tĩnh", "image": "/song-ngu-cho-be/words/Q/quiet.webp", "sentence": "Be quiet, please." }
+        ]
+      },
+      {
+        "letter": "R",
+        "name_en": "Letter R",
+        "name_vi": "Chữ R",
+        "free": false,
+        "words": [
+          { "en": "Rabbit", "vi": "Con thỏ", "image": "/song-ngu-cho-be/words/R/rabbit.webp", "sentence": "The rabbit is white." },
+          { "en": "Rainbow", "vi": "Cầu vồng", "image": "/song-ngu-cho-be/words/R/rainbow.webp", "sentence": "The rainbow is colorful." },
+          { "en": "Robot", "vi": "Người máy", "image": "/song-ngu-cho-be/words/R/robot.webp", "sentence": "The robot is cool." },
+          { "en": "Ring", "vi": "Chiếc nhẫn", "image": "/song-ngu-cho-be/words/R/ring.webp", "sentence": "The ring is shiny." },
+          { "en": "Rose", "vi": "Bông hồng", "image": "/song-ngu-cho-be/words/R/rose.webp", "sentence": "The rose is red." }
+        ]
+      },
+      {
+        "letter": "S",
+        "name_en": "Letter S",
+        "name_vi": "Chữ S",
+        "free": false,
+        "words": [
+          { "en": "Sun", "vi": "Mặt trời", "image": "/song-ngu-cho-be/words/S/sun.webp", "sentence": "The sun is hot." },
+          { "en": "Star", "vi": "Ngôi sao", "image": "/song-ngu-cho-be/words/S/star.webp", "sentence": "The star is bright." },
+          { "en": "Snake", "vi": "Con rắn", "image": "/song-ngu-cho-be/words/S/snake.webp", "sentence": "The snake is long." },
+          { "en": "Shoes", "vi": "Đôi giày", "image": "/song-ngu-cho-be/words/S/shoes.webp", "sentence": "I wear shoes." },
+          { "en": "Ship", "vi": "Con tàu", "image": "/song-ngu-cho-be/words/S/ship.webp", "sentence": "The ship is big." }
+        ]
+      },
+      {
+        "letter": "T",
+        "name_en": "Letter T",
+        "name_vi": "Chữ T",
+        "free": false,
+        "words": [
+          { "en": "Tiger", "vi": "Con hổ", "image": "/song-ngu-cho-be/words/T/tiger.webp", "sentence": "The tiger is strong." },
+          { "en": "Tree", "vi": "Cái cây", "image": "/song-ngu-cho-be/words/T/tree.webp", "sentence": "The tree is green." },
+          { "en": "Train", "vi": "Tàu hỏa", "image": "/song-ngu-cho-be/words/T/train.webp", "sentence": "The train is fast." },
+          { "en": "Turtle", "vi": "Con rùa", "image": "/song-ngu-cho-be/words/T/turtle.webp", "sentence": "The turtle walks slowly." },
+          { "en": "Tomato", "vi": "Quả cà chua", "image": "/song-ngu-cho-be/words/T/tomato.webp", "sentence": "The tomato is red." }
+        ]
+      },
+      {
+        "letter": "U",
+        "name_en": "Letter U",
+        "name_vi": "Chữ U",
+        "free": false,
+        "words": [
+          { "en": "Umbrella", "vi": "Cái ô / Dù", "image": "/song-ngu-cho-be/words/U/umbrella.webp", "sentence": "I use an umbrella." },
+          { "en": "Unicorn", "vi": "Kỳ lân", "image": "/song-ngu-cho-be/words/U/unicorn.webp", "sentence": "The unicorn is magic." },
+          { "en": "Up", "vi": "Lên trên", "image": "/song-ngu-cho-be/words/U/up.webp", "sentence": "Look up!" },
+          { "en": "Under", "vi": "Bên dưới", "image": "/song-ngu-cho-be/words/U/under.webp", "sentence": "The cat is under the table." },
+          { "en": "Uniform", "vi": "Đồng phục", "image": "/song-ngu-cho-be/words/U/uniform.webp", "sentence": "I wear a uniform." }
+        ]
+      },
+      {
+        "letter": "V",
+        "name_en": "Letter V",
+        "name_vi": "Chữ V",
+        "free": false,
+        "words": [
+          { "en": "Van", "vi": "Xe tải nhỏ", "image": "/song-ngu-cho-be/words/V/van.webp", "sentence": "The van is big." },
+          { "en": "Vase", "vi": "Cái bình hoa", "image": "/song-ngu-cho-be/words/V/vase.webp", "sentence": "The vase has flowers." },
+          { "en": "Violin", "vi": "Đàn viô-lông", "image": "/song-ngu-cho-be/words/V/violin.webp", "sentence": "I play the violin." },
+          { "en": "Vegetable", "vi": "Rau củ", "image": "/song-ngu-cho-be/words/V/vegetable.webp", "sentence": "I eat vegetables." },
+          { "en": "Volcano", "vi": "Núi lửa", "image": "/song-ngu-cho-be/words/V/volcano.webp", "sentence": "The volcano is hot." }
+        ]
+      },
+      {
+        "letter": "W",
+        "name_en": "Letter W",
+        "name_vi": "Chữ W",
+        "free": false,
+        "words": [
+          { "en": "Watermelon", "vi": "Quả dưa hấu", "image": "/song-ngu-cho-be/words/W/watermelon.webp", "sentence": "Watermelon is sweet." },
+          { "en": "Whale", "vi": "Cá voi", "image": "/song-ngu-cho-be/words/W/whale.webp", "sentence": "The whale swims." },
+          { "en": "Window", "vi": "Cửa sổ", "image": "/song-ngu-cho-be/words/W/window.webp", "sentence": "Look out the window." },
+          { "en": "Wolf", "vi": "Con sói", "image": "/song-ngu-cho-be/words/W/wolf.webp", "sentence": "The wolf howls." },
+          { "en": "Watch", "vi": "Đồng hồ", "image": "/song-ngu-cho-be/words/W/watch.webp", "sentence": "I wear a watch." }
+        ]
+      },
+      {
+        "letter": "X",
+        "name_en": "Letter X",
+        "name_vi": "Chữ X",
+        "free": false,
+        "words": [
+          { "en": "Xylitol", "vi": "Kẹo xylitol", "image": "/song-ngu-cho-be/words/X/xylitol.webp", "sentence": "I eat xylitol candy." },
+          { "en": "Xylophone", "vi": "Đàn phiến gỗ", "image": "/song-ngu-cho-be/words/X/xylophone.webp", "sentence": "I play the xylophone." },
+          { "en": "Xerus", "vi": "Sóc đất châu Phi", "image": "/song-ngu-cho-be/words/X/xerus.webp", "sentence": "The xerus runs fast." },
+          { "en": "Xigua", "vi": "Dưa hấu", "image": "/song-ngu-cho-be/words/X/xigua.webp", "sentence": "The xigua is sweet." },
+          { "en": "Xenops", "vi": "Chim xenops", "image": "/song-ngu-cho-be/words/X/xenops.webp", "sentence": "The xenops sits on a tree." }
+        ]
+      },
+      {
+        "letter": "Y",
+        "name_en": "Letter Y",
+        "name_vi": "Chữ Y",
+        "free": false,
+        "words": [
+          { "en": "Yellow", "vi": "Màu vàng", "image": "/song-ngu-cho-be/words/Y/yellow.webp", "sentence": "The sun is yellow." },
+          { "en": "Yoyo", "vi": "Con quay yoyo", "image": "/song-ngu-cho-be/words/Y/yoyo.webp", "sentence": "I play with a yoyo." },
+          { "en": "Yak", "vi": "Bò Tây Tạng", "image": "/song-ngu-cho-be/words/Y/yak.webp", "sentence": "The yak lives in the mountains." },
+          { "en": "Yarn", "vi": "Cuộn len", "image": "/song-ngu-cho-be/words/Y/yarn.webp", "sentence": "The cat plays with the yarn." },
+          { "en": "Yogurt", "vi": "Sữa chua", "image": "/song-ngu-cho-be/words/Y/yogurt.webp", "sentence": "I eat yogurt." }
+        ]
+      },
+      {
+        "letter": "Z",
+        "name_en": "Letter Z",
+        "name_vi": "Chữ Z",
+        "free": false,
+        "words": [
+          { "en": "Zoo", "vi": "Sở thú", "image": "/song-ngu-cho-be/words/Z/zoo.webp", "sentence": "We go to the zoo." },
+          { "en": "Zebra", "vi": "Ngựa vằn", "image": "/song-ngu-cho-be/words/Z/zebra.webp", "sentence": "The zebra has stripes." },
+          { "en": "Zero", "vi": "Số không", "image": "/song-ngu-cho-be/words/Z/zero.webp", "sentence": "The number is zero." },
+          { "en": "Zipper", "vi": "Khóa kéo", "image": "/song-ngu-cho-be/words/Z/zipper.webp", "sentence": "I pull the zipper." },
+          { "en": "Zucchini", "vi": "Bí ngòi", "image": "/song-ngu-cho-be/words/Z/zucchini.webp", "sentence": "I eat zucchini." }
+        ]
+      }
+    ],
+    "by_topics": [
+      {
+        "id": "animals",
+        "name_en": "Animals",
+        "name_vi": "Động vật",
+        "free": true,
+        "words": [
+          { "en": "Dog", "vi": "Chó", "image": "/song-ngu-cho-be/topics/animals/dog.webp", "sentence": "The dog says woof." },
+          { "en": "Cat", "vi": "Mèo", "image": "/song-ngu-cho-be/topics/animals/cat.webp", "sentence": "The cat says meow." },
+          { "en": "Bird", "vi": "Chim", "image": "/song-ngu-cho-be/topics/animals/bird.webp", "sentence": "The bird flies." },
+          { "en": "Fish", "vi": "Cá", "image": "/song-ngu-cho-be/topics/animals/fish.webp", "sentence": "The fish swims." },
+          { "en": "Duck", "vi": "Vịt con", "image": "/song-ngu-cho-be/topics/animals/duck.webp", "sentence": "The duck is yellow." },
+          { "en": "Chick", "vi": "Gà con", "image": "/song-ngu-cho-be/topics/animals/chick.webp", "sentence": "The chick is yellow." },
+          { "en": "Elephant", "vi": "Voi", "image": "/song-ngu-cho-be/topics/animals/elephant.webp", "sentence": "The elephant is big." },
+          { "en": "Lion", "vi": "Sư tử", "image": "/song-ngu-cho-be/topics/animals/lion.webp", "sentence": "The lion roars." },
+          { "en": "Monkey", "vi": "Khỉ", "image": "/song-ngu-cho-be/topics/animals/monkey.webp", "sentence": "The monkey is funny." },
+          { "en": "Rabbit", "vi": "Thỏ", "image": "/song-ngu-cho-be/topics/animals/rabbit.webp", "sentence": "The rabbit hops." },
+          { "en": "Tiger", "vi": "Hổ", "image": "/song-ngu-cho-be/topics/animals/tiger.webp", "sentence": "The tiger is strong." }
+        ]
+      },
+      {
+        "id": "colors",
+        "name_en": "Colors",
+        "name_vi": "Màu sắc",
+        "free": false,
+        "words": [
+          { "en": "Red", "vi": "Đỏ", "image": "/song-ngu-cho-be/topics/colors/red.webp", "sentence": "The apple is red." },
+          { "en": "Blue", "vi": "Xanh dương", "image": "/song-ngu-cho-be/topics/colors/blue.webp", "sentence": "The sky is blue." },
+          { "en": "Yellow", "vi": "Vàng", "image": "/song-ngu-cho-be/topics/colors/yellow.webp", "sentence": "The sun is yellow." },
+          { "en": "Green", "vi": "Xanh lá", "image": "/song-ngu-cho-be/topics/colors/green.webp", "sentence": "The grass is green." },
+          { "en": "Orange", "vi": "Cam", "image": "/song-ngu-cho-be/topics/colors/orange.webp", "sentence": "The orange is orange." },
+          { "en": "Purple", "vi": "Tím", "image": "/song-ngu-cho-be/topics/colors/purple.webp", "sentence": "Grapes are purple." },
+          { "en": "Pink", "vi": "Hồng", "image": "/song-ngu-cho-be/topics/colors/pink.webp", "sentence": "The flower is pink." },
+          { "en": "Black", "vi": "Đen", "image": "/song-ngu-cho-be/topics/colors/black.webp", "sentence": "The night is black." },
+          { "en": "White", "vi": "Trắng", "image": "/song-ngu-cho-be/topics/colors/white.webp", "sentence": "Snow is white." },
+          { "en": "Brown", "vi": "Nâu", "image": "/song-ngu-cho-be/topics/colors/brown.webp", "sentence": "The bear is brown." }
+        ]
+      },
+      {
+        "id": "numbers",
+        "name_en": "Numbers 1-10",
+        "name_vi": "Số đếm 1-10",
+        "free": false,
+        "words": [
+          { "en": "One", "vi": "Một", "image": "/song-ngu-cho-be/topics/numbers/one.webp", "sentence": "I have one apple." },
+          { "en": "Two", "vi": "Hai", "image": "/song-ngu-cho-be/topics/numbers/two.webp", "sentence": "I have two hands." },
+          { "en": "Three", "vi": "Ba", "image": "/song-ngu-cho-be/topics/numbers/three.webp", "sentence": "Three little pigs." },
+          { "en": "Four", "vi": "Bốn", "image": "/song-ngu-cho-be/topics/numbers/four.webp", "sentence": "The dog has four legs." },
+          { "en": "Five", "vi": "Năm", "image": "/song-ngu-cho-be/topics/numbers/five.webp", "sentence": "High five!" },
+          { "en": "Six", "vi": "Sáu", "image": "/song-ngu-cho-be/topics/numbers/six.webp", "sentence": "Six colorful balls." },
+          { "en": "Seven", "vi": "Bảy", "image": "/song-ngu-cho-be/topics/numbers/seven.webp", "sentence": "Seven days in a week." },
+          { "en": "Eight", "vi": "Tám", "image": "/song-ngu-cho-be/topics/numbers/eight.webp", "sentence": "The octopus has eight legs." },
+          { "en": "Nine", "vi": "Chín", "image": "/song-ngu-cho-be/topics/numbers/nine.webp", "sentence": "Nine yellow bananas." },
+          { "en": "Ten", "vi": "Mười", "image": "/song-ngu-cho-be/topics/numbers/ten.webp", "sentence": "I can count to ten." }
+        ]
+      },
+      {
+        "id": "family",
+        "name_en": "Family",
+        "name_vi": "Gia đình",
+        "free": false,
+        "words": [
+          { "en": "Mom", "vi": "Mẹ", "image": "/song-ngu-cho-be/topics/family/mom.webp", "sentence": "I love my mom." },
+          { "en": "Dad", "vi": "Bố", "image": "/song-ngu-cho-be/topics/family/dad.webp", "sentence": "My dad is strong." },
+          { "en": "Brother", "vi": "Anh/em trai", "image": "/song-ngu-cho-be/topics/family/brother.webp", "sentence": "My brother plays with me." },
+          { "en": "Sister", "vi": "Chị/em gái", "image": "/song-ngu-cho-be/topics/family/sister.webp", "sentence": "My sister is kind." },
+          { "en": "Grandma", "vi": "Bà", "image": "/song-ngu-cho-be/topics/family/grandma.webp", "sentence": "Grandma reads to me." },
+          { "en": "Grandpa", "vi": "Ông", "image": "/song-ngu-cho-be/topics/family/grandpa.webp", "sentence": "Grandpa tells stories." },
+          { "en": "Baby", "vi": "Em bé", "image": "/song-ngu-cho-be/topics/family/baby.webp", "sentence": "The baby is cute." }
+        ]
+      },
+      {
+        "id": "body",
+        "name_en": "Body Parts",
+        "name_vi": "Bộ phận cơ thể",
+        "free": false,
+        "words": [
+          { "en": "Face", "vi": "Mặt", "image": "/song-ngu-cho-be/topics/body/face.webp", "sentence": "I have one face." },
+          { "en": "Eyes", "vi": "Mắt", "image": "/song-ngu-cho-be/topics/body/eyes.webp", "sentence": "I see with my eyes." },
+          { "en": "Nose", "vi": "Mũi", "image": "/song-ngu-cho-be/topics/body/nose.webp", "sentence": "I smell with my nose." },
+          { "en": "Mouth", "vi": "Miệng", "image": "/song-ngu-cho-be/topics/body/mouth.webp", "sentence": "I eat with my mouth." },
+          { "en": "Ears", "vi": "Tai", "image": "/song-ngu-cho-be/topics/body/ears.webp", "sentence": "I hear with my ears." },
+          { "en": "Hands", "vi": "Bàn tay", "image": "/song-ngu-cho-be/topics/body/hands.webp", "sentence": "I have two hands." },
+          { "en": "Feet", "vi": "Bàn chân", "image": "/song-ngu-cho-be/topics/body/feet.webp", "sentence": "I walk with my feet." },
+          { "en": "Arm", "vi": "Cánh tay", "image": "/song-ngu-cho-be/topics/body/arm.webp", "sentence": "My arm is strong." },
+          { "en": "Leg", "vi": "Chân", "image": "/song-ngu-cho-be/topics/body/leg.webp", "sentence": "I run with my legs." }
+        ]
+      },
+      {
+        "id": "food",
+        "name_en": "Food & Fruits",
+        "name_vi": "Đồ ăn & Trái cây",
+        "free": false,
+        "words": [
+          { "en": "Apple", "vi": "Táo", "image": "/song-ngu-cho-be/topics/food/apple.webp", "sentence": "I eat an apple." },
+          { "en": "Banana", "vi": "Chuối", "image": "/song-ngu-cho-be/topics/food/banana.webp", "sentence": "Banana is yellow." },
+          { "en": "Orange", "vi": "Cam", "image": "/song-ngu-cho-be/topics/food/orange.webp", "sentence": "Orange is juicy." },
+          { "en": "Milk", "vi": "Sữa", "image": "/song-ngu-cho-be/topics/food/milk.webp", "sentence": "I drink milk." },
+          { "en": "Egg", "vi": "Trứng", "image": "/song-ngu-cho-be/topics/food/egg.webp", "sentence": "I eat eggs." },
+          { "en": "Bread", "vi": "Bánh mì", "image": "/song-ngu-cho-be/topics/food/bread.webp", "sentence": "I like bread." },
+          { "en": "Rice", "vi": "Cơm", "image": "/song-ngu-cho-be/topics/food/rice.webp", "sentence": "I eat rice." },
+          { "en": "Cake", "vi": "Bánh ngọt", "image": "/song-ngu-cho-be/topics/food/cake.webp", "sentence": "Happy birthday cake!" },
+          { "en": "Ice cream", "vi": "Kem", "image": "/song-ngu-cho-be/topics/food/icecream.webp", "sentence": "Ice cream is cold." },
+          { "en": "Water", "vi": "Nước", "image": "/song-ngu-cho-be/topics/food/water.webp", "sentence": "Drink water every day." }
+        ]
+      },
+      {
+        "id": "toys",
+        "name_en": "Toys",
+        "name_vi": "Đồ chơi",
+        "free": false,
+        "words": [
+          { "en": "Ball", "vi": "Bóng", "image": "/song-ngu-cho-be/topics/toys/ball.webp", "sentence": "I kick the ball." },
+          { "en": "Doll", "vi": "Búp bê", "image": "/song-ngu-cho-be/topics/toys/doll.webp", "sentence": "My doll is pretty." },
+          { "en": "Car", "vi": "Xe hơi đồ chơi", "image": "/song-ngu-cho-be/topics/toys/car.webp", "sentence": "The car is fast." },
+          { "en": "Teddy bear", "vi": "Gấu bông", "image": "/song-ngu-cho-be/topics/toys/teddy.webp", "sentence": "I hug my teddy bear." },
+          { "en": "Train", "vi": "Tàu hỏa đồ chơi", "image": "/song-ngu-cho-be/topics/toys/train.webp", "sentence": "The train goes choo-choo." },
+          { "en": "Kite", "vi": "Diều", "image": "/song-ngu-cho-be/topics/toys/kite.webp", "sentence": "I fly a kite." },
+          { "en": "Puzzle", "vi": "Xếp hình", "image": "/song-ngu-cho-be/topics/toys/puzzle.webp", "sentence": "I like puzzles." }
+        ]
+      },
+      {
+        "id": "clothes",
+        "name_en": "Clothes",
+        "name_vi": "Quần áo",
+        "free": false,
+        "words": [
+          { "en": "Shirt", "vi": "Áo sơ mi", "image": "/song-ngu-cho-be/topics/clothes/shirt.webp", "sentence": "I wear a shirt." },
+          { "en": "Pants", "vi": "Quần", "image": "/song-ngu-cho-be/topics/clothes/pants.webp", "sentence": "My pants are blue." },
+          { "en": "Dress", "vi": "Váy", "image": "/song-ngu-cho-be/topics/clothes/dress.webp", "sentence": "The dress is pink." },
+          { "en": "Shoes", "vi": "Giày", "image": "/song-ngu-cho-be/topics/clothes/shoes.webp", "sentence": "I wear shoes." },
+          { "en": "Hat", "vi": "Mũ", "image": "/song-ngu-cho-be/topics/clothes/hat.webp", "sentence": "I have a red hat." },
+          { "en": "Jacket", "vi": "Áo khoác", "image": "/song-ngu-cho-be/topics/clothes/jacket.webp", "sentence": "It is cold. I wear a jacket." },
+          { "en": "Socks", "vi": "Tất", "image": "/song-ngu-cho-be/topics/clothes/socks.webp", "sentence": "I wear socks." }
+        ]
+      },
+      {
+        "id": "vehicles",
+        "name_en": "Vehicles",
+        "name_vi": "Phương tiện",
+        "free": false,
+        "words": [
+          { "en": "Car", "vi": "Xe hơi", "image": "/song-ngu-cho-be/topics/vehicles/car.webp", "sentence": "The car is red." },
+          { "en": "Bus", "vi": "Xe buýt", "image": "/song-ngu-cho-be/topics/vehicles/bus.webp", "sentence": "I go to school by bus." },
+          { "en": "Train", "vi": "Tàu hỏa", "image": "/song-ngu-cho-be/topics/vehicles/train.webp", "sentence": "The train is long." },
+          { "en": "Plane", "vi": "Máy bay", "image": "/song-ngu-cho-be/topics/vehicles/plane.webp", "sentence": "The plane flies high." },
+          { "en": "Boat", "vi": "Thuyền", "image": "/song-ngu-cho-be/topics/vehicles/boat.webp", "sentence": "The boat is on the water." },
+          { "en": "Bicycle", "vi": "Xe đạp", "image": "/song-ngu-cho-be/topics/vehicles/bicycle.webp", "sentence": "I ride a bicycle." },
+          { "en": "Motorcycle", "vi": "Xe máy", "image": "/song-ngu-cho-be/topics/vehicles/motorcycle.webp", "sentence": "I ride a motorcycle." },
+          { "en": "Truck", "vi": "Xe tải", "image": "/song-ngu-cho-be/topics/vehicles/truck.webp", "sentence": "The truck is big." }
+        ]
+      },
+      {
+        "id": "house",
+        "name_en": "House & Rooms",
+        "name_vi": "Nhà cửa",
+        "free": false,
+        "words": [
+          { "en": "House", "vi": "Nhà", "image": "/song-ngu-cho-be/topics/house/house.webp", "sentence": "This is my house." },
+          { "en": "Door", "vi": "Cửa", "image": "/song-ngu-cho-be/topics/house/door.webp", "sentence": "Open the door." },
+          { "en": "Window", "vi": "Cửa sổ", "image": "/song-ngu-cho-be/topics/house/window.webp", "sentence": "Look out the window." },
+          { "en": "Bed", "vi": "Giường", "image": "/song-ngu-cho-be/topics/house/bed.webp", "sentence": "I sleep in bed." },
+          { "en": "Table", "vi": "Bàn", "image": "/song-ngu-cho-be/topics/house/table.webp", "sentence": "We eat at the table." },
+          { "en": "Chair", "vi": "Ghế", "image": "/song-ngu-cho-be/topics/house/chair.webp", "sentence": "Sit on the chair." },
+          { "en": "Kitchen", "vi": "Bếp", "image": "/song-ngu-cho-be/topics/house/kitchen.webp", "sentence": "Mom cooks in the kitchen." },
+          { "en": "Bathroom", "vi": "Phòng tắm", "image": "/song-ngu-cho-be/topics/house/bathroom.webp", "sentence": "I brush teeth in the bathroom." }
+        ]
+      },
+      {
+        "id": "weather",
+        "name_en": "Weather",
+        "name_vi": "Thời tiết",
+        "free": false,
+        "words": [
+          { "en": "Sunny", "vi": "Nắng", "image": "/song-ngu-cho-be/topics/weather/sunny.webp", "sentence": "Today is sunny." },
+          { "en": "Rainy", "vi": "Mưa", "image": "/song-ngu-cho-be/topics/weather/rainy.webp", "sentence": "It is rainy." },
+          { "en": "Cloudy", "vi": "Nhiều mây", "image": "/song-ngu-cho-be/topics/weather/cloudy.webp", "sentence": "The sky is cloudy." },
+          { "en": "Windy", "vi": "Gió", "image": "/song-ngu-cho-be/topics/weather/windy.webp", "sentence": "It is windy today." },
+          { "en": "Hot", "vi": "Nóng", "image": "/song-ngu-cho-be/topics/weather/hot.webp", "sentence": "Summer is hot." },
+          { "en": "Cold", "vi": "Lạnh", "image": "/song-ngu-cho-be/topics/weather/cold.webp", "sentence": "Winter is cold." },
+          { "en": "Cloudy", "vi": "Mây", "image": "/song-ngu-cho-be/topics/weather/cloudy.webp", "sentence": "It is cloudy." }
+        ]
+      },
+      {
+        "id": "feelings",
+        "name_en": "Feelings",
+        "name_vi": "Cảm xúc",
+        "free": false,
+        "words": [
+          { "en": "Happy", "vi": "Vui", "image": "/song-ngu-cho-be/topics/feelings/happy.webp", "sentence": "I am happy!" },
+          { "en": "Sad", "vi": "Buồn", "image": "/song-ngu-cho-be/topics/feelings/sad.webp", "sentence": "I am sad." },
+          { "en": "Angry", "vi": "Giận", "image": "/song-ngu-cho-be/topics/feelings/angry.webp", "sentence": "He is angry." },
+          { "en": "Scared", "vi": "Sợ", "image": "/song-ngu-cho-be/topics/feelings/scared.webp", "sentence": "I am scared." },
+          { "en": "Tired", "vi": "Mệt", "image": "/song-ngu-cho-be/topics/feelings/tired.webp", "sentence": "I am tired." },
+          { "en": "Hungry", "vi": "Đói", "image": "/song-ngu-cho-be/topics/feelings/hungry.webp", "sentence": "I am hungry." },
+          { "en": "Thirsty", "vi": "Khát", "image": "/song-ngu-cho-be/topics/feelings/thirsty.webp", "sentence": "I am thirsty." }
+        ]
+      },
+      {
+        "id": "actions",
+        "name_en": "Daily Actions",
+        "name_vi": "Hành động hàng ngày",
+        "free": false,
+        "words": [
+          { "en": "Run", "vi": "Chạy", "image": "/song-ngu-cho-be/topics/actions/run.webp", "sentence": "I can run fast." },
+          { "en": "Jump", "vi": "Nhảy", "image": "/song-ngu-cho-be/topics/actions/jump.webp", "sentence": "I jump high." },
+          { "en": "Eat", "vi": "Ăn", "image": "/song-ngu-cho-be/topics/actions/eat.webp", "sentence": "I eat breakfast." },
+          { "en": "Drink", "vi": "Uống", "image": "/song-ngu-cho-be/topics/actions/drink.webp", "sentence": "I drink water." },
+          { "en": "Sleep", "vi": "Ngủ", "image": "/song-ngu-cho-be/topics/actions/sleep.webp", "sentence": "I sleep at night." },
+          { "en": "Sing", "vi": "Hát", "image": "/song-ngu-cho-be/topics/actions/sing.webp", "sentence": "I sing a song." },
+          { "en": "Dance", "vi": "Nhảy múa", "image": "/song-ngu-cho-be/topics/actions/dance.webp", "sentence": "I like to dance." },
+          { "en": "Read", "vi": "Đọc", "image": "/song-ngu-cho-be/topics/actions/read.webp", "sentence": "I read a book." },
+          { "en": "Draw", "vi": "Vẽ", "image": "/song-ngu-cho-be/topics/actions/draw.webp", "sentence": "I draw a picture." },
+          { "en": "Play", "vi": "Chơi", "image": "/song-ngu-cho-be/topics/actions/play.webp", "sentence": "I play with friends." }
+        ]
+      },
+      {
+        "id": "shapes",
+        "name_en": "Shapes",
+        "name_vi": "Hình dạng",
+        "free": false,
+        "words": [
+          { "en": "Circle", "vi": "Hình tròn", "image": "/song-ngu-cho-be/topics/shapes/circle.webp", "sentence": "The ball is a circle." },
+          { "en": "Square", "vi": "Hình vuông", "image": "/song-ngu-cho-be/topics/shapes/square.webp", "sentence": "The window is a square." },
+          { "en": "Triangle", "vi": "Hình tam giác", "image": "/song-ngu-cho-be/topics/shapes/triangle.webp", "sentence": "The roof is a triangle." },
+          { "en": "Rectangle", "vi": "Hình chữ nhật", "image": "/song-ngu-cho-be/topics/shapes/rectangle.webp", "sentence": "The door is a rectangle." },
+          { "en": "Star", "vi": "Ngôi sao", "image": "/song-ngu-cho-be/topics/shapes/star.webp", "sentence": "The star is yellow." },
+          { "en": "Heart", "vi": "Trái tim", "image": "/song-ngu-cho-be/topics/shapes/heart.webp", "sentence": "I love you. Here is a heart." }
+        ]
+      },
+      {
+        "id": "holidays",
+        "name_en": "Holidays",
+        "name_vi": "Ngày lễ",
+        "free": false,
+        "words": [
+          { "en": "Christmas", "vi": "Giáng sinh", "image": "/song-ngu-cho-be/topics/holidays/christmas.webp", "sentence": "Merry Christmas!" },
+          { "en": "Tet", "vi": "Tết Nguyên Đán", "image": "/song-ngu-cho-be/topics/holidays/tet.webp", "sentence": "Happy Lunar New Year!" },
+          { "en": "Valentine", "vi": "Lễ tình nhân", "image": "/song-ngu-cho-be/topics/holidays/valentine.webp", "sentence": "Happy Valentine's Day!" },
+          { "en": "Halloween", "vi": "Lễ hội ma", "image": "/song-ngu-cho-be/topics/holidays/halloween.webp", "sentence": "Trick or treat!" },
+          { "en": "Children's Day", "vi": "Ngày Quốc tế Thiếu nhi", "image": "/song-ngu-cho-be/topics/holidays/children_day.webp", "sentence": "Happy Children's Day!" },
+          { "en": "Mid-Autumn", "vi": "Tết Trung Thu", "image": "/song-ngu-cho-be/topics/holidays/mid_autumn.webp", "sentence": "Happy Mid-Autumn Festival!" },
+          { "en": "Birthday", "vi": "Sinh nhật", "image": "/song-ngu-cho-be/topics/holidays/birthday.webp", "sentence": "Happy birthday!" },
+          { "en": "Thanksgiving", "vi": "Lễ Tạ ơn", "image": "/song-ngu-cho-be/topics/holidays/thanksgiving.webp", "sentence": "Happy Thanksgiving!" }
+        ]
+      }
+    ]
+  }
+}

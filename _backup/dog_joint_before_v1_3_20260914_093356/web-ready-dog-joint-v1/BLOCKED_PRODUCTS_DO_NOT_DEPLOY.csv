@@ -1,0 +1,15 @@
+﻿asin,product_name,blockers,publication_status
+B0009YS9RS,"Nutri-Vet Dog Aspirin, Aspirin Tablets for Large Dogs, 300mg, 75 Count",SCIENTIFIC_EVIDENCE_UNRESOLVED;SCOPE_REVIEW_ASPIRIN_DRUG_PRODUCT,BLOCKED_DO_NOT_RENDER
+B000ETLOAM,"Nutri-Vet Hip & Joint Dog Biscuits, Dog Treats, 300mg Glucosamine, 6 lb Bag",AMAZON_SOURCE_INCOMPLETE;FORM_DISPLAY_MISSING,BLOCKED_DO_NOT_RENDER
+B0083H586S,NaturVet Senior Dog Wellness Hip & Joint Advanced Plus - 120 Soft Chews,SOURCE_CONFLICT_FORM_TITLE_VS_CAPTURED_FORM,BLOCKED_DO_NOT_RENDER
+B00EGOY0DO,"NaturVet Glucosamine DS Plus Level 2 Moderate, Joint Care Support Supplement for Dogs and Cats, Soft Chews, Made in The USA, 120 Count",SOURCE_CONFLICT_FORM_TITLE_VS_CAPTURED_FORM,BLOCKED_DO_NOT_RENDER
+B00F4IJ1MQ,"Dogzymes Phyto Flex - Glucosamine, Chondroitin, MSM and Hyaluronic Acid… (1 Pound)",FORMULA_PROVENANCE_INCONSISTENT_INGREDIENT_SECTION,BLOCKED_DO_NOT_RENDER
+B00PXK1G50,"Dog Joint Supplement for Dogs All Ages Breeds & Size, Glucosamine for Dogs",FORMULA_DISPLAY_NOT_SUPPORTED_BY_CAPTURED_INGREDIENTS,BLOCKED_DO_NOT_RENDER
+B01E46PJCE,MOVOFLEX Soft Chew Hip & Joint Supplement for Medium Dogs - 60ct by Virbac,FORMULA_DISPLAY_NOT_SUPPORTED_BY_CAPTURED_INGREDIENTS,BLOCKED_DO_NOT_RENDER
+B07CN7KQDY,"DOGSWELL Hip & Joint Soft Strips Dog Treats, Chicken, 20 oz. Pouch",AMAZON_SOURCE_INCOMPLETE;FORM_DISPLAY_MISSING,BLOCKED_DO_NOT_RENDER
+B07CPFNMJN,"DOGSWELL Hip & Joint Jerky Dog Treats, Chicken Breast, 24 oz. Pouch",AMAZON_SOURCE_INCOMPLETE;FORM_DISPLAY_MISSING,BLOCKED_DO_NOT_RENDER
+B07GRMQLGK,"10-in-1 Dog Multivitamin Supplement with Glucosamine & Probiotics - Hip & Joint Support, Digestive Health, Immune Support, Heart & Skin - All-in-One Daily Vitamins & Omega-3s for Dogs, Chicken, 90 Ct",FORMULA_DISPLAY_NOT_SUPPORTED_BY_CAPTURED_INGREDIENTS,BLOCKED_DO_NOT_RENDER
+B0BHC99KGY,Advanced Soft Chews Hip and Joint Support Supplement for Medium Dogs - 60 Count by Virbac,FORMULA_DISPLAY_MISSING;SCIENTIFIC_EVIDENCE_UNRESOLVED,BLOCKED_DO_NOT_RENDER
+B0CS1CY3YL,"Greenies Supplements Hip & Joint Soft Dog Chews, Chicken Flavor, 30 Count",FORMULA_DISPLAY_NOT_SUPPORTED_BY_CAPTURED_INGREDIENTS,BLOCKED_DO_NOT_RENDER
+B0D73TKB24,"Joint Supplement for Dogs 200 ct, Glucosamine Chondroitin MSM for All Dogs",INGREDIENT_CAPTURE_PARTIAL_FORMULA_NOT_STRICTLY_VERIFIED,BLOCKED_DO_NOT_RENDER
+B0FBYCH56S,"Veterinary Formula Smart Vitality Senior Support Supplement, 60 Soft Chews",SOURCE_CONFLICT_FORM_TITLE_VS_CAPTURED_FORM,BLOCKED_DO_NOT_RENDER

@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Vocabulary for Kids</title>
+    <link rel="icon" type="image/x-icon" href="/song-ngu-cho-be/images/favicon.ico">
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .screen {
+    display: none;
+  }
+  .screen.active {
+    display: block;
+  }
+
+  .home-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .activity-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 300px;
+  }
+  .activity-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    width: 200px;
+    text-align: center;
+    background-color: #fff;
+  }
+  .activity-icon:hover {
+    transform: scale(1.05);
+    border-color: #4caf50;
+  }
+  .activity-icon .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  .activity-icon h3 {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+  .activity-icon p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+  }
+
+  #feedback {
+    font-size: 16px;
+    margin: 5px 0;
+    min-height: 20px;
+    color: green;
+  }
+  #error {
+    font-size: 16px;
+    margin: 5px 0;
+    min-height: 20px;
+    color: red;
+  }
+  #word {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  #topicSelect:invalid, #alphabetSelect:invalid {
+    border-color: #f44336;
+    background-color: #ffebee;
+  }
+
+  #topicSelect.required, #alphabetSelect.required {
+    border-color: #ff9800;
+    background-color: #fff3e0;
+ }
+  /* transcript nổi bật */
+ .transcriptBox {
+    display: block;
+    min-height: 40px;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Trạng thái mặc định */
+.transcriptBox.neutral {
+    background-color: #fff8c4;
+    color: #333;
+    border-color: #ffd54f;
+}
+
+/* Trạng thái đang nghe */
+.transcriptBox.listening {
+    background-color: #e3f2fd;
+    color: #007bff;
+    border-color: #2196f3;
+}
+
+/* Trạng thái đúng */
+.transcriptBox.correct {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+/* Trạng thái sai */
+.transcriptBox.wrong {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: #f44336;
+}
+
+  #wordImage {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+    background: #fff;
+  }
+/* Áp dụng cho tất cả dropdown chọn chủ đề/chữ cái ở mọi màn hình */
+#learn #topicSelect, #learn #alphabetSelect,
+#quiz #topicSelect, #quiz #alphabetSelect,
+#games #topicSelect, #games #alphabetSelect {
+    width: clamp(150px, 50vw, 250px) !important;
+    max-width: 250px !important;
+    margin: 8px auto !important;
+    padding: 10px !important;
+    font-size: 20 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border: 1px solid #4a90e2 !important;
+    border-radius: 16px !important;
+    background: white !important;
+    box-shadow: 0 4px 10px rgba(74,144,226,0.25) !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml,..."); /* mũi tên */
+    background-position: right 16px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+  
+
+  /* Mode Selection Styles */
+  .mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .mode-btn {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    background-color: white;
+    color: #4caf50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+  }
+
+  .mode-btn:hover {
+    background-color: #e8f5e9;
+    transform: scale(1.05);
+  }
+
+  .mode-btn.active {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  #listenBtn, #speakBtn, #gameBtn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  #listenBtn:hover, #speakBtn:hover, #gameBtn:hover {
+    transform: scale(1.05);
+  }
+  #listenBtn:disabled, #speakBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #gameArea {
+    text-align: center;
+    margin: 20px auto;
+    min-height: 100px;
+    display: none;
+  }
+
+#stars, #bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0 !important;  /* 🔑 Buộc chiều cao = 0 để loại gap */
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;  /* Ngăn animation tràn ra ngoài nếu cần */
+}
+ .star {
+    position: absolute;
+    font-size: 20px;
+    color: gold;
+    animation: fly 1s ease-out forwards;
+  }
+  .bubble {
+    position: absolute;
+    background: rgba(0, 150, 255, 0.5);
+    border-radius: 50%;
+    animation: float 3s ease-out forwards;
+  }
+
+  @keyframes fly {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+  }
+  @keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+  }
+
+  /* ================================================
+   📱 RESPONSIVE STYLES FOR LEARN SCREEN
+   ================================================ */
+
+/* Container chính cho màn hình learn */
+#learn .screen-content {
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Word display - responsive font sizes */
+#word {
+    font-size: clamp(28px, 7vw, 42px) !important;
+    font-weight: bold;
+    margin: 10px 0 !important;
+    text-align: center;
+    line-height: 1.3;
+    padding: 0 10px;
+    word-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Word image - responsive sizing */
+#wordImage {
+    width: clamp(150px, 50vw, 250px) !important;
+    height: clamp(150px, 50vw, 250px) !important;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    margin: 10px auto !important;
+    display: block;
+    background: #fff;
+    max-width: 90%;
+}
+
+/* Button group - responsive layout */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    max-width: 300px;
+    margin: 15px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.button-group button {
+    width: 100% !important;
+    padding: 15px !important;
+    font-size: 18px !important;
+    margin: 0 !important;
+    min-height: 50px;
+}
+
+/* Transcript box - responsive */
+#transcriptBox {
+    width: 90% !important;
+    margin: 10px auto !important;
+    font-size: 16px !important;
+    padding: 10px !important;
+    min-height: 40px;
+    box-sizing: border-box;
+    max-width: 400px;
+}
+/* Transcript box - bằng đúng chiều ngang dropdown & khung ảnh */
+#transcriptBox {
+    width: clamp(150px, 50vw, 250px) !important;   /* BẰNG ĐÚNG dropdown và ảnh */
+    max-width: 250px !important;
+    margin: 10px auto !important;
+    padding: 10px 16px !important;
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    min-height: 50px !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    transition: all 0.4s ease !important;
+    background-color: #fff8c4 !important; /* Màu mặc định - sẽ bị ghi đè bởi class */
+}
+
+/* Giữ nguyên các trạng thái màu đẹp như cũ */
+.transcriptBox.neutral    { background-color: #fff8c4 !important; border-color: #ffd54f !important; color: #333 !important; }
+.transcriptBox.listening  { background-color: #e3f2fd !important; border-color: #2196f3 !important; color: #007bff !important; }
+.transcriptBox.correct    { background-color: #e8f5e8 !important; border-color: #4caf50 !important; color: #2e7d32 !important; }
+.transcriptBox.wrong      { background-color: #ffebee !important; border-color: #f44336 !important; color: #c62828 !important; }
+
+/* Feedback và error messages */
+#feedback, #error {
+    font-size: 16px !important;
+    margin: 5px auto !important;
+    min-height: 20px;
+    text-align: center;
+    padding: 0 10px;
+    max-width: 90%;
+    box-sizing: border-box;
+}
+
+/* Mode selection responsive */
+#learn .mode-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    max-width: 300px;
+    margin: 15px auto;
+}
+
+#learn .mode-btn {
+    width: 100% !important;
+    min-width: unset !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+}
+
+/* Select dropdowns */
+#learn #topicSelect, 
+#learn #alphabetSelect {
+    width: 90% !important;
+    max-width: 300px;
+    margin: 10px auto !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    display: none;
+}
+
+
+/* ================================================
+   📱 MOBILE OPTIMIZATION (480px and below)
+   ================================================ */
+@media (max-width: 480px) {
+    /* Giảm padding tổng thể */
+    body {
+        padding: 10px !important;
+    }
+    
+    /* Learn screen specific adjustments */
+    #learn .screen-content {
+        padding: 5px;
+        justify-content: flex-start;
+        min-height: calc(100vh - 20px);
+    }
+    
+    #word {
+        font-size: clamp(24px, 6vw, 36px) !important;
+        margin: 8px 0 !important;
+        line-height: 1.2;
+    }
+    
+    #wordImage {
+        width: clamp(120px, 45vw, 200px) !important;
+        height: clamp(120px, 45vw, 200px) !important;
+        margin: 8px auto !important;
+    }
+    
+    .button-group {
+        width: 95%;
+        gap: 10px;
+        margin: 10px auto;
+    }
+    
+    .button-group button {
+        padding: 12px !important;
+        font-size: 16px !important;
+        min-height: 44px;
+    }
+    
+    #transcriptBox {
+        width: 95% !important;
+        font-size: 14px !important;
+        padding: 8px !important;
+        min-height: 35px;
+    }
+    
+    #feedback, #error {
+        font-size: 14px !important;
+    }
+}
+
+/* ================================================
+   📱 VERY SMALL SCREENS (360px and below)
+   ================================================ */
+@media (max-width: 360px) {
+    #word {
+        font-size: clamp(20px, 5vw, 32px) !important;
+    }
+    
+    #wordImage {
+        width: 110px !important;
+        height: 110px !important;
+    }
+    
+    .button-group button {
+        padding: 10px !important;
+        font-size: 15px !important;
+        min-height: 40px;
+    }
+    
+    #transcriptBox {
+        font-size: 13px !important;
+        padding: 6px !important;
+    }
+    
+    #learn .mode-btn {
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* ================================================
+   🖥️ DESKTOP OPTIMIZATION 
+   ================================================ */
+@media (min-width: 769px) {
+    .button-group {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 500px;
+    }
+    
+    .button-group button {
+        width: auto !important;
+        min-width: 140px;
+    }
+    
+    #learn .mode-selection {
+        flex-direction: row;
+        max-width: 500px;
+    }
+    
+    #learn .mode-btn {
+        width: auto !important;
+        min-width: 140px;
+    }
+}
+
+/* ================================================
+   🎯 FIX FOR OVERFLOW ISSUES
+   ================================================ */
+#learn {
+  position: relative !important;  /* 🔑 Chứa #stars/#bubbles */
+  overflow: hidden !important;    /* 🔑 Ẩn mọi thứ tràn ra */
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+#learn * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Đảm bảo không có horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* ================================================
+   🌟 UNIFIED LAYOUT FOR IMAGE-BASED GAMES
+   (Game 1 – Word Hunt – Matching)
+   ================================================ */
+
+.songngu-container .game1-wrapper,
+.songngu-container .wordhunt-container,
+.matching-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  justify-items: center;
+  align-items: start;
+  gap: clamp(10px, 3vw, 16px);
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* === CARD STYLE cho Game1, WordHunt, Matching === */
+.image-card,
+.wordhunt-card,
+.game1-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 10px);
+  padding: clamp(6px, 2vw, 10px);
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 180px;
+}
+
+/* === IMAGE (đồng bộ 100%) === */
+.songngu-container .game1-wrapper img,
+.songngu-container .wordhunt-container img,
+.matching-grid img,
+.game1-img {
+  width: 100%;
+  max-width: 160px;
+  height: 150px;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* === DROP ZONE / LABEL – đồng bộ giữa 3 game === */
+.drop-zone,
+.image-dropzone {
+  margin: clamp(5px, 2vw, 8px) auto;
+  width: clamp(120px, 45vw, 160px);
+  height: clamp(35px, 10vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* === DRAGGABLE WORD (Game1 & Matching pool) === */
+.draggable,
+.pool-word {
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 4vw, 20px);
+  border: 2px solid #00bfa5;
+  border-radius: 10px;
+  font-size: clamp(16px, 5vw, 22px);
+  font-weight: bold;
+  cursor: grab;
+  background: #00e676;
+  color: #fff;
+  user-select: none;
+  text-align: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* === MATCHING POOL (luôn nằm ngang) === */
+.matching-pool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* ✅ Cho phép xuống hàng nếu tràn */
+  gap: clamp(6px, 2vw, 10px);
+  padding: clamp(6px, 1.5vw, 10px);
+  background: rgba(33,150,243,0.05);
+  border-radius: 15px;
+  border: 2px dashed #BBDEFB;
+  margin: 10px auto;
+  max-width: 380px;
+  width: 95%;
+  box-sizing: border-box;
+}
+
+
+
+/* === LABEL TRONG WORD HUNT === */
+.wordhunt-label {
+  font-weight: bold;
+  font-size: clamp(14px, 4vw, 18px);
+  color: #333;
+  text-align: center;
+}
+
+/* === COMMON HOVER / STATE EFFECTS === */
+.draggable:hover,
+.pool-word:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.draggable:active,
+.pool-word:active {
+  cursor: grabbing;
+  transform: translateY(0);
+}
+
+.draggable.matched,
+.pool-word.matched {
+  background: #90caf9;
+  cursor: default;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+.draggable.selected,
+.pool-word.selected {
+  border: 3px solid orange;
+}
+
+/* === CARD STATES (correct / wrong / listening) === */
+.wordhunt-card.wordhunt-correct,
+.image-card.correct-card,
+.game1-card.correct-card {
+  border-color: #4caf50;
+  transform: scale(1.05);
+}
+
+.wordhunt-card.wordhunt-listening,
+.image-card.listening-card,
+.game1-card.listening-card {
+  border-color: #ff9800;
+}
+
+.wordhunt-card.wordhunt-wrong,
+.image-card.wrong-card,
+.game1-card.wrong-card {
+  border-color: #f44336;
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-5px); }
+  40%,80% { transform: translateX(5px); }
+}
+
+/* ================================================
+   📱 MOBILE OPTIMIZATION (Final Unified Version)
+   ================================================ */
+@media (max-width: 480px) {
+  /* --- Khung chứa chung --- */
+  #gameArea {
+    max-height: 80vh !important;           /* 🔹 tăng nhẹ để vừa toàn bộ game */
+    overflow-y: auto !important;           /* 🔹 cho phép cuộn nếu vượt khung */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 5px !important;
+    box-sizing: border-box;
+  }
+
+  /* --- 3 game đồng bộ bố cục --- */
+  .songngu-container .game1-wrapper,
+  .songngu-container .wordhunt-container,
+  .matching-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;  /* ✅ 2 ảnh song song trên mobile */
+    gap: 8px !important;
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 5px !important;
+    box-sizing: border-box;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+
+  /* --- Ảnh đồng bộ --- */
+  .songngu-container .game1-wrapper img,
+  .songngu-container .wordhunt-container img,
+  .matching-grid img {
+    height: 110px !important;
+    max-width: 130px !important;
+    border-radius: 10px !important;
+  }
+
+  /* --- Drop zone / Label --- */
+  .drop-zone,
+  .image-dropzone {
+    width: 120px !important;
+    height: 35px !important;
+    font-size: 14px !important;
+    margin: 4px auto !important;
+  }
+
+  /* --- Draggable words / pool words --- */
+  .draggable,
+  .pool-word {
+    font-size: 16px !important;
+    padding: 7px 12px !important;
+    text-align: center !important;
+    margin: 4px auto !important;
+  }
+
+  /* --- Matching pool: wrap và co giãn linh hoạt --- */
+  .matching-pool {
+    display: flex !important;
+    flex-wrap: wrap !important;           /* ✅ Không bao giờ tràn màn hình */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    max-width: 320px !important;
+    padding: 6px !important;
+    margin-top: 8px !important;
+    box-sizing: border-box;
+  }
+
+  /* --- Giảm kích thước khi màn cực nhỏ --- */
+  .wordhunt-label {
+    font-size: 14px !important;
+  }
+}
+
+/* ================================================
+   📱 Màn rất nhỏ (<360px)
+   ================================================ */
+@media (max-width: 360px) {
+  .songngu-container .game1-wrapper img,
+  .songngu-container .wordhunt-container img,
+  .matching-grid img {
+    height: 95px !important;
+    max-width: 115px !important;
+  }
+
+  .drop-zone,
+  .image-dropzone {
+    width: 110px !important;
+    height: 30px !important;
+    font-size: 13px !important;
+  }
+
+  .draggable,
+  .pool-word {
+    font-size: 14px !important;
+    padding: 6px 10px !important;
+  }
+
+  .matching-pool {
+    max-width: 290px !important;
+    gap: 5px !important;
+    padding: 4px !important;
+  }
+}
+
+
+/* === Game4 drop boxes (cập nhật) === */
+.game4-drop {
+  flex: 1 1 auto;                 /* ✅ cho phép co giãn */
+  min-width: 70px;                /* ✅ giảm để vừa khung nhỏ */
+  max-width: 90px;
+  height: 60px;                   /* ✅ giảm chiều cao trên mobile */
+  border: 2px dashed #aaa;
+  font-size: clamp(18px, 5vw, 24px); /* ✅ tự co theo màn hình */
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  margin: 0 3px;
+  display: inline-flex;           /* ✅ giúp căn giữa text */
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* === Khi nằm trong hàng chứa các drop boxes === */
+.game4-drop-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;              /* ✅ ép 1 hàng */
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;               /* ✅ khớp màn hình điện thoại */
+  margin: 0 auto;
+}
+
+/* === Tùy chỉnh thêm cho màn nhỏ === */
+@media (max-width: 480px) {
+  .game4-drop {
+    min-width: 65px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    font-size: 16px !important;
+    margin: 0 2px !important;
+  }
+  .game4-drop-row {
+    max-width: 300px !important;
+    gap: 4px !important;
+  }
+}
+
+
+
+  /* ===== GAMIFICATION HEADER STYLES ===== */
+  #gameHeader {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border: 2px solid #ffd700;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: none;
+  }
+
+  #gameHeader .header-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .game-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-width: 80px;
+    justify-content: center;
+  }
+
+  .coin-stat { 
+    background: linear-gradient(145deg, #fff9c4, #ffeb3b); 
+  }
+  .point-stat { 
+    background: linear-gradient(145deg, #e8f5e8, #4caf50); 
+    color: white; 
+  }
+  .streak-stat { 
+    background: linear-gradient(145deg, #ffe0b2, #ff9800); 
+    color: white; 
+  }
+
+  .game-stat .icon {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    #wordImage {
+      width: 150px;
+      height: 150px;
+    }
+    #word {
+      font-size: 24px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+    #topicSelect, #alphabetSelect {
+      font-size: 16px;
+      width: 80%;
+    }
+
+    .activity-icon {
+      width: 150px;
+    }
+    .game1-wrapper {
+      flex-direction: column;
+    }
+    .mode-selection {
+      flex-direction: column;
+      align-items: center;
+    }
+    .mode-btn {
+      width: 80%;
+      min-width: unset;
+    }
+    #gameHeader {
+      top: 5px;
+      right: 5px;
+      padding: 8px 12px;
+    }
+    .game-stat {
+      font-size: 14px;
+      padding: 3px 8px;
+      min-width: 60px;
+    }
+  }
+
+
+/* === UNIFY BUTTONS & TEXT === */
+button, .activity-icon {
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4caf50;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+button:hover, .activity-icon:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Đồng bộ kích thước chữ trong app */
+h1, h2, h3, p, #word, .review-word {
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+  color: #333;
+}
+
+/* Nút trong chế độ học (nghe/nói/chơi) */
+#listenBtn, #speakBtn, #gameBtn {
+  min-width: 160px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+/* Nút lựa chọn mode (chủ điểm / chữ cái) */
+.mode-btn {
+  min-width: 160px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50;
+  background-color: #fff;
+  border: 2px solid #4caf50;
+}
+.mode-btn.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+.mode-btn:hover {
+  background-color: #e8f5e9;
+  transform: scale(1.05);
+}
+
+
+/* === UI TINH CHỈNH BỔ SUNG === */
+
+/* Home icon – bỏ nền xanh, giữ nền trắng */
+.activity-icon {
+  background-color: #fff !important;
+  color: #333;
+  border: 2px solid #ccc;
+}
+
+/* Missing Letter box nhỏ lại, cân đối với game khác */
+.drop-zone {
+  min-width: 56px; /* 70px × 0.8 = 56px */
+  height: 44px; /* 55px × 0.8 = 44px */
+  font-size: 18px; /* 22px × 0.8 = 17.6px */
+  line-height: 44px; /* 55px × 0.8 = 44px */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Dropbox trong game ghép câu (giữ nguyên hoặc giảm nếu cần) */
+.sentence-dropzone {
+  display: inline-block;
+  min-width: 90px;
+  height: 45px;
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  background: #fff;
+  vertical-align: middle;
+}
+.sentence-dropzone.filled {
+  border-color: #4caf50;
+  background: #e8f5e9;
+}
+
+/* THÊM CSS CHO MISSING LETTER GAME */
+.letter-option {
+  padding: 12px 16px; /* 15px 20px × 0.8 = 12px 16px */
+  border: 2.4px solid #2196f3; /* 3px × 0.8 = 2.4px */
+  border-radius: 12px; /* 15px × 0.8 = 12px */
+  font-size: 26px; /* 32px × 0.8 = 25.6px */
+  font-weight: bold;
+  cursor: grab;
+  background: #2196f3;
+  color: white;
+  box-shadow: 0 3.2px 6.4px rgba(0,0,0,0.16); /* 4px 8px × 0.8 */
+  user-select: none;
+  transition: all 0.2s ease;
+  min-width: 56px; /* 70px × 0.8 = 56px */
+  text-align: center;
+}
+
+.letter-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+/* Giảm khoảng trống giữa dropdown và từ hiển thị */
+#feedback:empty,
+#error:empty {
+  margin: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+#word {
+  margin-top: 5px !important;
+}
+
+/* Register Form Styles */
+.register-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.register-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.register-form h3 {
+    color: #4caf50;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.register-form > p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-group input:invalid {
+    border-color: #ff9800;
+}
+
+/* Button Styles */
+.form-footer {
+    margin: 25px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-primary:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background: #757575;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-secondary:hover {
+    background: #666;
+    transform: translateY(-1px);
+}
+
+/* Payment Info Styles */
+.payment-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+    border-left: 4px solid #4caf50;
+}
+
+.payment-info h4 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.payment-info ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.payment-info li {
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+.payment-info strong {
+    color: #333;
+}
+
+.contact-hotline {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.contact-hotline p {
+    margin: 5px 0;
+    color: #1565c0;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Success Message Styles */
+.success-message {
+    text-align: center;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.success-message h3 {
+    color: #4caf50;
+    margin-bottom: 20px;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.user-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+    border-left: 4px solid #4caf50;
+}
+
+.user-info p {
+    margin: 8px 0;
+    text-align: left;
+    color: #333;
+}
+
+.user-info strong {
+    color: #2e7d32;
+}
+
+.next-steps {
+    background: #e8f5e8;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+    border-left: 4px solid #66bb6a;
+}
+
+.next-steps h4 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.next-steps ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.next-steps li {
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+.next-steps strong {
+    color: #2e7d32;
+}
+
+.contact-urgent {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid #ffb300;
+    text-align: center;
+}
+
+.contact-urgent p {
+    margin: 8px 0;
+    color: #e65100;
+    text-align: center;
+    font-weight: bold;
+}
+
+.contact-urgent strong {
+    color: #e65100;
+}
+
+/* Account Status Styles */
+.account-status {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid transparent;
+}
+
+.account-status.activated {
+    border-top-color: #4caf50;
+    background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+}
+
+.account-status.pending {
+    border-top-color: #ff9800;
+    background: linear-gradient(135deg, #ffffff 0%, #fff3e0 100%);
+}
+
+.status-header h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    text-align: center;
+    font-size: 20px;
+}
+
+.status-info {
+    text-align: left;
+}
+
+.status-info p {
+    margin: 8px 0;
+    text-align: left;
+    color: #555;
+}
+
+.pending-actions {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    border: 1px solid #ffb300;
+}
+
+.btn-support {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-support:hover {
+    background: #f57c00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+}
+
+.success-text {
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Loading state */
+.btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Form validation styles */
+.form-group input:required:invalid {
+    border-color: #ff9800;
+}
+
+.form-group input:required:valid {
+    border-color: #4caf50;
+}
+
+/* Scrollbar styling for webkit browsers */
+.register-form::-webkit-scrollbar,
+.success-message::-webkit-scrollbar {
+    width: 8px;
+}
+
+.register-form::-webkit-scrollbar-track,
+.success-message::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.register-form::-webkit-scrollbar-thumb,
+.success-message::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.register-form::-webkit-scrollbar-thumb:hover,
+.success-message::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .register-overlay {
+        padding: 10px;
+    }
+    
+    .register-form {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+    
+    .register-form h3 {
+        font-size: 20px;
+    }
+    
+    .register-form > p {
+        font-size: 14px;
+    }
+    
+    .form-group input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .btn-primary {
+        padding: 12px 20px;
+        font-size: 14px;
+        min-width: 150px;
+    }
+    
+    .account-status {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .payment-info, .next-steps, .user-info {
+        padding: 15px;
+    }
+    
+    .success-message {
+        padding: 20px;
+    }
+    
+    .success-icon {
+        font-size: 50px;
+    }
+    
+    .form-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-form {
+        padding: 15px;
+    }
+    
+    .register-form h3 {
+        font-size: 18px;
+    }
+    
+    .payment-info, .next-steps, .user-info {
+        padding: 12px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        margin: 2px 0;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.register-form, .success-message, .account-status {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.form-group input:focus {
+    outline: 2px solid #4caf50;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .register-overlay {
+        position: static;
+        background: white;
+    }
+    
+    .btn-primary, .btn-secondary {
+        display: none;
+    }
+}
+/* Cho màn hình điện thoại */
+@media (max-width: 768px) {
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+    
+    .action-buttons .btn {
+        flex-shrink: 0;
+        font-size: 18px !important;
+        padding: 10px 16px !important;
+        margin: 2px !important;
+    }
+}
+/* ẨN GAMEAREA TRONG LEARN & QUIZ */
+#learn #gameArea,
+#quiz #gameArea {
+  display: none !important;
+  min-height: 0 !important;
+}
+
+/* HIỂN THỊ CHỈ TRONG GAMES */
+#games #gameArea {
+  display: block !important;
+  min-height: 100px !important;
+}
+/* ================================================
+   TĂNG KÍCH THƯỚC ẢNH 20% TRÊN ĐIỆN THOẠI (LEARN & QUIZ)
+   ================================================ */
+@media (max-width: 768px) {
+  #learn #wordImage,
+  #quiz #wordImage {
+    width: clamp(180px, 60vw, 300px) !important;
+    height: clamp(180px, 60vw, 300px) !important;
+    margin: 15px auto !important;
+  }
+}
+
+/* Rất nhỏ (dưới 360px) - vẫn tăng 20% nhưng không quá to */
+@media (max-width: 360px) {
+  #learn #wordImage,
+  #quiz #wordImage {
+    width: clamp(160px, 55vw, 270px) !important;
+    height: clamp(160px, 55vw, 270px) !important;
+  }
+}
+
+/* Dropdown đẹp, ngắn, căn giữa */
+.custom-select {
+    width: 85% !important;
+    max-width: 380px;
+    margin: 18px auto !important;
+    padding: 14px 16px !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border: 3px solid #4a90e2 !important;
+    border-radius: 16px !important;
+    background-color: white !important;
+    color: #333 !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 20px !important;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.custom-select:focus {
+    outline: none !important;
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2) !important;
+}
+
+/* Căn giữa hoàn toàn nội dung trong <option> */
+.centered-select option {
+    text-align: center !important;
+    direction: ltr !important;
+}
+
+/* Tùy chọn khóa (có thể thêm style riêng nếu muốn) */
+.locked {
+    color: #999;
+    font-style: italic;
+}
+
+</style>
+</head>
+<body>
+  <div id="loader" style="display: none;">Loading...</div>
+
+  <!-- Gamification Header -->
+  <div id="gameHeader">
+    <div class="header-content">
+      <div class="game-stat coin-stat">
+        <span class="icon">🪙</span>
+        <span id="coinCount">0</span>
+      </div>
+      <div class="game-stat point-stat">
+        <span class="icon">⭐</span>
+        <span id="pointCount">0</span>
+      </div>
+      <div class="game-stat streak-stat">
+        <span class="icon">🔥</span>
+        <span id="streakCount">0</span>
+      </div>
+    </div>
+  </div>
+
+    <!-- Màn hình Home -->
+    <section id="home" class="screen active home-screen">
+        <h1>Tiếng Anh Cho Bé 3 - 7 Tuổi</h1>
+        <p>Hãy Chọn Một Hoạt Động Để Bắt Đầu</p>
+        <div class="activity-icons">
+            <div class="activity-icon" data-activity="learn">
+                <div class="icon">📘</div>
+                <h3>Learn</h3>
+                <p>Học Từ Vựng</p>
+            </div>
+            <div class="activity-icon" data-activity="quiz">
+                <div class="icon">🎯</div>
+                <h3>Quiz</h3>
+                <p>Kiển Tra</p>
+            </div>
+            <div class="activity-icon" data-activity="games">
+                <div class="icon">🎮</div>
+                <h3>Games</h3>
+                <p>Luyện Tập</p>
+            </div>
+        </div>
+        <div id="error">Select an activity to start!</div>
+    </section>
+
+    <!-- Màn hình Learn -->
+    <section id="learn" class="screen" style="display: none;">
+        <h2>Learn Vocabulary</h2>
+        
+        <!-- Mode Selection -->
+        <div class="mode-selection">
+            <button class="mode-btn" data-mode="topic">Chủ Điểm</button>
+            <button class="mode-btn" data-mode="alphabet">Chữ Cái</button>
+        </div>
+        
+       <select id="topicSelect">
+            <option value="">Select a topic</option>
+        </select>
+        
+        <select id="alphabetSelect" style="display: none;">
+            <option value="">Select a letter</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+        
+        
+        <div id="feedback"></div>
+        <div id="error"></div>
+        <div id="word"></div>
+        <div id="transcriptBox"></div>
+        <img id="wordImage" src="/song-ngu-cho-be/images/icon-512.png" alt="Word Image">
+        <div id="gameArea" style="text-align: center; margin: 10px; display: none;"></div>
+        <button id="listenBtn" style="display: none;">Listen</button>
+        <button id="speakBtn" style="display: none;">Speak</button>
+        <button id="gameBtn" style="display: none;">Play Mini Game</button>
+       
+
+        <div id="stars"></div>
+        <div id="bubbles"></div>
+        
+        <!-- Audio global -->
+        <audio id="wordSound" style="display: none;"></audio>
+        <audio id="praiseEnSound" src="/song-ngu-cho-be/sounds/well_done.mp3" preload="auto"></audio>
+        <audio id="tryAgainEnSound" src="/song-ngu-cho-be/sounds/please_try_again.mp3" preload="auto"></audio>
+        <audio id="successSound" src="/song-ngu-cho-be/sounds/success.mp3" preload="auto"></audio>
+
+        <audio id="cachHocSound" src="/song-ngu-cho-be/sounds/mode.mp3" preload="none"></audio>
+        <audio id="introTopicSound" src="/song-ngu-cho-be/sounds/intro_topic.mp3" preload="none"></audio>
+        <audio id="quizIntroViSound" src="/song-ngu-cho-be/sounds/quiz_start.mp3" preload="none"></audio>
+        <audio id="learnGuideViSound" src="/song-ngu-cho-be/sounds/learn_guide.mp3" preload="none"></audio>
+        <audio id="quizGuideViSound" src="/song-ngu-cho-be/sounds/quiz_guide.mp3" preload="auto"></audio>
+               
+
+        <audio id="game1GuideSound" src="/song-ngu-cho-be/sounds/game1_guide.mp3" preload="none"></audio>
+        <audio id="game2GuideSound" src="/song-ngu-cho-be/sounds/game2_guide.mp3" preload="none"></audio>
+        <audio id="game3GuideSound" src="/song-ngu-cho-be/sounds/missing_word.mp3" preload="none"></audio>
+        <audio id="game4GuideSound" src="/song-ngu-cho-be/sounds/game4_guide.mp3" preload="none"></audio>
+        <audio id="game5GuideSound" src="/song-ngu-cho-be/sounds/game5_guide.mp3" preload="none"></audio>
+        <audio id="game6GuideSound" src="/song-ngu-cho-be/sounds/wordhunt_guide.mp3" preload="none"></audio>
+        <audio id="game7GuideSound" src="/song-ngu-cho-be/sounds/sentence.mp3"  preload="none"></audio>
+        <audio id="game3GuideSound" src="/song-ngu-cho-be/sounds/missing_word_guide.mp3" preload="none"></audio>
+        <audio id="game8GuideSound" src="/song-ngu-cho-be/sounds/letter_game_guide.mp3" preload="none"></audio>
+
+        <audio id="storyGuideViSound" src="/song-ngu-cho-be/sounds/nghe_doc.mp3" preload="metadata"></audio>
+        <audio id="nextRoundSound" src="/song-ngu-cho-be/sounds/next_round.mp3" preload="metadata"></audio>
+        <audio id="heroSound" src="/song-ngu-cho-be/sounds/hero.mp3" preload="metadata"></audio>
+        <audio id="zaloGuideSound" src="/song-ngu-cho-be/sounds/zalo.mp3"></audio>
+    </section>
+
+    <!-- Màn hình Quiz -->
+    <section id="quiz" class="screen" style="display: none;">
+        <h2>Quiz Mode</h2>
+        
+        <!-- Mode Selection -->
+        <div class="mode-selection">
+          <button class="mode-btn" data-mode="topic">Chủ Điểm</button>
+          <button class="mode-btn" data-mode="alphabet">Chữ Cái</button>  
+                    
+        </div>
+        <button id="installAppBtn"
+        onclick="installApp()"
+        style="display:none">
+       📲 Cài ứng dụng
+      </button>
+
+        <select id="topicSelect">
+            <option value="">Select a topic</option>
+        </select>
+        
+        <select id="alphabetSelect" style="display: none;">
+            <option value="">Select a letter</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+        </select>
+       
+        
+        <div id="feedback"></div>
+        <div id="error"></div>
+        <div id="word"></div>
+        <div id="transcriptBox"></div>
+        <img id="wordImage" src="/song-ngu-cho-be/images/icon-512.png" alt="Word Image">
+        <div id="gameArea" style="text-align: center; margin: 10px; display: none;"></div>
+        <button id="listenBtn" style="display: none;">Listen</button>
+        <button id="speakBtn" style="display: none;">Speak</button>
+        <button id="gameBtn" style="display: none;">Play Mini Game</button>
+        <div id="stars"></div>
+        <div id="bubbles"></div>
+        
+    </section>
+
+    <!-- Màn hình Games -->
+    <section id="games" class="screen" style="display: none;">
+        <h2>Game Mode</h2>
+        
+        <!-- Mode Selection -->
+        <div class="mode-selection">
+            <button class="mode-btn" data-mode="topic">Chủ Điểm</button>
+            <button class="mode-btn" data-mode="alphabet">Chữ Cái</button>
+        </div>
+        
+        <select id="topicSelect">
+            <option value="">Select a topic</option>
+        </select>
+        
+        <select id="alphabetSelect" style="display: none;">
+            <option value="">Select a letter</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+        </select>
+       
+        
+        <div id="feedback"></div>
+        <div id="error"></div>
+        <div id="word"></div>
+        <div id="transcriptBox"></div>
+        <img id="wordImage" src="/song-ngu-cho-be/images/icon-512.png" alt="Word Image">
+        <div id="gameArea" style="text-align: center; margin: 10px; display: none;"></div>
+        <button id="listenBtn" style="display: none;">Listen</button>
+        <button id="speakBtn" style="display: none;">Speak</button>
+        <button id="gameBtn" style="display: none;">Play Mini Game</button>
+        <div id="stars"></div>
+        <div id="bubbles"></div>
+                
+    </section>
+  
+  <script src="/song-ngu-cho-be/app-stt.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/song-ngu-cho-be/service-worker.js')
+    .then(reg => console.log('SW registered:', reg.scope))
+    .catch(err => console.error('SW registration failed:', err));
+}
+
+// Mode selection functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const modeButtons = document.querySelectorAll('.mode-btn');
+    
+    modeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const screen = this.closest('.screen');
+            const mode = this.dataset.mode;
+            
+            // Update active button
+            screen.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Show/hide appropriate select element
+            const topicSelect = screen.querySelector('#topicSelect');
+            const alphabetSelect = screen.querySelector('#alphabetSelect');
+            
+            if (mode === 'topic') {
+                topicSelect.style.display = 'block';
+                alphabetSelect.style.display = 'none';
+            } else if (mode === 'alphabet') {
+                topicSelect.style.display = 'none';
+                alphabetSelect.style.display = 'block';
+            }
+            
+            // Clear current content
+            screen.querySelector('#word').textContent = '';
+            screen.querySelector('#transcriptBox').textContent = '';
+            screen.querySelector('#wordImage').src = '/song-ngu-cho-be/images/icon-512.png';
+            screen.querySelector('#gameArea').style.display = 'none';
+            screen.querySelector('#listenBtn').style.display = 'none';
+            screen.querySelector('#speakBtn').style.display = 'none';
+            screen.querySelector('#gameBtn').style.display = 'none';
+            
+            // Reset feedback
+            screen.querySelector('#feedback').textContent = '';
+            screen.querySelector('#error').textContent = '';
+        });
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Supplemental C2C exclusions. Built-in policy separately denies .env*, keys,
+# credential stores, cloudflared credentials, and common secret filenames.
+.agent/
+.codex/
+.vercel/
+.wrangler/
+

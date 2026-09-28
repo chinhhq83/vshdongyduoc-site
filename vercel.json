@@ -51,6 +51,16 @@
       "permanent": true
     },
     {
+      "source": "/dog-skin-coat",
+      "destination": "/pet/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/dog-skin-coat/products/:slug",
+      "destination": "/pet/dog-skin-coat/products/:slug",
+      "permanent": true
+    },
+    {
       "source": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao-chat-luong",
       "destination": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao",
       "permanent": true

@@ -1,74 +1,181 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Liên hệ - Viện Sinh Hóa Đông Y Dược</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Liên hệ với Viện Sinh Hóa Đông Y Dược để được tư vấn về thảo dược chuẩn hóa, nghiên cứu y dược và các dịch vụ chăm sóc sức khỏe.">
+    <title>Liên Hệ - Viện Sinh Hóa Đông Y Dược</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="output.css" />
+    <link rel="manifest" href="manifest.json" />
+    <script defer src="script.js"></script>
 </head>
-<body>
- <header>
-  <div class="header-left">
-    <h1>Viện Sinh Hóa Đông Y Dược</h1>
-    <p>Tinh Hoa Cổ Truyền - Khoa Học Kiểm Chứng</p>
-  </div>
-  <div class="header-center">
-    <img src="images/logo.png" alt="Logo Viện Sinh Hóa Đông Y Dược" />
-  </div>
-  <nav class="header-right">
-    <a href="index.html">Trang chủ</a>
-    <a href="gioi-thieu.html">Giới thiệu</a>
-    <a href="du-an-noi-bat.html">Dự án nổi bật</a>
-    <a href="dang-ky-thu-nghiem.html">Đăng ký thử nghiệm</a>
-    <a href="lien-he.html">Liên hệ</a>
-  </nav>
-</header>
 
-<main class="container">
-  <h1>Liên hệ Viện Sinh Hóa Đông Y Dược</h1>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-col lg:flex-row items-center justify-between">
+            <div class="flex flex-col md:flex-row items-center gap-6 mb-4 lg:mb-0">
+                <div class="text-center md:text-left">
+                    <h1 class="text-xl md:text-3xl font-bold uppercase leading-tight m-0 whitespace-nowrap">Viện Sinh
+                        Hóa Đông Y Dược</h1>
+                    <p class="text-sm md:text-base italic text-white/90 m-0">Tinh Hoa Cổ Truyền - Khoa Học Kiểm Chứng
+                    </p>
+                </div>
+                <div class="bg-white p-2 rounded-lg shadow-sm hidden md:block">
+                    <img src="images/logo.png" alt="Logo Viện Sinh Hóa Đông Y Dược"
+                        class="h-16 w-auto object-contain" />
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-6 text-base font-medium">
+                <a href="index.html" class="hover:text-white/80 transition-colors">Trang chủ</a>
+                <a href="gioi-thieu.html" class="hover:text-white/80 transition-colors">Giới thiệu</a>
+                <a href="san-pham.html" class="hover:text-white/80 transition-colors">Sản Phẩm</a>
+                <a href="kien-thuc.html" class="hover:text-white/80 transition-colors">Kiến Thức</a>
+                <a href="ban-tin.html" class="hover:text-white/80 transition-colors">Bản Tin Sức Khỏe</a>
+                <a href="thoi-su.html" class="hover:text-white/80 transition-colors">Bản Tin Thời Sự</a>
+                <a href="du-an-noi-bat.html" class="hover:text-white/80 transition-colors">Dự án nổi bật</a>
+                <a href="lien-he.html" class="text-white border-b-2 border-white pb-1">Liên hệ</a>
+            </nav>
+        </div>
+    </header>
 
-  <p><strong>Địa chỉ:</strong> Khu tái định cư, P. Quyết Thắng, T. Thái Nguyên</p>
-  <p><strong>Email:</strong> <a href="mailto:vs.hd@vshdongyduoc.org">vs.hd@vshdongyduoc.org</a></p>
-  <p><strong>Điện thoại:</strong> <a href="tel:+84938575161">+84 938 575 161</a></p>
+    <main class="container mx-auto px-4 py-12 md:py-16">
+        <div class="max-w-6xl mx-auto">
+            <section class="mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-primary mb-8 leading-tight">Liên Hệ Với Chúng Tôi</h1>
+                <p class="text-lg text-gray-700 leading-relaxed mb-12">
+                    Viện Sinh Hóa Đông Y Dược luôn sẵn sàng hỗ trợ bạn về các sản phẩm thảo dược chuẩn hóa, nghiên cứu y
+                    học cổ truyền hiện đại hóa, và tư vấn sức khỏe. Vui lòng điền thông tin dưới đây hoặc liên hệ trực
+                    tiếp. Chúng tôi sẽ phản hồi trong vòng 24-48 giờ.
+                </p>
+            </section>
 
-  <p>Vui lòng điền thông tin vào biểu mẫu dưới đây. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.</p>
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+                <!-- Thông tin liên hệ -->
+                <section class="space-y-10">
+                    <div class="group">
+                        <h2 class="text-xl font-bold text-primary mb-4 flex items-center gap-3">
+                            <span
+                                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">📍</span>
+                            Văn phòng làm việc
+                        </h2>
+                        <p class="text-gray-700 pl-13">Khu tái định cư, P. Quyết Thắng, T. Thái Nguyên</p>
+                    </div>
 
-   <form action="https://formsubmit.co/vs.hd@vshdongyduoc.org" method="POST">
-    <!-- Bảo mật và tuỳ chọn -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="box">
-    <input type="hidden" name="_subject" value="Thông điệp từ website vshdongyduoc.org">
-    <input type="hidden" name="_next" value="https://vshdongyduoc.org/thank-you.html">
+                    <div class="group">
+                        <h2 class="text-xl font-bold text-primary mb-4 flex items-center gap-3">
+                            <span
+                                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">📧</span>
+                            Email hỗ trợ
+                        </h2>
+                        <p class="text-gray-700 pl-13">
+                            <a href="mailto:vs.hd@vshdongyduoc.org"
+                                class="hover:text-secondary transition-colors font-medium">vs.hd@vshdongyduoc.org</a>
+                        </p>
+                    </div>
 
-    <label for="name">Họ và tên:</label>
-    <input type="text" id="name" name="name" required>
+                    <div class="group">
+                        <h2 class="text-xl font-bold text-primary mb-4 flex items-center gap-3">
+                            <span
+                                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">📞</span>
+                            Điện thoại trực tuyến
+                        </h2>
+                        <p class="text-gray-700 pl-13">
+                            <a href="tel:+84938575161"
+                                class="hover:text-secondary transition-colors font-bold text-lg">+84 938 575 161</a>
+                        </p>
+                    </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+                    <div class="pt-8 border-t border-gray-100 italic text-gray-500 text-sm">
+                        <p>Thời gian làm việc: Thứ 2 - Thứ 6 (8:00 - 17:00)</p>
+                    </div>
+                </section>
 
-    <label for="phone">Số điện thoại:</label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9+()\- ]{9,15}" required placeholder="VD: +84901234567" />
+                <!-- Form liên hệ -->
+                <section class="bg-white p-8 md:p-10 rounded-[2rem] shadow-2xl border border-gray-100">
+                    <h2 class="text-2xl font-bold text-primary mb-8 text-center md:text-left">Gửi thông điệp ngay</h2>
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="space-y-6">
+                        <!-- Web3Forms Config -->
+                        <input type="hidden" name="access_key" value="556bf6b3-5277-4a32-a586-877ef846e6e3">
+                        <input type="hidden" name="from_name" value="Liên hệ từ website vshdongyduoc.org">
+                        <input type="hidden" name="subject" value="Thông điệp mới từ website">
+                        <input type="hidden" name="redirect" value="https://vshdongyduoc.org/thank-you.html">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display:none">
 
-    <label for="message">Nội dung:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+                        <div>
+                            <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Họ và tên *</label>
+                            <input type="text" id="name" name="name" required placeholder="Họ và tên của bạn"
+                                class="w-full border border-gray-300 rounded-xl p-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none">
+                        </div>
 
-    <button type="submit">Gửi liên hệ</button>
-  </form>
-<script>
-    document.querySelector('form').addEventListener('submit', function(event) {
-      const phone = document.getElementById('phone').value.trim();
-      const phonePattern = /^[0-9+()\- ]{9,15}$/;
-      if (!phonePattern.test(phone)) {
-        alert('Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.');
-        event.preventDefault();
-      }
-    });
-  </script>
-</main>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-bold text-gray-700 mb-2">Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="example@email.com"
+                                    class="w-full border border-gray-300 rounded-xl p-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">Số điện thoại
+                                    *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="09xx xxx xxx"
+                                    pattern="(0[3|5|7|8|9])+([0-9]{8})\b"
+                                    class="w-full border border-gray-300 rounded-xl p-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none">
+                            </div>
+                        </div>
 
-<footer>
-  <p>© 2025 Viện Sinh Hóa Đông Y Dược. Bản quyền nội dung thuộc Viện Sinh Hóa Đông Y Dược.</p>
-</footer>
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-gray-700 mb-2">Nội dung liên hệ
+                                *</label>
+                            <textarea id="message" name="message" rows="6" required
+                                placeholder="Vấn đề bạn cần chúng tôi tư vấn hoặc hợp tác..."
+                                class="w-full border border-gray-300 rounded-xl p-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary text-white px-8 py-5 rounded-xl font-bold text-lg hover:bg-blue-700 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                            Gửi Liên Hệ
+                        </button>
+
+                        <p class="text-[10px] text-center text-gray-400 mt-6 uppercase leading-tight">
+                            Sản phẩm là thực phẩm bổ sung, không phải thuốc, không thay thế thuốc chữa bệnh.
+                        </p>
+                    </form>
+
+                    <p class="text-sm text-gray-500 mt-8 text-center">
+                        Thông tin bạn cung cấp sẽ được chúng tôi bảo mật tuyệt đối.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-white/10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+                <img src="images/logo.png" alt="Logo" class="h-12 w-auto invert brightness-0 grayscale">
+                <div class="text-left md:border-l border-white/20 md:pl-8">
+                    <p class="font-bold text-xl mb-1">Viện Sinh Hóa Đông Y Dược</p>
+                    <p class="text-gray-400">Email: vs.hd@vshdongyduoc.org | Hotline: +84 938 575 161</p>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 pt-8 border-t border-white/5">
+                © 2025 Viện Sinh Hóa Đông Y Dược. Tất cả quyền được bảo lưu.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            const phone = document.getElementById('phone').value.trim();
+            const phonePattern = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+            if (!phonePattern.test(phone)) {
+                alert('Số điện thoại không hợp lệ. Vui lòng nhập định dạng số điện thoại Việt Nam (10 chữ số).');
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
+
 </html>

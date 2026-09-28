@@ -1,1 +1,8 @@
 .vercel
+.env
+node_modules
+_to_delete/
+kien-thuc.BAK_*/
+
+.vercel
+.env*.local

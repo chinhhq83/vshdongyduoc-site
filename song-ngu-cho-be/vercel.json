@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "public": true,
+  "builds": [
+    {
+      "src": "song-ngu-cho-be/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "song-ngu-cho-be/api/tts.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/song-ngu-cho-be/api/tts",
+      "dest": "/song-ngu-cho-be/api/tts.js"
+    },
+    {
+      "src": "/service-worker.js",
+      "headers": {
+        "Cache-Control": "no-cache"
+      },
+      "dest": "/song-ngu-cho-be/service-worker.js"
+    },
+    {
+      "src": "/manifest.json",
+      "headers": {
+        "Cache-Control": "no-cache"
+      },
+      "dest": "/song-ngu-cho-be/manifest.json"
+    },
+    {
+      "src": "/song-ngu-cho-be/(.*)",
+      "dest": "/song-ngu-cho-be/index.html"
+    }
+    
+  ]
+}
+
+ 

@@ -6,7 +6,7 @@ const urlsToCache = [
   '/du-an-noi-bat.html',
   '/dang-ky-thu-nghiem.html',
   '/lien-he.html',
-  '/style.css',
+  '/output.css',
   '/script.js',
   '/manifest.json',
   // Thêm các trang chi tiết dự án và bài viết kiến thức vào đây nếu cần caching
@@ -26,7 +26,7 @@ self.addEventListener('activate', event => {
     caches.keys().then(keys =>
       Promise.all(
         keys.filter(key => key !== CACHE_NAME)
-            .map(key => caches.delete(key))
+          .map(key => caches.delete(key))
       )
     )
   );

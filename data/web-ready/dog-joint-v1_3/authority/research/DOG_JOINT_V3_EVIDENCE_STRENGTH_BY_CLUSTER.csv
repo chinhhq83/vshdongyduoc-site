@@ -1,0 +1,9 @@
+cluster,study_record_count,clinical_trial_count,direct_clinical_record_count,review_present,top3_quality_mean,replication_score,consistency_score,raw_certainty_before_cap,certainty_cap,cap_reason,evidence_certainty_score,net_support_index,v3_evidence_class
+asu,1,0,0,False,52.0,0.0,55.0,39.45,40.0,experimental canine evidence only,39.45,50.0,LIMITED_SUPPORT
+boswellia_turmeric_curcumin,3,3,1,False,79.0,75.0,75.59,77.49,55.0,fewer than two direct clinical records and no cluster-level review; multi-ingredient/indirect evidence dominates,55.0,30.38,MODERATE_CERTAINTY_SUPPORTIVE
+eggshell_membrane,2,2,1,False,81.0,50.0,75.02,72.35,55.0,fewer than two direct clinical records and no cluster-level review; multi-ingredient/indirect evidence dominates,55.0,74.07,MODERATE_CERTAINTY_SUPPORTIVE
+glucosamine_chondroitin,5,3,3,True,93.33,100.0,43.85,87.58,100.0,,87.58,-63.22,HIGH_CERTAINTY_LOW_OR_INCONSISTENT_SUPPORT
+green_lipped_mussel,3,2,2,True,86.33,75.0,76.13,81.97,100.0,,81.97,82.43,HIGH_CERTAINTY_SUPPORTIVE
+msm_hyaluronic_acid,1,1,0,False,75.0,25.0,55.0,59.5,45.0,fewer than two direct clinical records and no cluster-level review; multi-ingredient/indirect evidence dominates,45.0,50.0,LIMITED_SUPPORT
+omega3,4,2,2,True,92.0,75.0,100.0,88.95,100.0,,88.95,100.0,HIGH_CERTAINTY_SUPPORTIVE
+ucii,3,2,1,True,83.33,75.0,75.94,80.14,100.0,,80.14,81.8,HIGH_CERTAINTY_SUPPORTIVE
