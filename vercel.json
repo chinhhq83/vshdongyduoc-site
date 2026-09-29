@@ -51,6 +51,156 @@
       "permanent": true
     },
     {
+      "source": "/pet/dog-joint",
+      "destination": "https://dogsupplementfacts.com/dog-joint",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/products/:slug",
+      "destination": "https://dogsupplementfacts.com/dog-joint/products/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/research/:slug",
+      "destination": "https://dogsupplementfacts.com/dog-joint/research/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/asu-avocado-soybean-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/avocado-soybean-unsaponifiables-asu-dogs",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/msm-hyaluronic-acid-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/msm-hyaluronic-acid-dogs-joints",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/eggshell-membrane-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/eggshell-membrane-dogs-osteoarthritis",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/boswellia-curcumin-turmeric-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/turmeric-boswellia-dogs-arthritis-evidence",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/undenatured-type-ii-collagen-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/uc-ii-undenatured-type-ii-collagen-dogs",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/glucosamine-chondroitin-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/does-glucosamine-help-dogs-osteoarthritis",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/green-lipped-mussel-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/green-lipped-mussel-dogs-joint-health",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/evidence/omega-3-fish-oil-dogs",
+      "destination": "https://dogsupplementfacts.com/dog-joint/articles/omega-3-fish-oil-dogs-osteoarthritis",
+      "permanent": true
+    },
+    {
+      "source": "/pet/dog-skin-coat",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/pet/dog-skin-coat/products/:slug",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/dog-skin-coat",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/dog-skin-coat/products/:slug",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/pet/dog-joint/:path*",
+      "destination": "https://dogsupplementfacts.com/dog-joint",
+      "permanent": true
+    },
+    {
+      "source": "/pet/dog-skin-coat/:path*",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/pet",
+      "destination": "https://dogsupplementfacts.com",
+      "permanent": true
+    },
+    {
+      "source": "/pet/:path*",
+      "destination": "https://dogsupplementfacts.com",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint",
+      "destination": "https://dogsupplementfacts.com/dog-joint",
+      "permanent": true
+    },
+    {
+      "source": "/dog-joint/:path*",
+      "destination": "https://dogsupplementfacts.com/dog-joint",
+      "permanent": true
+    },
+    {
+      "source": "/dog-skin-coat/:path*",
+      "destination": "https://dogsupplementfacts.com/dog-skin-coat",
+      "permanent": true
+    },
+    {
+      "source": "/methodology",
+      "destination": "https://dogsupplementfacts.com/methodology",
+      "permanent": true
+    },
+    {
+      "source": "/scientific-methodology",
+      "destination": "https://dogsupplementfacts.com/methodology",
+      "permanent": true
+    },
+    {
+      "source": "/how-we-evaluate-products",
+      "destination": "https://dogsupplementfacts.com/how-we-evaluate-products",
+      "permanent": true
+    },
+    {
+      "source": "/editorial-policy",
+      "destination": "https://dogsupplementfacts.com/editorial-policy",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/gioi-thieu",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/lien-he",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/quyen-rieng-tu",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao-chat-luong",
       "destination": "/kien-thuc/dong-trung-ha-thao/chon-dong-trung-ha-thao",
       "permanent": true
@@ -124,29 +274,16 @@
       "source": "/kien-thuc-suc-khoe",
       "destination": "/kien-thuc",
       "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/dog-joint/products/:slug",
-      "destination": "/dog-joint/products/:slug/index.html"
     },
     {
-      "source": "/dog-joint/evidence/:slug",
-      "destination": "/dog-joint/evidence/:slug/index.html"
+      "source": "/dang-ky-thu-nghiem",
+      "destination": "/lien-he",
+      "permanent": true
     },
     {
-      "source": "/dog-joint/research/:slug",
-      "destination": "/dog-joint/research/:slug/index.html"
-    },
-    {
-      "source": "/scientific-methodology",
-      "destination": "/scientific-methodology/index.html"
-    },
-    {
-      "source": "/how-we-evaluate-products",
-      "destination": "/how-we-evaluate-products/index.html"
+      "source": "/kien-thuc/dong-trung-ha-thao/old/:path*",
+      "destination": "/kien-thuc/dong-trung-ha-thao",
+      "permanent": true
     }
   ]
-
 }
