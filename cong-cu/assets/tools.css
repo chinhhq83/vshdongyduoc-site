@@ -24,7 +24,7 @@
 .btn-t:hover{background:#133a2e;color:#fff}
 .btn-t.ghost{background:#fff;color:var(--t-accent)}
 .btn-t.ghost:hover{background:#eaf2ee;color:var(--t-accent)}
-.btn-t:focus-visible,.tool a:focus-visible,.tool input:focus-visible{outline:3px solid #c8912f;outline-offset:2px}
+.btn-t:focus-visible,.tool a:focus-visible,.tool input:focus-visible{outline:3px solid #b1802a;outline-offset:2px}
 .btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .stop{border-left:4px solid var(--t-amber);background:#fff6e5;padding:12px 14px;border-radius:8px;font-weight:600}
 .howto ol{padding-left:20px;margin:6px 0 0}
