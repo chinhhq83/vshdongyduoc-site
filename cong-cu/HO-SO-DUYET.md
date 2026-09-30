@@ -24,9 +24,11 @@ Nội dung bản vá so với `c83d5ab`: citation Doan L… J Multidiscip Health
 
 Chỉ chạy `vercel --prod` sau khi đủ 3 ô trên.
 
+> **Ghi nhận 30/09/2026:** bản `4111107` (gồm bản vá 02 và công cụ 04–07) đã được đưa lên production trước khi ký (deploy `vshdongyduoc-rol44l32j-chinh-hoangs-projects.vercel.app`). Người duyệt chọn giữ trên site và duyệt ngay (phương án A) theo `cong-cu/GOI-DUYET-02-07.md`.
+
 ## Bản chờ ký: công cụ 04–07, commit `94c8914`
 
-Chưa lên production. Chữ y khoa của 4 công cụ này do Claude soạn từ nguồn đã ghi trên trang; **chưa đối chiếu được nguyên văn nguồn** vì mạng phiên làm việc chặn các trang tạp chí. Người duyệt cần kiểm tra:
+**Đã lên production 30/09/2026 trước khi ký** (xem ghi nhận ở trên). Chữ y khoa của 4 công cụ này do Claude soạn từ nguồn đã ghi trên trang; **chưa đối chiếu được nguyên văn nguồn** vì mạng phiên làm việc chặn các trang tạp chí. Người duyệt cần kiểm tra:
 
 - 04: mốc 5 tiêu chí theo Alberti 2009 (Circulation 120:1640–1645); cách tính "đang dùng thuốc" là đạt; câu "có từ 3/5 tiêu chí là mốc bác sĩ dùng khi xác định hội chứng chuyển hóa".
 - 05: công thức và mốc 1,30 / 2,67 (Shah 2009), mốc 2,0 từ 65 tuổi (McPherson 2017), câu về tính lại sau 1–3 năm (AASLD 2023); số trang các trích dẫn.
