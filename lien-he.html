@@ -41,13 +41,11 @@
 <div class="notice">Viện không tư vấn chẩn đoán hoặc điều trị cho từng người bệnh qua website. Nếu có dấu hiệu cấp cứu, hãy gọi 115 hoặc đến cơ sở y tế gần nhất.</div>
 </div>
 <div class="card">
-<form class="contact" action="https://api.web3forms.com/submit" method="POST">
-<input type="hidden" name="access_key" value="556bf6b3-5277-4a32-a586-877ef846e6e3">
-<input type="hidden" name="from_name" value="Liên hệ từ website vshdongyduoc.org">
-<input type="hidden" name="subject" value="Thông điệp mới từ website">
-<input type="hidden" name="redirect" value="https://www.vshdongyduoc.org/thank-you">
-<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-<div><label for="topic">Chủ đề</label><select id="topic" name="topic"><option>Tư vấn sản phẩm</option><option>Hợp tác nghiên cứu</option><option>Góp ý nội dung</option><option>Khác</option></select></div>
+<form class="contact" id="contact-form" action="https://script.google.com/macros/s/AKfycbwcSz9aJdd38JjbqPk7dpZu5BXObIfxYWVsQAbq5ZIPPIi4DInJw54k6nC4m8vFi17W/exec" method="post">
+<input type="hidden" name="source_url" value="">
+<input type="hidden" name="site" value="vshdongyduoc.org">
+<div hidden aria-hidden="true"><label for="contact-website">Để trống ô này</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<div><label for="inquiry-type">Chủ đề</label><select id="inquiry-type" name="inquiry_type" required><option value="GENERAL">Tư vấn sản phẩm</option><option value="BUSINESS_AFFILIATE">Hợp tác nghiên cứu, kinh doanh</option><option value="SCIENTIFIC_EDITORIAL_CORRECTION">Góp ý nội dung khoa học</option><option value="GENERAL">Khác</option></select></div>
 <div><label for="name">Họ và tên</label><input id="name" name="name" required autocomplete="name"></div>
 <div class="row2">
 <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -56,7 +54,37 @@
 <div><label for="message">Nội dung</label><textarea id="message" name="message" rows="6" required></textarea></div>
 <p style="font-size:14px;color:var(--muted);margin:0">Thông tin chỉ dùng để phản hồi yêu cầu của bạn. Xem <a href="/quyen-rieng-tu">chính sách quyền riêng tư</a>.</p>
 <button class="btn btn-green" type="submit">Gửi liên hệ</button>
+<p id="form-status" role="status" aria-live="polite" style="margin:0;font-weight:600"></p>
 </form>
+<script>
+(function () {
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+  try {
+    var ref = new URL(document.referrer || location.href, location.href);
+    form.elements.source_url.value = (ref.origin + ref.pathname).slice(0, 2048);
+  } catch (e) {}
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    status.style.color = "";
+    status.textContent = "Đang gửi…";
+    fetch(form.action, { method: "POST", body: new FormData(form) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || j.success !== true) throw new Error("rejected"); }); })
+      .then(function () {
+        status.textContent = "Đã gửi thành công.";
+        setTimeout(function () { location.assign("/thank-you"); }, 500);
+      })
+      .catch(function () {
+        status.style.color = "#9b3517";
+        status.textContent = "Chưa gửi được. Vui lòng thử lại hoặc email vs.hd@vshdongyduoc.org.";
+        btn.disabled = false;
+      });
+  });
+})();
+</script>
 </div>
 </div></section>
 

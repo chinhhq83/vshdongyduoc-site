@@ -12,6 +12,7 @@ SITE = "https://www.vshdongyduoc.org"
 NAME = "Viện Sinh Hóa Đông Y Dược"
 EMAIL = "vs.hd@vshdongyduoc.org"
 PHONE = "+84 938 575 161"
+CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwcSz9aJdd38JjbqPk7dpZu5BXObIfxYWVsQAbq5ZIPPIi4DInJw54k6nC4m8vFi17W/exec"
 PHONE_TEL = "+84938575161"
 ADDRESS = "Khu tái định cư, phường Quyết Thắng, tỉnh Thái Nguyên"
 REG = "Số đăng ký hoạt động KH&amp;CN 14/2024/GCN-KHCN, Sở Khoa học và Công nghệ tỉnh Thái Nguyên cấp ngày 20/12/2024"
@@ -498,13 +499,11 @@ contact = head("Liên hệ", "Gửi câu hỏi về sản phẩm, đề nghị h
 <div class="notice">Viện không tư vấn chẩn đoán hoặc điều trị cho từng người bệnh qua website. Nếu có dấu hiệu cấp cứu, hãy gọi 115 hoặc đến cơ sở y tế gần nhất.</div>
 </div>
 <div class="card">
-<form class="contact" action="https://api.web3forms.com/submit" method="POST">
-<input type="hidden" name="access_key" value="556bf6b3-5277-4a32-a586-877ef846e6e3">
-<input type="hidden" name="from_name" value="Liên hệ từ website vshdongyduoc.org">
-<input type="hidden" name="subject" value="Thông điệp mới từ website">
-<input type="hidden" name="redirect" value="{SITE}/thank-you">
-<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-<div><label for="topic">Chủ đề</label><select id="topic" name="topic"><option>Tư vấn sản phẩm</option><option>Hợp tác nghiên cứu</option><option>Góp ý nội dung</option><option>Khác</option></select></div>
+<form class="contact" id="contact-form" action="{CONTACT_ENDPOINT}" method="post">
+<input type="hidden" name="source_url" value="">
+<input type="hidden" name="site" value="vshdongyduoc.org">
+<div hidden aria-hidden="true"><label for="contact-website">Để trống ô này</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<div><label for="inquiry-type">Chủ đề</label><select id="inquiry-type" name="inquiry_type" required><option value="GENERAL">Tư vấn sản phẩm</option><option value="BUSINESS_AFFILIATE">Hợp tác nghiên cứu, kinh doanh</option><option value="SCIENTIFIC_EDITORIAL_CORRECTION">Góp ý nội dung khoa học</option><option value="GENERAL">Khác</option></select></div>
 <div><label for="name">Họ và tên</label><input id="name" name="name" required autocomplete="name"></div>
 <div class="row2">
 <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -513,7 +512,37 @@ contact = head("Liên hệ", "Gửi câu hỏi về sản phẩm, đề nghị h
 <div><label for="message">Nội dung</label><textarea id="message" name="message" rows="6" required></textarea></div>
 <p style="font-size:14px;color:var(--muted);margin:0">Thông tin chỉ dùng để phản hồi yêu cầu của bạn. Xem <a href="/quyen-rieng-tu">chính sách quyền riêng tư</a>.</p>
 <button class="btn btn-green" type="submit">Gửi liên hệ</button>
+<p id="form-status" role="status" aria-live="polite" style="margin:0;font-weight:600"></p>
 </form>
+<script>
+(function () {{
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+  try {{
+    var ref = new URL(document.referrer || location.href, location.href);
+    form.elements.source_url.value = (ref.origin + ref.pathname).slice(0, 2048);
+  }} catch (e) {{}}
+  form.addEventListener("submit", function (event) {{
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    status.style.color = "";
+    status.textContent = "Đang gửi…";
+    fetch(form.action, {{ method: "POST", body: new FormData(form) }})
+      .then(function (r) {{ return r.json().then(function (j) {{ if (!r.ok || j.success !== true) throw new Error("rejected"); }}); }})
+      .then(function () {{
+        status.textContent = "Đã gửi thành công.";
+        setTimeout(function () {{ location.assign("/thank-you"); }}, 500);
+      }})
+      .catch(function () {{
+        status.style.color = "#9b3517";
+        status.textContent = "Chưa gửi được. Vui lòng thử lại hoặc email {EMAIL}.";
+        btn.disabled = false;
+      }});
+  }});
+}})();
+</script>
 </div>
 </div></section>
 """
@@ -528,7 +557,7 @@ priv = head("Quyền riêng tư", "Viện chỉ thu thập những dữ liệu c
 <h2 style="margin-top:0">Dữ liệu đo lường truy cập</h2>
 <p>Website dùng Vercel Web Analytics để tổng hợp lượt xem trang, thời điểm truy cập, nguồn giới thiệu, loại thiết bị, trình duyệt và vị trí địa lý gần đúng. Công cụ này không đặt cookie và dữ liệu chỉ được dùng ở dạng tổng hợp để đánh giá nội dung.</p>
 <h2>Dữ liệu từ biểu mẫu liên hệ</h2>
-<p>Khi bạn gửi biểu mẫu, Viện nhận chủ đề, họ tên, email, nội dung và số điện thoại nếu bạn cung cấp. Biểu mẫu được xử lý qua dịch vụ Web3Forms và chuyển tới hộp thư của Viện. Thông tin chỉ dùng để phản hồi yêu cầu của bạn, không dùng cho quảng cáo và không bán cho bên thứ ba.</p>
+<p>Khi bạn gửi biểu mẫu, Viện nhận chủ đề, họ tên, email, nội dung và số điện thoại nếu bạn cung cấp. Biểu mẫu được xử lý qua Google Apps Script và lưu vào một bảng tính Google Sheets thuộc tài khoản của Viện. Thông tin chỉ dùng để phản hồi yêu cầu của bạn, không dùng cho quảng cáo và không bán cho bên thứ ba.</p>
 <h2>Dữ liệu không thu thập</h2>
 <p>Viện không thu thập hồ sơ bệnh án, không suy đoán tuổi hoặc giới tính của người đọc và không tạo hồ sơ cá nhân.</p>
 <h2>Yêu cầu của bạn</h2>
