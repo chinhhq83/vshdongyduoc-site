@@ -259,10 +259,60 @@
     $("#clear-history").addEventListener("click", function () { history.clear("findrisc"); renderHistory("findrisc", ["diem", "nhom"]); });
   }
 
-  window.VSHTools = { initBmi: initBmi, initFindrisc: initFindrisc, history: history, bridge: bridge };
+  // ---------- công cụ 04–07: module có read(form), evaluate(a), summary(a, r)
+  function initGeneric(id, code, M, cols) {
+    var form = $("#tool-form");
+    form.hidden = false;
+    wireSummary(code);
+    renderHistory(id, cols);
+    var last = null;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var a = M.read(form);
+      var r = M.evaluate(a);
+      var stop = $("#stop-msg");
+      if (!r.ok) {
+        $("#result").hidden = true;
+        stop.hidden = false;
+        stop.textContent = r.message;
+        stop.focus();
+        return;
+      }
+      stop.hidden = true;
+      $("#r-score").textContent = r.score;
+      $("#r-label").textContent = r.label;
+      $("#r-main").textContent = r.main;
+      fill($("#r-next"), r.next);
+      fill($("#r-notes"), (r.notes || []).concat(r.list || []));
+      setLine("r-always", r.always);
+      $("#result").classList.toggle("is-red", r.level === "red");
+      $("#result").classList.toggle("is-amber", r.level === "amber");
+      var s = M.summary(a, r);
+      $("#s-date").textContent = "Ngày tạo: " + today();
+      $("#s-input").textContent = s.input;
+      $("#s-result").textContent = s.result;
+      showResult();
+      last = Object.assign({ date: today() }, s.hist);
+    });
+    $("#save-btn").addEventListener("click", function () {
+      if (!last) return;
+      $("#save-note").textContent = history.save(id, last) ? "Đã lưu trên máy này." : "Trình duyệt đang chặn lưu trữ.";
+      renderHistory(id, cols);
+    });
+    $("#clear-history").addEventListener("click", function () { history.clear(id); renderHistory(id, cols); });
+  }
+  var GENERIC = {
+    mets: ["VSH-04", "VSHMets", ["tieuchi", "nhom"]],
+    fib4: ["VSH-05", "VSHFib4", ["fib4", "nhom"]],
+    nuou: ["VSH-06", "VSHNuou", ["dauhieu", "nhom"]],
+    fitz: ["VSH-07", "VSHFitz", ["loai", "dauhieu"]],
+  };
+
+  window.VSHTools = { initBmi: initBmi, initFindrisc: initFindrisc, initGeneric: initGeneric, history: history, bridge: bridge };
   document.addEventListener("DOMContentLoaded", function () {
     var t = document.body.getAttribute("data-tool");
     if (t === "bmi") initBmi();
     if (t === "findrisc") initFindrisc();
+    if (GENERIC[t]) initGeneric(t, GENERIC[t][0], window[GENERIC[t][1]], GENERIC[t][2]);
   });
 })();

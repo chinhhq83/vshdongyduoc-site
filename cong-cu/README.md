@@ -9,6 +9,7 @@ Tĩnh, không backend. Số đo chỉ nằm trong trình duyệt người dùng.
 | `scripts/build_site.py` (mục "CÔNG CỤ TỰ ĐÁNH GIÁ") | Sinh `cong-cu.html` (hub), `cong-cu/bmi-vong-eo-chau-a.html` (03), `cong-cu/nguy-co-dai-thao-duong-findrisc.html` (02), `cong-cu/the-chat-dong-y.html` (01, noindex). Nội dung y khoa khóa nằm ở đây và trong 2 file logic. |
 | `cong-cu/assets/bmi.js` | Logic thuần công cụ 03 (`window.VSHBmi` / `module.exports`). |
 | `cong-cu/assets/findrisc.js` | Logic thuần công cụ 02 (`window.VSHFindrisc`). |
+| `cong-cu/assets/mets.js`, `fib4.js`, `nuou.js`, `fitz.js` | Logic thuần công cụ 04–07. Mỗi file có `read(form)`, `evaluate(a)`, `summary(a, r)`. |
 | `cong-cu/assets/tools.js` | Nối DOM: đọc form, hiện kết quả, tóm tắt, lịch sử, cầu nối. Chọn công cụ theo `<body data-tool="bmi|findrisc">`. |
 | `cong-cu/assets/tools.css` | Giao diện công cụ + CSS in (chỉ in bản tóm tắt). |
 | `cong-cu/tests/run-tests.js` | Kiểm tra logic + quét HTML. |
@@ -28,6 +29,7 @@ Sau khi sửa: `python3 scripts/build_site.py .` rồi `node cong-cu/tests/run-t
 |---|---|---|
 | `vsh.tool.bmi.history` | localStorage | Tối đa 12 lần: ngày, BMI, nhóm, vòng eo. Chỉ lưu khi bấm "Lưu kết quả trên máy này". |
 | `vsh.tool.findrisc.history` | localStorage | Tối đa 12 lần: ngày, điểm, nhóm. |
+| `vsh.tool.mets.history`, `vsh.tool.fib4.history`, `vsh.tool.nuou.history`, `vsh.tool.fitz.history` | localStorage | Tối đa 12 lần mỗi công cụ. |
 | `vsh.tool.bridge` | sessionStorage | Cầu nối 03 → 02 (xem dưới). Mất khi đóng tab. |
 
 Nút "Xóa lịch sử" xóa khóa history của công cụ đó. Không lưu tên, số điện thoại, email hay dữ liệu định danh nào.
@@ -51,6 +53,5 @@ Công cụ 02 đọc khóa này khi mở trang, điền sẵn giới tính, tu�
 ## Cố ý chưa làm
 
 - PDF tạo ở máy chủ, gửi Zalo/email, tài khoản, đồng bộ nhiều máy, CMS.
-- Trang công cụ 04 (hội chứng chuyển hóa), 05 (FIB-4), 06 (sức khỏe nướu), 07 (Fitzpatrick): mới là thẻ "Sắp mở" trên hub, không có trang, không có form giả.
 - Công cụ 01 (CCMQ 9 thể): chỉ trang chờ. Không đưa 60 câu hỏi lên cho tới khi có xác nhận quyền sử dụng.
 - Sự kiện analytics cho công cụ.

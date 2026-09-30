@@ -794,15 +794,151 @@ write("cong-cu/the-chat-dong-y.html", page("/cong-cu/the-chat-dong-y", f"Tự đ
     "Công cụ tự đánh giá thể chất Đông y 9 thể theo bảng hỏi CCMQ đang được chuẩn bị. Viện chỉ mở khi có xác nhận quyền sử dụng bảng hỏi.",
     tc_body, current="/cong-cu", robots="noindex, follow", tool=True, extra_head=TOOL_HEAD))
 
+# ---- Công cụ 04–07: khung chung. Chữ y khoa chờ người duyệt ký (xem cong-cu/HO-SO-DUYET.md).
+def generic_tool(slug, code, tool_name, data_tool, script, title, meta, h1, lead, form_inner, sources, disclaimer, faq, hist_cols, eyebrow, before_form=""):
+    path = f"/cong-cu/{slug}"
+    body = head(h1, lead, [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], eyebrow) + f"""
+<section class="block tool"><div class="wrap">
+{NOSCRIPT}
+{before_form}
+<div class="tool-card">
+<form id="tool-form" hidden novalidate>
+{form_inner}
+<div class="btn-row"><button type="submit" class="btn-t">Xem kết quả</button></div>
+</form>
+<p class="stop" id="stop-msg" role="alert" tabindex="-1" hidden></p>
+</div>
+<section class="tool-card result" id="result" aria-live="polite" tabindex="-1" hidden>
+<h2>Kết quả</h2>
+<div class="r-block"><p class="r-label">Kết quả của bạn</p><p class="r-score" id="r-score"></p><p><strong id="r-label"></strong></p><p id="r-main"></p></div>
+<div class="r-block"><p class="r-label">Việc nên làm tiếp</p><div id="r-next"></div></div>
+<div class="r-block r-small" id="r-notes"></div>
+<p id="r-always" hidden></p>
+{actions_row(f'<a class="btn-t ghost" href="/cong-cu">← Các công cụ khác</a>')}
+{summary_block(code, tool_name)}
+<div class="sources">
+<p><strong>Nguồn</strong> (nội dung công cụ cập nhật {TOOL_UPDATED}):</p>
+<ol>{"".join(f"<li>{s}</li>" for s in sources)}</ol>
+<p class="disclaimer">{disclaimer}</p>
+</div>
+</section>
+{history_block(hist_cols)}
+</div></section>
+{faq_html(faq)}"""
+    write(f"cong-cu/{slug}.html", page(path, f"{title} | {NAME}", meta, body, current="/cong-cu", tool=True,
+        extra_head=TOOL_HEAD + f'<script defer src="/cong-cu/assets/{script}"></script>\n<script defer src="/cong-cu/assets/tools.js"></script>\n',
+        body_attr=f' data-tool="{data_tool}"',
+        extra_ld=[faq_ld(faq), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (path, tool_name)])]))
+    return path
+
+
+YNK = [("khong", "Không"), ("co", "Có")]
+
+# 04 — Hội chứng chuyển hóa (đối chiếu 5 tiêu chí)
+METS_PATH = generic_tool("hoi-chung-chuyen-hoa", "VSH-04", "Đối chiếu 5 tiêu chí chuyển hóa", "mets", "mets.js",
+    "Đối chiếu 5 tiêu chí hội chứng chuyển hóa (chuẩn châu Á)",
+    "Nhập vòng eo, huyết áp, triglycerid, HDL-C và đường huyết đói để đối chiếu với 5 tiêu chí của định nghĩa hài hòa 2009, vòng eo châu Á 90/80. Không chẩn đoán.",
+    "Đối chiếu 5 tiêu chí chuyển hóa từ phiếu xét nghiệm",
+    "Nhập các số trên phiếu khám và xét nghiệm gần nhất. Công cụ đếm xem bao nhiêu chỉ số đạt mốc của định nghĩa hài hòa năm 2009 (vòng eo theo ngưỡng châu Á). Đây không phải chẩn đoán bệnh.",
+    f"""<fieldset><legend>Giới tính</legend>{radios("sex", SEX)}</fieldset>
+<label class="f">Tuổi <span class="hint">Không bắt buộc. Công cụ dành cho người từ 18 tuổi.</span><input type="number" name="age" inputmode="numeric" min="1" max="110" step="1"></label>
+<label class="check"><input type="checkbox" name="pregnant"> Tôi đang mang thai</label>
+<label class="f">Vòng eo (cm) <span class="hint"><a href="{BMI_PATH}#cach-do-vong-eo">Cách đo</a></span><input type="number" name="waist" inputmode="decimal" min="50" max="160" step="0.1"></label>
+<fieldset><legend>Huyết áp (mmHg)</legend>
+<label class="f">Tâm thu (số trên) <input type="number" name="sbp" inputmode="numeric" min="70" max="260" step="1"></label>
+<label class="f">Tâm trương (số dưới) <input type="number" name="dbp" inputmode="numeric" min="40" max="160" step="1"></label></fieldset>
+<fieldset><legend>Đơn vị trên phiếu xét nghiệm</legend>{radios("unit", [("mmol", "mmol/L"), ("mg", "mg/dL")]).replace('value="mmol" required', 'value="mmol" required checked')}<p class="hint">Phiếu ở Việt Nam thường ghi mmol/L. Chọn đúng đơn vị trước khi nhập.</p></fieldset>
+<label class="f">Triglycerid (lúc đói) <input type="number" name="tg" inputmode="decimal" step="0.01"></label>
+<label class="f">HDL-C <input type="number" name="hdl" inputmode="decimal" step="0.01"></label>
+<label class="f">Glucose (đường huyết) lúc đói <input type="number" name="glu" inputmode="decimal" step="0.01"></label>
+<fieldset><legend>Thuốc bác sĩ đang kê cho bạn</legend><p class="hint">Theo định nghĩa gốc, đang dùng thuốc cho chỉ số nào thì tính là đạt tiêu chí đó.</p>
+<label class="check"><input type="checkbox" name="medBp"> Thuốc huyết áp</label>
+<label class="check"><input type="checkbox" name="medGlu"> Thuốc hạ đường huyết</label>
+<label class="check"><input type="checkbox" name="medTg"> Thuốc hạ triglycerid (thường là fibrat hoặc niacin)</label>
+<label class="check"><input type="checkbox" name="medHdl"> Thuốc để tăng HDL-C (thường là fibrat hoặc niacin)</label></fieldset>
+<p class="hint">Bỏ trống chỉ số chưa có. Công cụ vẫn đếm các chỉ số đã nhập và ghi rõ còn thiếu bao nhiêu.</p>""",
+    ["Alberti KGMM, Eckel RH, Grundy SM, et al. Harmonizing the Metabolic Syndrome. <i>Circulation</i>. 2009;120:1640–1645.",
+     "Bộ Y tế. Quyết định 2892/QĐ-BYT ngày 22/10/2022, mục 4.2 vòng bụng (nam ≥ 90 cm, nữ ≥ 80 cm)."],
+    "Kết quả chỉ đếm số tiêu chí từ số liệu bạn tự nhập, đối chiếu với định nghĩa đã công bố. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám bệnh. Nếu đạt từ 3/5 tiêu chí, hoặc bạn đang có triệu chứng, hãy đến cơ sở y tế.",
+    [("Công cụ này có chẩn đoán hội chứng chuyển hóa không?", "Không. Công cụ chỉ đếm xem bao nhiêu chỉ số bạn nhập đạt mốc của định nghĩa hài hòa 2009. Việc xác định bệnh do bác sĩ làm sau khi khám và xem xét nghiệm.", None),
+     ("Vì sao vòng eo là 90/80 mà không phải 94/80 hay 102/88?", "Định nghĩa hài hòa 2009 cho phép dùng mốc vòng eo theo từng dân tộc. Với người châu Á, trang này dùng nam ≥ 90 cm, nữ ≥ 80 cm, thống nhất với Quyết định 2892/QĐ-BYT.", None),
+     ("Tôi chưa có đủ 5 chỉ số thì sao?", "Vẫn xem được kết quả với các chỉ số đã có. Công cụ ghi rõ còn thiếu bao nhiêu chỉ số và khi nào kết quả có thể thay đổi.", None)],
+    ["Tiêu chí", "Nhóm"], "Công cụ 04")
+
+# 05 — FIB-4
+FIB_PATH = generic_tool("fib-4", "VSH-05", "Chỉ số FIB-4", "fib4", "fib4.js",
+    "Tính chỉ số FIB-4 từ phiếu xét nghiệm (xơ hóa gan)",
+    "Tính FIB-4 từ tuổi, AST (GOT), ALT (GPT) và tiểu cầu. Mốc 1,30 / 2,67, từ 65 tuổi mốc dưới 2,0. Phép tính phân loại ban đầu, không chẩn đoán.",
+    "Tính chỉ số FIB-4 từ phiếu xét nghiệm",
+    "FIB-4 là phép tính từ tuổi, AST, ALT và tiểu cầu, được dùng để phân loại ban đầu khả năng xơ hóa gan ở người có gan nhiễm mỡ hoặc có nguy cơ. Đây không phải chẩn đoán bệnh gan.",
+    """<label class="f">Tuổi <input type="number" name="age" inputmode="numeric" min="1" max="110" step="1" required></label>
+<label class="f">AST (GOT), U/L <input type="number" name="ast" inputmode="decimal" min="1" max="5000" step="0.1" required></label>
+<label class="f">ALT (GPT), U/L <input type="number" name="alt" inputmode="decimal" min="1" max="5000" step="0.1" required></label>
+<label class="f">Tiểu cầu (PLT), G/L <span class="hint">G/L = ×10⁹/L = K/µL. Nếu phiếu ghi 250.000/mm³ thì nhập 250.</span><input type="number" name="plt" inputmode="decimal" min="5" max="1500" step="1" required></label>
+<p class="hint">Dùng các số trên cùng một lần xét nghiệm.</p>""",
+    ["Sterling RK, Lissen E, Clumeck N, et al. Development of a simple noninvasive index to predict significant fibrosis in patients with HIV/HCV coinfection. <i>Hepatology</i>. 2006;43:1317–1325.",
+     "Shah AG, Lydecker A, Murray K, et al. Comparison of noninvasive markers of fibrosis in patients with nonalcoholic fatty liver disease. <i>Clin Gastroenterol Hepatol</i>. 2009;7:1104–1112.",
+     "McPherson S, Hardy T, Dufour JF, et al. Age as a confounding factor for the accurate non-invasive diagnosis of advanced NAFLD fibrosis. <i>Am J Gastroenterol</i>. 2017;112:740–751.",
+     "Rinella ME, Neuschwander-Tetri BA, Siddiqui MS, et al. AASLD Practice Guidance on the clinical assessment and management of nonalcoholic fatty liver disease. <i>Hepatology</i>. 2023;77:1797–1835."],
+    "Kết quả chỉ là phép tính từ số bạn tự nhập, đối chiếu với mốc đã công bố. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám bệnh. Nếu FIB-4 trên 2,67, ở vùng chưa xác định, hoặc bạn đang có triệu chứng như vàng da, bụng to lên, phân đen, hãy đến cơ sở y tế.",
+    [("FIB-4 có chẩn đoán xơ gan không?", "Không. FIB-4 chỉ phân loại ban đầu: thấp, chưa xác định, hoặc cao. Khi không ở nhóm thấp, bác sĩ thường chỉ định thêm xét nghiệm như đo độ đàn hồi gan.", None),
+     ("Vì sao từ 65 tuổi mốc dưới là 2,0?", "Tuổi nằm trong công thức nên FIB-4 tự tăng theo tuổi. Nghiên cứu McPherson 2017 đề xuất mốc dưới 2,0 cho người từ 65 tuổi để giảm kết quả dương tính giả.", None),
+     ("Tôi lấy số AST, ALT, tiểu cầu ở đâu?", "Trên phiếu xét nghiệm máu: AST thường ghi là GOT, ALT ghi là GPT (đơn vị U/L), tiểu cầu trong phần công thức máu (PLT, đơn vị G/L).", None)],
+    ["FIB-4", "Nhóm"], "Công cụ 05")
+
+# 06 — Sức khỏe nướu
+q = lambda name, opts: radios(name, opts)
+NUOU_PATH = generic_tool("suc-khoe-nuou", "VSH-06", "Tự kiểm tra sức khỏe nướu", "nuou", "nuou.js",
+    "Tự kiểm tra sức khỏe nướu (bộ câu hỏi CDC/AAP)",
+    "8 câu hỏi tự trả lời về răng và nướu theo bộ câu hỏi của CDC/AAP, cộng 2 câu dấu hiệu. Không tính điểm, không chẩn đoán, có bản mang đến nha sĩ.",
+    "Tự kiểm tra sức khỏe nướu",
+    "Tám câu hỏi đầu theo bộ câu hỏi tự trả lời mà CDC và Hội Nha chu Hoa Kỳ (AAP) dùng trong giám sát bệnh nha chu. Công cụ không tính điểm; kết quả là các dấu hiệu nên để nha sĩ xem. Đây không phải chẩn đoán.",
+    f"""<fieldset><legend>1. Bạn có nghĩ mình có thể đang có bệnh nướu (bệnh quanh răng) không?</legend>{q("q1", [("khong", "Không"), ("co", "Có"), ("khongro", "Không rõ")])}</fieldset>
+<fieldset><legend>2. Nhìn chung, bạn đánh giá sức khỏe răng và nướu của mình thế nào?</legend>{radios("q2", [("tuyetvoi", "Tuyệt vời"), ("ratot", "Rất tốt"), ("tot", "Tốt"), ("tamduoc", "Tạm được"), ("kem", "Kém")])}</fieldset>
+<fieldset><legend>3. Bạn đã từng được điều trị bệnh nướu, ví dụ cạo vôi và làm sạch sâu mặt chân răng?</legend>{q("q3", YNK)}</fieldset>
+<fieldset><legend>4. Bạn đã từng có răng tự lung lay mà không do chấn thương?</legend>{q("q4", YNK)}</fieldset>
+<fieldset><legend>5. Nha sĩ đã từng cho bạn biết có tiêu xương quanh răng?</legend>{q("q5", YNK)}</fieldset>
+<fieldset><legend>6. Trong 3 tháng qua, bạn có thấy chiếc răng nào trông không bình thường?</legend>{q("q6", YNK)}</fieldset>
+<label class="f">7. Trong 7 ngày qua, ngoài bàn chải, bạn dùng chỉ nha khoa hoặc dụng cụ làm sạch kẽ răng bao nhiêu lần? <input type="number" name="q7" inputmode="numeric" min="0" max="50" step="1"></label>
+<label class="f">8. Trong 7 ngày qua, bạn dùng nước súc miệng bao nhiêu lần? <input type="number" name="q8" inputmode="numeric" min="0" max="50" step="1"></label>
+<p class="hint">Hai câu dưới do Viện bổ sung để nhận ra dấu hiệu nên khám sớm; không thuộc bộ câu hỏi gốc.</p>
+<fieldset><legend>9. Nướu bạn có chảy máu khi chải răng hoặc làm sạch kẽ răng không?</legend>{q("v1", YNK)}</fieldset>
+<fieldset><legend>10. Hiện bạn có sưng đau nướu, có mủ, hoặc răng lung lay tăng dần không?</legend>{q("v2", YNK)}</fieldset>""",
+    ["Eke PI, Dye BA, Wei L, et al. Self-reported measures for surveillance of periodontitis. <i>J Dent Res</i>. 2013;92(11):1041–1047.",
+     "Eke PI, Dye B. Assessment of self-report measures for predicting population prevalence of periodontitis. <i>J Periodontol</i>. 2009;80(9):1371–1379."],
+    "Kết quả chỉ phản ánh câu bạn tự trả lời. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám nha khoa. Nếu có sưng đau, có mủ, răng lung lay, hoặc chảy máu nướu kéo dài, hãy đến cơ sở nha khoa.",
+    [("Vì sao công cụ không cho điểm?", "Bộ câu hỏi gốc của CDC/AAP được xây dựng để ước tính tỷ lệ bệnh nha chu trong cộng đồng, không phải để kết luận cho từng người. Vì vậy công cụ chỉ liệt kê các dấu hiệu nên để nha sĩ xem.", None),
+     ("Chảy máu nướu khi chải răng có đáng lo không?", "Chảy máu nướu là dấu hiệu nướu đang bị kích thích hoặc viêm và nên để nha sĩ xem. Nó không tự nói lên mức độ bệnh; nha sĩ cần khám và đo túi nướu.", None),
+     ("Công cụ này có thay khám nha khoa không?", "Không. Công cụ giúp bạn chuẩn bị câu trả lời để mang đến nha sĩ.", None)],
+    ["Dấu hiệu", "Nhóm"], "Công cụ 06")
+
+# 07 — Fitzpatrick
+FITZ_PATH = generic_tool("fitzpatrick", "VSH-07", "Loại da theo phản ứng với nắng (Fitzpatrick)", "fitz", "fitz.js",
+    "Loại da và mức nhạy nắng theo thang Fitzpatrick",
+    "Chọn mô tả gần nhất với phản ứng của da bạn khi ra nắng để biết loại da Fitzpatrick I–VI và cách che chắn nắng phù hợp. Không chẩn đoán bệnh da.",
+    "Loại da và mức nhạy nắng (thang Fitzpatrick)",
+    "Thang Fitzpatrick chia da thành 6 loại theo cách da phản ứng với nắng: dễ bỏng hay dễ rám. Biết loại da giúp chọn cách che chắn nắng phù hợp. Đây không phải chẩn đoán bệnh da.",
+    f"""<fieldset><legend>Khi da chưa rám (ví dụ sau một thời gian ít ra nắng), nếu phơi nắng trưa khoảng 30–45 phút mà không che chắn, da bạn thường thế nào?</legend>
+{radios("type", [("I", "Luôn bị bỏng nắng (đỏ, rát), không bao giờ rám"), ("II", "Thường bị bỏng nắng, rám rất ít"), ("III", "Đôi khi bỏng nắng nhẹ, rám dần và đều"), ("IV", "Ít khi bỏng nắng, luôn rám dễ"), ("V", "Rất hiếm khi bỏng nắng, rám rất nhanh và sẫm"), ("VI", "Không bao giờ bỏng nắng; da sẫm màu tự nhiên")], col=True)}</fieldset>
+<fieldset><legend>Bạn có nốt ruồi mới, nốt ruồi đổi màu hoặc đổi kích thước, chảy máu, hoặc vết loét lâu không lành trên da?</legend>{q("flag", YNK)}</fieldset>""",
+    ["Fitzpatrick TB. The validity and practicality of sun-reactive skin types I through VI. <i>Arch Dermatol</i>. 1988;124(6):869–871.",
+     "World Health Organization. Global Solar UV Index: A Practical Guide. 2002 (che chắn khi chỉ số UV từ 3 trở lên).",
+     "American Academy of Dermatology. Sunscreen FAQs (kem chống nắng phổ rộng SPF 30 trở lên, bôi lại khoảng mỗi 2 giờ)."],
+    "Kết quả chỉ phản ánh mô tả bạn tự chọn. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám da liễu. Nếu có nốt ruồi thay đổi, chảy máu, hoặc vết loét lâu lành, hãy đến cơ sở y tế.",
+    [("Loại da Fitzpatrick có phải là màu da không?", "Không hẳn. Thang được xây dựng theo cách da phản ứng với nắng (dễ bỏng hay dễ rám). Hai người cùng màu da có thể thuộc hai loại khác nhau.", None),
+     ("Da tôi loại IV–VI thì có cần chống nắng không?", "Có. Da sẫm màu ít bỏng nắng hơn nhưng tia UV vẫn góp phần làm da lão hóa sớm và tăng sắc tố. Nên che chắn khi chỉ số UV từ 3 trở lên.", None),
+     ("Công cụ này có đánh giá ung thư da không?", "Không. Công cụ chỉ xác định loại da theo phản ứng với nắng. Mọi nốt ruồi thay đổi hoặc vết loét lâu lành cần được bác sĩ da liễu khám.", None)],
+    ["Loại", "Dấu hiệu da"], "Công cụ 07")
+
 # ---- Hub
 HUB_TOOLS = [
     ("03", "BMI và vòng eo chuẩn châu Á", "bmi-vong-eo-chau-a", True, "Đối chiếu BMI và vòng eo với ngưỡng cho người châu Á của Bộ Y tế."),
     ("02", "Nguy cơ đái tháo đường 10 năm", "nguy-co-dai-thao-duong-findrisc", True, "8 câu hỏi ModAsian FINDRISC, đã dùng trong nghiên cứu tại Việt Nam."),
+    ("04", "Hội chứng chuyển hóa", "hoi-chung-chuyen-hoa", True, "Đối chiếu vòng eo, huyết áp, mỡ máu, đường huyết với 5 tiêu chí công bố."),
+    ("05", "Điểm FIB-4 (gan nhiễm mỡ)", "fib-4", True, "Tính từ tuổi, AST, ALT và tiểu cầu trên phiếu xét nghiệm."),
+    ("06", "Tự kiểm tra sức khỏe nướu", "suc-khoe-nuou", True, "Bộ câu hỏi tự trả lời của CDC/AAP, có bản mang đến nha sĩ."),
+    ("07", "Loại da và mức nhạy nắng", "fitzpatrick", True, "Thang Fitzpatrick I–VI và cách che chắn nắng phù hợp."),
     ("01", "Thể chất Đông y (9 thể)", "the-chat-dong-y", False, "Theo bảng hỏi CCMQ, chỉ mở khi có xác nhận quyền sử dụng."),
-    ("04", "Hội chứng chuyển hóa", "hoi-chung-chuyen-hoa", False, "Đối chiếu 5 chỉ số xét nghiệm và số đo với tiêu chí công bố."),
-    ("05", "Điểm FIB-4 (gan nhiễm mỡ)", "fib-4", False, "Tính từ tuổi, AST, ALT và tiểu cầu trong kết quả xét nghiệm."),
-    ("06", "Tự kiểm tra sức khỏe nướu", "suc-khoe-nuou", False, "Bộ câu hỏi tự báo cáo của CDC/AAP."),
-    ("07", "Loại da và mức nhạy nắng", "fitzpatrick", False, "Thang Fitzpatrick."),
 ]
 cards = ""
 for num_, name_, slug_, open_, desc_ in HUB_TOOLS:
@@ -828,7 +964,7 @@ write("cong-cu.html", page("/cong-cu", f"Công cụ tự đánh giá sức khỏ
 
 # ---------------------------------------------------------------- sitemap
 urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/lien-he", "/quyen-rieng-tu"]
-urls += ["/cong-cu", BMI_PATH, FR_PATH]  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
+urls += ["/cong-cu", BMI_PATH, FR_PATH, METS_PATH, FIB_PATH, NUOU_PATH, FITZ_PATH]  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
 urls += [h for h, _, _ in TOPICS]
 urls += [f"/kien-thuc/dong-trung-ha-thao/{s}" for s, _ in CORDYCEPS]
 urls += [h for h, *_ in NEWS]  # thời sự (CURRENT) is kept off the sitemap and noindexed
