@@ -1,6 +1,6 @@
 # Viện Sinh Hóa Đông Y Dược (VSHĐYD)
 
-> Viện nghiên cứu hiện đại hóa y học cổ truyền Việt Nam: chuẩn hóa bài thuốc cổ phương thành sản phẩm đông dược an toàn, hiệu quả và tiện dụng. Trọng tâm: bệnh mạn tính không lây (rối loạn chuyển hóa), chăm sóc răng miệng và chống lão hóa da.
+> Viện nghiên cứu hiện đại hóa y học cổ truyền Việt Nam: chuẩn hóa bài thuốc cổ phương thành sản phẩm từ dược liệu an toàn, chất lượng ổn định và tiện dùng. Trọng tâm: bệnh mạn tính không lây (rối loạn chuyển hóa), chăm sóc răng miệng và chống lão hóa da.
 
 Nguyên tắc nội dung: mọi bài viết phân tầng rõ mức độ bằng chứng (in vitro / động vật / lâm sàng ở người). Sản phẩm của Viện là thực phẩm bảo vệ sức khỏe, không phải thuốc và không thay thế thuốc chữa bệnh.
 
@@ -8,7 +8,7 @@ Nguyên tắc nội dung: mọi bài viết phân tầng rõ mức độ bằng 
 
 - [Trang chủ](https://www.vshdongyduoc.org/): giới thiệu Viện và định hướng nghiên cứu
 - [Giới thiệu](https://www.vshdongyduoc.org/gioi-thieu): lịch sử, nhân sự, năng lực nghiên cứu
-- [Sản phẩm](https://www.vshdongyduoc.org/san-pham): danh mục sản phẩm đông dược chuẩn hóa
+- [Sản phẩm](https://www.vshdongyduoc.org/san-pham): danh mục sản phẩm từ dược liệu (thực phẩm bảo vệ sức khỏe)
 - [Dự án nổi bật](https://www.vshdongyduoc.org/du-an-noi-bat): các đề tài nghiên cứu đang triển khai
 - [Liên hệ](https://www.vshdongyduoc.org/lien-he)
 

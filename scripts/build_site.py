@@ -119,6 +119,8 @@ ORG = {
     "email": EMAIL,
     "telephone": PHONE_TEL,
     "foundingDate": "2024-12-20",
+    "identifier": {"@type": "PropertyValue", "propertyID": "Giấy chứng nhận đăng ký hoạt động KH&CN", "value": "14/2024/GCN-KHCN"},
+    "contactPoint": {"@type": "ContactPoint", "contactType": "customer service", "email": EMAIL, "telephone": PHONE_TEL, "url": SITE + "/lien-he", "availableLanguage": "vi"},
     "founder": {"@id": f"{SITE}/gioi-thieu#founder"},
     "address": {"@type": "PostalAddress", "streetAddress": "Khu tái định cư, phường Quyết Thắng", "addressRegion": "Thái Nguyên", "addressCountry": "VN"},
 }
@@ -147,6 +149,9 @@ def page(path, title, desc, body, current=None, robots="index, follow", extra_ld
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{escape(title)}">
+<meta name="twitter:description" content="{escape(desc)}">
+<meta name="twitter:image" content="{SITE}{og_image}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap">
@@ -157,7 +162,7 @@ def page(path, title, desc, body, current=None, robots="index, follow", extra_ld
 <body>
 <a class="skip" href="#main">Bỏ qua điều hướng</a>
 <header class="site-header"><div class="wrap">
-<a class="brand" href="/"><img src="/images/logo.png" alt="Logo {NAME}" width="94" height="46"><span><strong>{NAME}</strong><small>Tinh hoa cổ truyền · Khoa học kiểm chứng</small></span></a>
+<a class="brand" href="/"><img src="/images/logo.png" alt="Logo {NAME}" width="94" height="46"><span><strong>{NAME}</strong><small>Tinh hoa cổ truyền · Nghiên cứu khoa học</small></span></a>
 <nav class="nav" aria-label="Điều hướng chính">{nav}</nav>
 </div></header>
 <main id="main">
@@ -234,7 +239,7 @@ home = f"""
 <div class="wrap">
 <span class="eyebrow">Tổ chức khoa học và công nghệ</span>
 <h1>{NAME}</h1>
-<p class="lede">Chuẩn hóa các bài thuốc cổ phương thành sản phẩm đông dược hiệu quả, an toàn và tiện dùng, bằng phương pháp nghiên cứu sinh học hiện đại.</p>
+<p class="lede">Nghiên cứu các bài thuốc cổ phương và chuẩn hóa thành sản phẩm hỗ trợ sức khỏe an toàn, chất lượng ổn định và tiện dùng, bằng phương pháp nghiên cứu sinh học hiện đại.</p>
 <div class="btns"><a class="btn btn-primary" href="/san-pham">Xem sản phẩm</a><a class="btn btn-ghost" href="/kien-thuc">Đọc kiến thức</a></div>
 </div>
 </section>
@@ -300,8 +305,8 @@ home = f"""
 <a class="btn btn-primary" href="/lien-he">Liên hệ với Viện</a></div>
 </div></section>
 """
-write("index.html", page("/", f"{NAME} | Đông dược chuẩn hóa từ bài thuốc cổ phương",
-                         "Viện Sinh Hóa Đông Y Dược nghiên cứu, chuẩn hóa bài thuốc cổ phương thành sản phẩm đông dược an toàn, tiện dùng cho bệnh chuyển hóa mạn tính, răng miệng và da.",
+write("index.html", page("/", f"{NAME} | Nghiên cứu, chuẩn hóa bài thuốc cổ phương",
+                         "Viện Sinh Hóa Đông Y Dược nghiên cứu, chuẩn hóa bài thuốc cổ phương thành sản phẩm từ dược liệu an toàn, tiện dùng, hỗ trợ sức khỏe chuyển hóa, răng miệng và da.",
                          home, current="/"))
 
 # ---------------------------------------------------------------- GIỚI THIỆU
@@ -313,7 +318,7 @@ founder_ld = {
                  {"@type": "CollegeOrUniversity", "name": "Trường Đại học Khoa học Tự nhiên, ĐHQG Hà Nội"}],
     "sameAs": ["https://www.researchgate.net/profile/Chinh-Hoang-10"],
 }
-about = head("Giới thiệu Viện", "Tổ chức khoa học và công nghệ nghiên cứu hiện đại hóa y học cổ truyền, chuẩn hóa bài thuốc cổ phương thành sản phẩm đông dược.",
+about = head("Giới thiệu Viện", "Tổ chức khoa học và công nghệ nghiên cứu hiện đại hóa y học cổ truyền, chuẩn hóa bài thuốc cổ phương thành sản phẩm từ dược liệu.",
              [("/", "Trang chủ"), ("/gioi-thieu", "Giới thiệu")]) + f"""
 <section class="block"><div class="wrap prose">
 <h2>Viện là ai</h2>
@@ -326,9 +331,13 @@ about = head("Giới thiệu Viện", "Tổ chức khoa học và công nghệ n
 <li>Dược học cổ truyền;</li>
 <li>Thực phẩm chức năng.</li>
 </ul>
+<figure style="margin:24px 0">
+<img src="/images/site/giay-chung-nhan-khcn.jpg" alt="Giấy chứng nhận đăng ký hoạt động khoa học và công nghệ số 14/2024/GCN-KHCN của Viện Sinh Hóa Đông Y Dược" width="1280" height="720" loading="lazy" style="border:1px solid var(--line);border-radius:10px">
+<figcaption style="font-size:14px;color:var(--muted);margin-top:8px">Giấy chứng nhận đăng ký hoạt động khoa học và công nghệ số 14/2024/GCN-KHCN, Sở Khoa học và Công nghệ tỉnh Thái Nguyên cấp ngày 20/12/2024. Thông tin định danh cá nhân đã được che.</figcaption>
+</figure>
 
 <h2>Sứ mệnh</h2>
-<p>Phát triển sản phẩm đông dược từ các bài thuốc cổ phương, giữ được hiệu quả của bài thuốc gốc nhưng bảo đảm an toàn, chất lượng đồng đều và tiện dùng hằng ngày. Viện tập trung vào bệnh mạn tính không lây, trước hết là các bệnh liên quan đến chuyển hóa, cùng với chăm sóc răng miệng và chống lão hóa da.</p>
+<p>Phát triển sản phẩm từ dược liệu dựa trên các bài thuốc cổ phương, giữ được giá trị của bài thuốc gốc nhưng bảo đảm an toàn, chất lượng đồng đều và tiện dùng hằng ngày. Viện tập trung vào bệnh mạn tính không lây, trước hết là các bệnh liên quan đến chuyển hóa, cùng với chăm sóc răng miệng và chống lão hóa da.</p>
 
 <h2>Nguyên tắc làm việc</h2>
 <ul>
@@ -392,7 +401,7 @@ prod = head("Sản phẩm", "Thực phẩm bảo vệ sức khỏe từ dược 
 <a class="btn btn-primary" href="/lien-he">Liên hệ tư vấn</a></div>
 </div></section>
 """
-write("san-pham.html", page("/san-pham", f"Sản phẩm | {NAME}",
+write("san-pham.html", page("/san-pham", "Tiêu Mỡ Thanh, Tiểu Đường Thanh và các sản phẩm | VSHĐYD",
                             "Sản phẩm thực phẩm bảo vệ sức khỏe từ dược liệu chuẩn hóa của Viện Sinh Hóa Đông Y Dược: thành phần, công dụng, quy cách và lưu ý khi dùng.",
                             prod, current="/san-pham", extra_ld=[breadcrumb_ld([("/", "Trang chủ"), ("/san-pham", "Sản phẩm")])]))
 
@@ -473,8 +482,6 @@ bt = head("Bản tin sức khỏe", "Tin nghiên cứu y học mới, giải th�
           [("/", "Trang chủ"), ("/ban-tin", "Bản tin")]) + f"""
 <section class="block"><div class="wrap">
 <ul class="list">{news_list(NEWS)}</ul>
-<div class="sec-head" style="margin-top:48px"><h2>Thời sự</h2></div>
-<ul class="list">{news_list(CURRENT)}</ul>
 </div></section>
 """
 write("ban-tin.html", page("/ban-tin", f"Bản tin sức khỏe | {NAME}",
@@ -484,7 +491,7 @@ ts = head("Bản tin thời sự", "Thông tin thời sự có ích cho đời s
 <section class="block"><div class="wrap"><ul class="list">{news_list(CURRENT)}</ul>
 <p style="margin-top:24px"><a class="more" href="/ban-tin">← Bản tin sức khỏe</a></p></div></section>
 """
-write("thoi-su.html", page("/thoi-su", f"Bản tin thời sự | {NAME}", "Bản tin thời sự của Viện Sinh Hóa Đông Y Dược.", ts, current="/ban-tin"))
+write("thoi-su.html", page("/thoi-su", f"Bản tin thời sự | {NAME}", "Bản tin thời sự của Viện Sinh Hóa Đông Y Dược.", ts, current="/ban-tin", robots="noindex, follow"))
 
 # ---------------------------------------------------------------- LIÊN HỆ
 contact = head("Liên hệ", "Gửi câu hỏi về sản phẩm, đề nghị hợp tác nghiên cứu hoặc góp ý nội dung. Viện phản hồi trong giờ hành chính.",
@@ -584,10 +591,10 @@ nf = head("Không tìm thấy trang", "Trang bạn tìm có thể đã được 
 write("404.html", page("/404", f"Không tìm thấy trang | {NAME}", "Trang không tồn tại.", nf, robots="noindex, follow"))
 
 # ---------------------------------------------------------------- sitemap
-urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/thoi-su", "/lien-he", "/quyen-rieng-tu"]
+urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/lien-he", "/quyen-rieng-tu"]
 urls += [h for h, _, _ in TOPICS]
 urls += [f"/kien-thuc/dong-trung-ha-thao/{s}" for s, _ in CORDYCEPS]
-urls += [h for h, *_ in NEWS] + [h for h, *_ in CURRENT]
+urls += [h for h, *_ in NEWS]  # thời sự (CURRENT) is kept off the sitemap and noindexed
 with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
     for u in urls:
