@@ -779,20 +779,116 @@ write("cong-cu/nguy-co-dai-thao-duong-findrisc.html", page(FR_PATH, f"Nguy cơ �
     fr_body, current="/cong-cu", tool=True, extra_head=TOOL_SCRIPTS_FR, body_attr=' data-tool="findrisc"',
     extra_ld=[faq_ld(FR_FAQ), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (FR_PATH, "Nguy cơ đái tháo đường 10 năm")])]))
 
-# ---- Công cụ 01: trang chờ (không có câu hỏi cho tới khi có xác nhận quyền sử dụng)
-tc_body = head("Tự đánh giá thể chất Đông y (9 thể)",
-    "Công cụ đang được chuẩn bị. Trang này giải thích Viện sẽ làm gì và vì sao chưa mở.",
-    [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], "Công cụ 01 · Sắp mở") + f"""
-<section class="block tool"><div class="wrap"><div class="tool-card">
-<p>Viện sẽ dùng bảng hỏi thể chất Trung y (CCMQ, Vương Kỳ / Hội Trung y dược Trung Quốc 2009) và bản tiếng Việt đã thẩm định. Viện không đưa 60 câu hỏi lên web cho đến khi có xác nhận quyền sử dụng.</p>
-<p>Khi mở, công cụ sẽ theo cùng nguyên tắc với các công cụ khác của Viện: dựa trên thang đo đã công bố, kết quả là việc nên làm tiếp và bản mang đến bác sĩ, không chẩn đoán và không bán sản phẩm.</p>
+# ---- Công cụ 01: Tự đánh giá thể chất Đông y. CỔNG PHÁP LÝ + Y KHOA nằm trong cong-cu/assets/tool01/config.js.
+# Trang này KHÔNG chứa câu hỏi CCMQ nào. Phần giải thích để tĩnh (đọc được khi không có JS, cho máy tìm kiếm).
+T01_PATH = "/cong-cu/tu-danh-gia-the-chat-dong-y"
+T01_DISCLAIMER = "Công cụ này cung cấp thông tin tự đánh giá phục vụ giáo dục sức khỏe. Kết quả không phải là chẩn đoán bệnh, không thay thế khám, chẩn đoán hoặc điều trị bởi nhân viên y tế."
+T01_CARE = "Nếu bạn có triệu chứng bất thường, kéo dài hoặc đang điều trị bệnh, hãy trao đổi với nhân viên y tế phù hợp."
+T01_PREG = "Công cụ này chưa được thiết kế để đưa ra khuyến nghị riêng cho phụ nữ mang thai. Nếu đang mang thai và có vấn đề sức khỏe, hãy trao đổi với nhân viên y tế."
+T01_NINE = [("Bình hòa", "trạng thái được mô tả là cân bằng"), ("Khí hư", "xu hướng thiếu hụt về “khí”"), ("Dương hư", "xu hướng thiếu hụt về phần dương"),
+    ("Âm hư", "xu hướng thiếu hụt về phần âm"), ("Đàm thấp", "xu hướng liên quan đến “đàm” và “thấp”"), ("Thấp nhiệt", "xu hướng kết hợp “thấp” và “nhiệt”"),
+    ("Huyết ứ", "xu hướng liên quan đến lưu thông của “huyết”"), ("Khí uất", "xu hướng liên quan đến lưu thông của “khí”"), ("Đặc bẩm", "xu hướng thể chất đặc thù, liên quan yếu tố bẩm sinh")]
+T01_FAQ = [
+    ("Công cụ này là gì?", "Một công cụ tự đánh giá thể chất theo 9 nhóm thể chất của y học cổ truyền, phục vụ tham khảo và giáo dục sức khỏe. Không phải công cụ chẩn đoán bệnh và không thay thế tư vấn của nhân viên y tế.", None),
+    ("Công cụ này không làm gì?", "Không chẩn đoán bệnh, không kê đơn, không gợi ý thảo dược, bài thuốc, thực phẩm bảo vệ sức khỏe hay sản phẩm nào, và không thay thế khám bệnh.", None),
+    ("Thông tin có được lưu không?", "Không. Câu trả lời và kết quả chỉ nằm trong trình duyệt của bạn trong lúc làm bài, không gửi về máy chủ, không lưu vào trình duyệt, không đưa vào công cụ thống kê. Tải lại trang là mất.", None),
+    ("Ai nên sử dụng?", "Người từ 18 tuổi trở lên. Công cụ không dành cho trẻ em và chưa đưa ra khuyến nghị riêng cho phụ nữ mang thai.", None),
+]
+t01_body = head("Tự đánh giá thể chất Đông y (9 thể)",
+    "Công cụ tự đánh giá thể chất để tham khảo và giáo dục sức khỏe. Không phải công cụ chẩn đoán bệnh và không thay thế tư vấn của nhân viên y tế.",
+    [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], "Công cụ 01") + f"""
+<section class="block tool"><div class="wrap">
+<p class="disclaimer">{T01_DISCLAIMER} {T01_CARE}</p>
+
+<div class="tool-card" id="t01-locked">
+<p class="stop">Bộ câu hỏi chuẩn đang được hoàn thiện thủ tục quyền sử dụng. Công cụ hiện chưa mở cho người dùng.</p>
 <p class="btn-row"><a class="btn-t ghost" href="mailto:{EMAIL}?subject=Nh%E1%BA%AFn%20t%C3%B4i%20khi%20c%C3%B4ng%20c%E1%BB%A5%20th%E1%BB%83%20ch%E1%BA%A5t%20%C4%90%C3%B4ng%20y%20m%E1%BB%9F">Nhắn Viện khi công cụ mở (qua email)</a></p>
-<p class="r-small">Email được mở bằng ứng dụng thư của bạn; trang này không thu thập dữ liệu.</p>
-<p><a href="/cong-cu">← Xem các công cụ đang mở</a></p>
-</div></div></section>"""
-write("cong-cu/the-chat-dong-y.html", page("/cong-cu/the-chat-dong-y", f"Tự đánh giá thể chất Đông y (sắp mở) | {NAME}",
-    "Công cụ tự đánh giá thể chất Đông y 9 thể theo bảng hỏi CCMQ đang được chuẩn bị. Viện chỉ mở khi có xác nhận quyền sử dụng bảng hỏi.",
-    tc_body, current="/cong-cu", robots="noindex, follow", tool=True, extra_head=TOOL_HEAD))
+<p class="r-small">Email được mở bằng ứng dụng thư của bạn; trang này không thu thập dữ liệu. <a href="/cong-cu">Xem các công cụ đang mở</a>.</p>
+</div>
+{NOSCRIPT}
+
+<div id="t01-app" hidden>
+<p class="stop" id="t01-demo-banner" hidden>BẢN THỬ NGHIỆM trên máy lập trình viên: câu hỏi là câu giả (Q01…Q60), không phải câu hỏi CCMQ.</p>
+<p class="stop" id="t01-review-banner" hidden>Nội dung kết quả đang chờ người duyệt y khoa.</p>
+
+<section class="tool-card" id="t01-elig" aria-labelledby="t01-elig-title">
+<h2 id="t01-elig-title">Trước khi bắt đầu</h2>
+<p>{T01_PREG}</p>
+<label class="check"><input type="checkbox" id="t01-age"> Tôi từ 18 tuổi trở lên.</label>
+<label class="check"><input type="checkbox" id="t01-ack"> Tôi hiểu kết quả chỉ để tham khảo, không phải chẩn đoán bệnh.</label>
+<p class="stop" id="t01-elig-err" role="alert" hidden></p>
+<div class="btn-row"><button type="button" class="btn-t" id="t01-begin">Bắt đầu</button></div>
+</section>
+
+<section class="tool-card" id="t01-assess" hidden aria-labelledby="t01-assess-title">
+<h2 id="t01-assess-title" tabindex="-1">Câu hỏi</h2>
+<p class="r-small" id="t01-progress-text" aria-live="polite"></p>
+<progress id="t01-progress" value="0" max="1" style="width:100%;height:10px"></progress>
+<div id="t01-questions"></div>
+<p class="stop" id="t01-q-err" role="alert" hidden></p>
+<div class="btn-row"><button type="button" class="btn-t ghost" id="t01-back" hidden>← Quay lại</button><button type="button" class="btn-t" id="t01-next">Tiếp</button></div>
+</section>
+
+<section class="tool-card result" id="t01-result" hidden tabindex="-1" aria-live="polite" aria-labelledby="t01-result-title">
+<h2 id="t01-result-title">Kết quả</h2>
+<p><strong id="t01-headline"></strong></p>
+<p id="t01-others" hidden></p>
+<p>Thể chất là một khái niệm phân loại sức khỏe truyền thống. Thể chất không phải là chẩn đoán bệnh.</p>
+<p id="t01-about"></p>
+<div class="r-block"><p class="r-label">Gợi ý lối sống chung</p><ul id="t01-guidance"></ul></div>
+<div class="r-block"><p class="r-label">Điểm từng nhóm (thang 0–100)</p>
+<table class="t01-scores"><thead><tr><th>Nhóm</th><th>Điểm</th><th>Mức</th></tr></thead><tbody id="t01-scores"></tbody></table></div>
+<p class="disclaimer">{T01_DISCLAIMER} {T01_CARE}</p>
+<div class="btn-row no-print"><button type="button" class="btn-t" id="t01-print">In hoặc lưu PDF</button><button type="button" class="btn-t ghost" id="t01-restart">Làm lại</button></div>
+<div id="print-summary" aria-label="Bản tóm tắt để in">
+<h2>Bản tóm tắt tự đánh giá thể chất Đông y</h2>
+<p>{NAME} · vshdongyduoc.org · VSH-01</p>
+<p id="t01-s-date"></p>
+<p id="t01-s-result"></p>
+<p id="t01-s-scores"></p>
+<p id="t01-s-about"></p>
+<p>Thể chất không phải là chẩn đoán bệnh. {T01_DISCLAIMER}</p>
+<p>Có thể mang bản này khi trao đổi với bác sĩ hoặc nhân viên y tế nếu thấy hữu ích.</p>
+</div>
+</section>
+</div>
+</div></section>
+
+<section class="block alt tool"><div class="wrap t01-info">
+<h2>Công cụ này là gì?</h2>
+<p>Một công cụ tự đánh giá thể chất theo 9 nhóm thể chất của y học cổ truyền, dựa trên khung phân loại của bảng hỏi thể chất Trung y (CCMQ). Mục đích là tham khảo và giáo dục sức khỏe.</p>
+<h2>9 thể chất là gì?</h2>
+<p>Thể chất là khái niệm của y học cổ truyền dùng để mô tả xu hướng tương đối ổn định của cơ thể. Khung phân loại gồm 9 nhóm:</p>
+<ol>{"".join(f"<li><strong>{n}</strong>: {d}.</li>" for n, d in T01_NINE)}</ol>
+<p>Thể chất không phải là chẩn đoán bệnh.</p>
+<h2>Công cụ này không làm gì?</h2>
+<p>Không chẩn đoán bệnh, không kê đơn, không gợi ý thảo dược, bài thuốc, thực phẩm bảo vệ sức khỏe hay sản phẩm nào, và không thay thế khám bệnh. Gợi ý trong kết quả chỉ gồm thói quen sinh hoạt chung: ăn uống điều độ, vận động, giấc ngủ, uống đủ nước, quản lý căng thẳng.</p>
+<h2>Kết quả được tính như thế nào?</h2>
+<p>Mỗi câu trả lời được chấm từ 1 đến 5; một số câu tính điểm đảo. Với mỗi nhóm có n câu, điểm chuyển đổi = (tổng điểm − n) ÷ (n × 4) × 100, trên thang 0–100. Nhóm Bình hòa được xác định khi điểm Bình hòa từ 60 trở lên và điểm các nhóm còn lại dưới 30 (hoặc dưới 40 cho mức “cơ bản”). Nhóm khác được xác định khi điểm từ 40 trở lên, và “có xu hướng” khi từ 30 đến dưới 40. Các ngưỡng sẽ được đối chiếu lần cuối với phiên bản bảng hỏi được cấp phép trước khi mở công cụ.</p>
+<h2>Ai nên sử dụng?</h2>
+<p>Người từ 18 tuổi trở lên. Công cụ không dành cho trẻ em. {T01_PREG}</p>
+<h2>Thông tin có được lưu không?</h2>
+<p>Không. Câu trả lời và kết quả chỉ nằm trong trình duyệt của bạn trong lúc làm bài: không gửi về máy chủ, không lưu vào trình duyệt, không đưa vào đường dẫn, không đưa vào công cụ thống kê. Tải lại trang là mất. Bạn có thể tự in hoặc lưu bản tóm tắt.</p>
+<h2>Nguồn khoa học</h2>
+<h3>Bảng hỏi / tiêu chuẩn gốc</h3>
+<ul><li>Bảng hỏi thể chất Trung y (Constitution in Chinese Medicine Questionnaire, CCMQ), nhóm Vương Kỳ; tiêu chuẩn phân loại và xác định thể chất Trung y của Hội Trung y dược Trung Quốc (2009). <em>Thông tin trích dẫn đầy đủ và phiên bản cụ thể: đang chờ xác minh.</em></li></ul>
+<h3>Nghiên cứu thẩm định bản tiếng Việt</h3>
+<ul><li>Nghiên cứu thẩm định bản tiếng Việt (2022). <em>Thông tin trích dẫn đầy đủ: đang chờ xác minh và chờ xác nhận quyền sử dụng.</em></li></ul>
+<h3>Tài liệu y khoa và lối sống</h3>
+<ul><li><em>Sẽ bổ sung sau khi người duyệt y khoa hoàn tất.</em></li></ul>
+</div></section>"""
+write("cong-cu/tu-danh-gia-the-chat-dong-y.html", page(T01_PATH, f"Tự đánh giá thể chất Đông y (9 thể) | {NAME}",
+    "Tìm hiểu 9 thể chất Đông y và công cụ tự đánh giá thể chất theo khung CCMQ. Để tham khảo và giáo dục sức khỏe, không chẩn đoán bệnh, không lưu dữ liệu.",
+    t01_body, current="/cong-cu", tool=True,
+    extra_head=TOOL_HEAD + "".join(f'<script defer src="/cong-cu/assets/tool01/{f}"></script>\n' for f in ["config.js", "scoring.js", "questionnaire.js", "results.js", "ui.js"]),
+    extra_ld=[faq_ld(T01_FAQ), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (T01_PATH, "Tự đánh giá thể chất Đông y")])]))
+# Địa chỉ chờ cũ: chuyển sang địa chỉ mới bằng thẻ meta (không đổi cấu hình deploy).
+write("cong-cu/the-chat-dong-y.html", f"""<!DOCTYPE html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{SITE}{T01_PATH}"><meta http-equiv="refresh" content="0; url={T01_PATH}">
+<title>Tự đánh giá thể chất Đông y | {NAME}</title></head>
+<body><p><a href="{T01_PATH}">Trang đã chuyển: Tự đánh giá thể chất Đông y</a></p></body></html>
+""")
 
 # ---- Công cụ 04–07: khung chung. Chữ y khoa chờ người duyệt ký (xem cong-cu/HO-SO-DUYET.md).
 def generic_tool(slug, code, tool_name, data_tool, script, title, meta, h1, lead, form_inner, sources, disclaimer, faq, hist_cols, eyebrow, before_form=""):
@@ -938,7 +1034,7 @@ HUB_TOOLS = [
     ("05", "Điểm FIB-4 (gan nhiễm mỡ)", "fib-4", True, "Tính từ tuổi, AST, ALT và tiểu cầu trên phiếu xét nghiệm."),
     ("06", "Tự kiểm tra sức khỏe nướu", "suc-khoe-nuou", True, "Bộ câu hỏi tự trả lời của CDC/AAP, có bản mang đến nha sĩ."),
     ("07", "Loại da và mức nhạy nắng", "fitzpatrick", True, "Thang Fitzpatrick I–VI và cách che chắn nắng phù hợp."),
-    ("01", "Thể chất Đông y (9 thể)", "the-chat-dong-y", False, "Theo bảng hỏi CCMQ, chỉ mở khi có xác nhận quyền sử dụng."),
+    ("01", "Thể chất Đông y (9 thể)", "tu-danh-gia-the-chat-dong-y", False, "Tìm hiểu 9 thể chất. Bài tự đánh giá mở khi hoàn tất quyền sử dụng bảng hỏi."),
 ]
 cards = ""
 for num_, name_, slug_, open_, desc_ in HUB_TOOLS:
@@ -946,7 +1042,7 @@ for num_, name_, slug_, open_, desc_ in HUB_TOOLS:
     inner = f'{badge}<span class="num">Công cụ {num_}</span><h3>{name_}</h3><p>{desc_}</p>'
     if open_:
         cards += f'<a class="hub-card" href="/cong-cu/{slug_}">{inner}</a>'
-    elif slug_ == "the-chat-dong-y":
+    elif slug_ == "tu-danh-gia-the-chat-dong-y":
         cards += f'<a class="hub-card soon" href="/cong-cu/{slug_}">{inner}</a>'
     else:
         cards += f'<div class="hub-card soon">{inner}</div>'
@@ -964,7 +1060,7 @@ write("cong-cu.html", page("/cong-cu", f"Công cụ tự đánh giá sức khỏ
 
 # ---------------------------------------------------------------- sitemap
 urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/lien-he", "/quyen-rieng-tu"]
-urls += ["/cong-cu", BMI_PATH, FR_PATH, METS_PATH, FIB_PATH, NUOU_PATH, FITZ_PATH]  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
+urls += ["/cong-cu", BMI_PATH, FR_PATH, METS_PATH, FIB_PATH, NUOU_PATH, FITZ_PATH, T01_PATH]  # trang giới thiệu công cụ 01 được index; bài hỏi vẫn khóa  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
 urls += [h for h, _, _ in TOPICS]
 urls += [f"/kien-thuc/dong-trung-ha-thao/{s}" for s, _ in CORDYCEPS]
 urls += [h for h, *_ in NEWS]  # thời sự (CURRENT) is kept off the sitemap and noindexed

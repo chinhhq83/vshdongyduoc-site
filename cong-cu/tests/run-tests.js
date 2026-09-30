@@ -125,7 +125,7 @@ check("Kết quả BMI không có 'tiểu đường', 'hội chứng chuyển h�
 const i = process.argv.indexOf("--html");
 if (i > -1) {
   const site = process.argv[i + 1];
-  for (const rel of ["cong-cu.html", "cong-cu/bmi-vong-eo-chau-a.html", "cong-cu/nguy-co-dai-thao-duong-findrisc.html", "cong-cu/the-chat-dong-y.html", "cong-cu/hoi-chung-chuyen-hoa.html", "cong-cu/fib-4.html", "cong-cu/suc-khoe-nuou.html", "cong-cu/fitzpatrick.html"]) {
+  for (const rel of ["cong-cu.html", "cong-cu/bmi-vong-eo-chau-a.html", "cong-cu/nguy-co-dai-thao-duong-findrisc.html", "cong-cu/tu-danh-gia-the-chat-dong-y.html", "cong-cu/hoi-chung-chuyen-hoa.html", "cong-cu/fib-4.html", "cong-cu/suc-khoe-nuou.html", "cong-cu/fitzpatrick.html"]) {
     const html = fs.readFileSync(path.join(site, rel), "utf8");
     check(`${rel}: không có /san-pham`, !html.includes("/san-pham"));
     // Câu khóa "Không tự mua thuốc hạ đường huyết." là lời cảnh báo, không phải bán hàng — loại trừ đúng câu đó.
@@ -136,7 +136,7 @@ if (i > -1) {
       check(`${rel}: không còn citation chung chung`, !html.includes("Doan et al."));
     }
     check(`${rel}: đúng 1 H1`, (html.match(/<h1[\s>]/g) || []).length === 1);
-    check(`${rel}: có <noscript>`, rel === "cong-cu.html" || rel === "cong-cu/the-chat-dong-y.html" || html.includes("<noscript>"));
+    check(`${rel}: có <noscript>`, rel === "cong-cu.html" || html.includes("<noscript>"));
   }
 }
 

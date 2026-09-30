@@ -10,11 +10,12 @@ Tĩnh, không backend. Số đo chỉ nằm trong trình duyệt người dùng.
 | `cong-cu/assets/bmi.js` | Logic thuần công cụ 03 (`window.VSHBmi` / `module.exports`). |
 | `cong-cu/assets/findrisc.js` | Logic thuần công cụ 02 (`window.VSHFindrisc`). |
 | `cong-cu/assets/mets.js`, `fib4.js`, `nuou.js`, `fitz.js` | Logic thuần công cụ 04–07. Mỗi file có `read(form)`, `evaluate(a)`, `summary(a, r)`. |
+| `cong-cu/assets/tool01/` | Công cụ 01: `config.js` (cổng + ngưỡng), `scoring.js` (tính điểm, phân loại), `questionnaire.js` (rỗng tới khi có quyền), `results.js` (nội dung 9 thể), `ui.js` (giao diện, chỉ giữ dữ liệu trong bộ nhớ). Xem `TOOL01-RELEASE-CHECKLIST.md`. |
 | `cong-cu/assets/tools.js` | Nối DOM: đọc form, hiện kết quả, tóm tắt, lịch sử, cầu nối. Chọn công cụ theo `<body data-tool="bmi|findrisc">`. |
 | `cong-cu/assets/tools.css` | Giao diện công cụ + CSS in (chỉ in bản tóm tắt). |
 | `cong-cu/tests/run-tests.js` | Kiểm tra logic + quét HTML. |
 
-Sau khi sửa: `python3 scripts/build_site.py .` rồi `node cong-cu/tests/run-tests.js --html .` (phải "Tất cả đạt").
+Sau khi sửa: `python3 scripts/build_site.py .` rồi `node cong-cu/tests/run-tests.js --html .` và `node cong-cu/tests/tool01-tests.js --html .` (phải "Tất cả đạt").
 
 ## Gắn vào site
 
@@ -53,5 +54,5 @@ Công cụ 02 đọc khóa này khi mở trang, điền sẵn giới tính, tu�
 ## Cố ý chưa làm
 
 - PDF tạo ở máy chủ, gửi Zalo/email, tài khoản, đồng bộ nhiều máy, CMS.
-- Công cụ 01 (CCMQ 9 thể): chỉ trang chờ. Không đưa 60 câu hỏi lên cho tới khi có xác nhận quyền sử dụng.
+- Công cụ 01 (CCMQ 9 thể): đã có trang giới thiệu, bộ tính điểm và giao diện; bài hỏi khóa sau `RIGHTS_APPROVED` và `MEDICAL_CONTENT_REVIEWED` (đều false). Không lưu câu trả lời ở đâu, kể cả localStorage.
 - Sự kiện analytics cho công cụ.

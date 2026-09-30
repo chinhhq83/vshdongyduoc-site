@@ -76,3 +76,7 @@ a.hub-card:hover{border-color:var(--t-accent);color:var(--t-ink)}
   html.has-print-root #print-root{display:block}
   .no-print{display:none!important}
 }
+/* công cụ 01 */
+.t01-info h2{margin-top:26px}.t01-info h3{font-size:17px;margin:14px 0 4px}
+.t01-scores{width:100%;border-collapse:collapse;font-size:15px}.t01-scores th,.t01-scores td{border-bottom:1px solid var(--t-line);padding:8px;text-align:left}
+#t01-questions fieldset{margin:12px 0}
