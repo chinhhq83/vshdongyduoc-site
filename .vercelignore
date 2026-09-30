@@ -2,3 +2,5 @@ _backup
 *.zip
 scripts
 README.md
+form-update
+.env*
