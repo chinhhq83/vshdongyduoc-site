@@ -16,8 +16,18 @@ Tự động: `node cong-cu/tests/run-tests.js --html .`. [auto] = có trong scr
 | Biên nhóm [auto] | 6/7 · 11/12 · 14/15 · 20/21 | thấp/hơi tăng · hơi tăng/trung bình · trung bình/cao · cao/rất cao |
 | Đã chẩn đoán [auto][tay] | tích ô | Không tính, "Nếu bạn đã có chẩn đoán, hãy theo bác sĩ đang điều trị; công cụ này dành cho người chưa được chẩn đoán." |
 | Tuổi 17 [auto] | 17 | Không tính |
-| Thiếu câu trả lời [tay] | bỏ một câu Có/Không | Báo "Vui lòng trả lời đủ các câu hỏi." |
+| Thiếu câu trả lời [tay] | bỏ một câu Có/Không hoặc Chưa/Rồi | Báo "Vui lòng trả lời đủ các câu hỏi." |
 | Ca Playwright [tay] | Nữ 50 tuổi, 158 cm/58 kg (BMI 23,2), eo 82, không vận động, ăn rau, không thuốc HA, không đường huyết cao, người thân gần | 14/26 · Nguy cơ trung bình (2+1+4+2+0+0+0+5). Bỏ eo → 10/26 + ghi chú |
+
+## Chữ khóa (bản vá 30/09/2026) [auto]
+
+- 8 câu đánh số 1–8 theo bản khóa tiếng Việt (bám bản tiếng Anh FINDRISC). Câu 2 không hỏi bằng lời, chỉ ghi "BMI được tính từ chiều cao và cân nặng bạn nhập".
+- Câu 3 có dòng: bản châu Âu 3 mốc (94/102), bản ModAsian 2 mốc châu Á.
+- Câu 6 giữ "thuốc huyết áp thường xuyên". Câu 8 giữ "(type 1 hoặc type 2)".
+- Citation Doan L… J Multidiscip Healthc 2023;16:439–449, doi:10.2147/JMDH.S398455. Không còn "Doan et al.".
+- Disclaimer 02 là bản riêng (mốc 12 và 15 điểm), không chép từ 03.
+- FAQ 3 câu: chẩn đoán? / vì sao không 25 và 94/102? / thiếu vòng eo?
+- Kiểm tra "không có chữ mua" loại trừ đúng câu khóa "Không tự mua thuốc hạ đường huyết."
 
 ## Cầu nối và giao diện ([tay])
 

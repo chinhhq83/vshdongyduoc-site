@@ -77,7 +77,13 @@ if (i > -1) {
   for (const rel of ["cong-cu.html", "cong-cu/bmi-vong-eo-chau-a.html", "cong-cu/nguy-co-dai-thao-duong-findrisc.html", "cong-cu/the-chat-dong-y.html"]) {
     const html = fs.readFileSync(path.join(site, rel), "utf8");
     check(`${rel}: không có /san-pham`, !html.includes("/san-pham"));
-    check(`${rel}: không có 'mua'`, !/\bmua\b/i.test(html.replace(/<script[\s\S]*?<\/script>/g, "")));
+    // Câu khóa "Không tự mua thuốc hạ đường huyết." là lời cảnh báo, không phải bán hàng — loại trừ đúng câu đó.
+    check(`${rel}: không có 'mua'`, !/\bmua\b/i.test(html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/Không tự mua thuốc hạ đường huyết/g, "")));
+    if (rel.includes("findrisc")) {
+      for (const t of ["J Multidiscip Healthc</i>. 2023;16:439–449. doi:10.2147/JMDH.S398455", "(type 1 hoặc type 2)", "thuốc huyết áp thường xuyên", "Tỷ lệ % 10 năm trên trang là số liệu của tài liệu gốc", "Thiếu vòng eo thì sao?"])
+        check(`${rel}: có "${t.slice(0, 40)}"`, html.includes(t));
+      check(`${rel}: không còn citation chung chung`, !html.includes("Doan et al."));
+    }
     check(`${rel}: đúng 1 H1`, (html.match(/<h1[\s>]/g) || []).length === 1);
     check(`${rel}: có <noscript>`, rel === "cong-cu.html" || rel === "cong-cu/the-chat-dong-y.html" || html.includes("<noscript>"));
   }

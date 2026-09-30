@@ -245,8 +245,8 @@
       var p = r.parts;
       $("#s-date").textContent = "Ngày tạo: " + today();
       $("#s-input").textContent = "Số liệu đã nhập: " + (a.sex === "nam" ? "Nam" : "Nữ") + ", " + a.age + " tuổi, BMI " + String(r.bmi).replace(".", ",") + (a.waistCm > 0 ? ", vòng eo " + String(a.waistCm).replace(".", ",") + " cm" : ", chưa nhập vòng eo") +
-        "; vận động 30 phút/ngày: " + (a.active ? "có" : "không") + "; ăn rau/quả mọi ngày: " + (a.vegDaily ? "có" : "không") + "; từng uống thuốc huyết áp: " + (a.bpMeds ? "có" : "không") +
-        "; từng được báo đường huyết cao: " + (a.highGlucose ? "có" : "không") + "; người thân: " + ({ khong: "không", xa: "họ hàng", gan: "bố/mẹ/anh chị em ruột/con" })[a.family] + ".";
+        "; vận động ≥ 30 phút/ngày: " + (a.active ? "có" : "không") + "; ăn rau/quả: " + (a.vegDaily ? "mỗi ngày" : "không phải mỗi ngày") + "; từng uống thuốc huyết áp thường xuyên: " + (a.bpMeds ? "rồi" : "chưa") +
+        "; từng được phát hiện đường huyết cao: " + (a.highGlucose ? "rồi" : "chưa") + "; người thân được chẩn đoán đái tháo đường (type 1 hoặc 2): " + ({ khong: "không", xa: "chỉ ông bà, cô dì chú bác, anh chị em họ", gan: "có bố mẹ, anh chị em ruột, hoặc con" })[a.family] + ".";
       $("#s-result").textContent = "Kết quả: " + r.score + "/26 điểm — " + r.band.label + " (ModAsian FINDRISC). Điểm thành phần: tuổi " + p.tuoi + ", BMI " + p.bmi + ", vòng eo " + (r.waistMissing ? "chưa có" : p.vongEo) + ", vận động " + p.vanDong + ", rau quả " + p.rauQua + ", thuốc huyết áp " + p.thuocHuyetAp + ", đường huyết cao " + p.duongHuyetCao + ", người thân " + p.nguoiThan + "." + (r.waistMissing ? " Kết quả có thể thấp hơn thực tế vì thiếu vòng eo." : "");
       showResult();
       last = { date: today(), diem: r.score + "/26", nhom: r.band.label };

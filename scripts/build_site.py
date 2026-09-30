@@ -724,9 +724,9 @@ write("cong-cu/bmi-vong-eo-chau-a.html", page(BMI_PATH, f"BMI và vòng eo chu�
 # ---- Công cụ 02: ModAsian FINDRISC
 FR_PATH = "/cong-cu/nguy-co-dai-thao-duong-findrisc"
 FR_FAQ = [
-    ("FINDRISC là gì?", "FINDRISC là thang điểm 8 câu hỏi của Phần Lan (Lindström và Tuomilehto, 2003) để ước lượng nguy cơ đái tháo đường type 2 trong 10 năm. Bản ModAsian dùng ngưỡng BMI và vòng eo cho người châu Á và đã được dùng trong nghiên cứu cộng đồng tại Việt Nam.", None),
-    ("Điểm cao có nghĩa là tôi đã có bệnh?", "Không. Đây là thang sàng lọc dựa trên câu hỏi, không phải xét nghiệm máu và không phải chẩn đoán đái tháo đường. Điểm cao là lý do để đi khám và làm xét nghiệm theo chỉ định của nhân viên y tế.", None),
-    ("Vì sao dùng BMI 23 và vòng eo 90/80?", "Người châu Á có thể tăng nguy cơ rối loạn chuyển hóa ở BMI và vòng eo thấp hơn người châu Âu. Công cụ dùng ngưỡng thống nhất với Quyết định 2892/QĐ-BYT và ngưỡng IDF cho người châu Á, giống công cụ BMI và vòng eo của Viện.", None),
+    ("Công cụ này có chẩn đoán đái tháo đường không?", "Không. Đây chỉ là thang câu hỏi sàng lọc (ModAsian FINDRISC), không phải xét nghiệm máu và không phải chẩn đoán đái tháo đường.", None),
+    ("Vì sao không dùng mốc BMI 25 và vòng eo 94/102?", "Bản này điều chỉnh BMI và vòng eo theo người châu Á (Quyết định 2892/QĐ-BYT và ngưỡng IDF: vòng eo nam 90 cm, nữ 80 cm), gọi là ModAsian FINDRISC.", None),
+    ("Thiếu vòng eo thì sao?", "Vẫn ra điểm, nhưng thiếu tối đa 4 điểm — kết quả có thể thấp hơn thực tế.", None),
 ]
 fr_body = head("Tự ước lượng nguy cơ đái tháo đường type 2 trong 10 năm",
     "Thang FINDRISC điều chỉnh BMI và vòng eo theo người châu Á. Điểm số giúp định hướng việc nên làm tiếp, không phải xét nghiệm và không phải chẩn đoán đái tháo đường. Đã được dùng trong nghiên cứu cộng đồng tại Việt Nam (ModAsian FINDRISC).",
@@ -738,15 +738,16 @@ fr_body = head("Tự ước lượng nguy cơ đái tháo đường type 2 trong
 <form id="tool-form" hidden novalidate>
 <label class="check"><input type="checkbox" name="diagnosed"> Tôi đã được bác sĩ chẩn đoán đái tháo đường</label>
 <fieldset><legend>Giới tính</legend>{radios("sex", SEX)}</fieldset>
-<label class="f">Tuổi <input type="number" name="age" inputmode="numeric" min="1" max="110" step="1" required></label>
+<label class="f">1. Bạn bao nhiêu tuổi? <input type="number" name="age" inputmode="numeric" min="1" max="110" step="1" required></label>
+<fieldset><legend>2. BMI</legend><p class="hint">BMI được tính từ chiều cao và cân nặng bạn nhập.</p>
 <label class="f">Chiều cao (cm) <input type="number" name="height" inputmode="decimal" min="120" max="220" step="0.5" required></label>
-<label class="f">Cân nặng (kg) <input type="number" name="weight" inputmode="decimal" min="30" max="200" step="0.1" required></label>
-<label class="f">Vòng eo (cm) <span class="hint">Không bắt buộc. Nếu bỏ trống, kết quả có thể thấp hơn thực tế. <a href="{BMI_PATH}#cach-do-vong-eo">Cách đo</a></span><input type="number" name="waist" inputmode="decimal" min="50" max="160" step="0.1"></label>
-<fieldset><legend>Bạn có vận động ít nhất 30 phút mỗi ngày, hầu hết các ngày (gồm cả việc nhà, đi bộ)?</legend>{radios("active", [("co", "Có"), ("khong", "Không")])}</fieldset>
-<fieldset><legend>Bạn có ăn rau hoặc quả hằng ngày?</legend>{radios("veg", [("co", "Mọi ngày"), ("khong", "Không phải mọi ngày")])}</fieldset>
-<fieldset><legend>Bạn đã từng uống thuốc huyết áp?</legend>{radios("bp", [("khong", "Không"), ("co", "Có")])}</fieldset>
-<fieldset><legend>Bạn đã từng được báo đường huyết cao (khi khám, khi ốm, khi mang thai)?</legend>{radios("glucose", [("khong", "Không"), ("co", "Có")])}</fieldset>
-<fieldset><legend>Người thân được chẩn đoán đái tháo đường</legend>{radios("family", [("khong", "Không"), ("xa", "Ông/bà, cô/dì/chú/bác, hoặc anh chị em họ"), ("gan", "Bố/mẹ, anh/chị/em ruột, hoặc con")], col=True)}</fieldset>
+<label class="f">Cân nặng (kg) <input type="number" name="weight" inputmode="decimal" min="30" max="200" step="0.1" required></label></fieldset>
+<label class="f">3. Vòng eo (cm), đo dưới xương sườn / ngang rốn <span class="hint">Nam: &lt; 90 hoặc ≥ 90 cm; nữ: &lt; 80 hoặc ≥ 80 cm. Bản châu Âu có 3 mốc (94/102); bản ModAsian trên trang này chỉ dùng 2 mốc châu Á. Không bắt buộc — bỏ trống thì kết quả có thể thấp hơn thực tế. <a href="{BMI_PATH}#cach-do-vong-eo">Cách đo</a></span><input type="number" name="waist" inputmode="decimal" min="50" max="160" step="0.1"></label>
+<fieldset><legend>4. Thông thường mỗi ngày bạn có ít nhất 30 phút vận động khi làm việc và/hoặc lúc rảnh (kể cả việc nhà, đi bộ)?</legend>{radios("active", [("co", "Có"), ("khong", "Không")])}</fieldset>
+<fieldset><legend>5. Bạn ăn rau, quả hoặc quả mọng thường xuyên thế nào?</legend>{radios("veg", [("co", "Mỗi ngày"), ("khong", "Không phải mỗi ngày")])}</fieldset>
+<fieldset><legend>6. Bạn đã từng uống thuốc huyết áp thường xuyên chưa?</legend>{radios("bp", [("khong", "Chưa"), ("co", "Rồi")])}</fieldset>
+<fieldset><legend>7. Bạn đã từng được phát hiện đường huyết cao chưa (khi khám, lúc ốm, hoặc khi mang thai)?</legend>{radios("glucose", [("khong", "Chưa"), ("co", "Rồi")])}</fieldset>
+<fieldset><legend>8. Trong gia đình, đã có người được chẩn đoán đái tháo đường (type 1 hoặc type 2) chưa?</legend>{radios("family", [("khong", "Không"), ("xa", "Chỉ ông bà, cô dì chú bác, hoặc anh chị em họ"), ("gan", "Có bố mẹ, anh chị em ruột, hoặc con")], col=True)}</fieldset>
 <div class="btn-row"><button type="submit" class="btn-t">Tính điểm</button></div>
 </form>
 <p class="stop" id="stop-msg" role="alert" tabindex="-1" hidden></p>
@@ -763,10 +764,10 @@ fr_body = head("Tự ước lượng nguy cơ đái tháo đường type 2 trong
 <p><strong>Nguồn</strong> (thang điểm công bố năm 2003; ngưỡng BMI/vòng eo theo văn bản ngày 22/10/2022; nội dung công cụ cập nhật {TOOL_UPDATED}):</p>
 <ol>
 <li>Lindström J, Tuomilehto J. The diabetes risk score. Diabetes Care. 2003;26:725–731.</li>
-<li>Doan et al. ModAsian FINDRISC as a screening tool… Vietnam. JMDH. 2023 (và các nghiên cứu FINDRISC châu Á tại Việt Nam).</li>
+<li>Doan L, Nguyen HT, Nguyen TTP, Phan TTL, Huy LD, Nguyen TTH, Doan TP. ModAsian FINDRISC as a Screening Tool for People with Undiagnosed Type 2 Diabetes Mellitus in Vietnam: A Community-Based Cross-Sectional Study. <i>J Multidiscip Healthc</i>. 2023;16:439–449. doi:10.2147/JMDH.S398455.</li>
 <li>Ngưỡng BMI/vòng eo thống nhất Quyết định 2892/QĐ-BYT và IDF châu Á — xem <a href="{BMI_PATH}">công cụ BMI và vòng eo</a>.</li>
 </ol>
-<p class="disclaimer">Kết quả chỉ phản ánh câu trả lời bạn tự nhập, đối chiếu với thang điểm công bố. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám bệnh hay xét nghiệm. Nếu điểm từ 12 trở lên hoặc bạn đang có triệu chứng, hãy đến cơ sở y tế.</p>
+<p class="disclaimer">Kết quả là điểm sàng lọc theo thang ModAsian FINDRISC, dựa trên câu bạn tự trả lời. Đây không phải xét nghiệm máu và không phải chẩn đoán đái tháo đường. Tỷ lệ % 10 năm trên trang là số liệu của tài liệu gốc, không phải xác suất riêng của bạn. Từ 12 điểm: nên đến cơ sở y tế để được chỉ định xét nghiệm. Từ 15 điểm, hoặc có khát nhiều / đái nhiều / sụt cân: nên khám sớm. Không tự mua thuốc hạ đường huyết.</p>
 </div>
 </section>
 {history_block(["Điểm", "Nhóm"])}
