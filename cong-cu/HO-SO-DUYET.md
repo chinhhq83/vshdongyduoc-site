@@ -23,3 +23,20 @@ Nội dung bản vá so với `c83d5ab`: citation Doan L… J Multidiscip Health
 - [ ] Đã bấm lại trên preview Vercel: ca 58 kg/158 cm → 23,2 · thừa cân · 46,2–57,2 kg; ca FINDRISC 14/26 · nguy cơ trung bình — URL preview: ______________
 
 Chỉ chạy `vercel --prod` sau khi đủ 3 ô trên.
+
+## Bản chờ ký: công cụ 04–07, commit `94c8914`
+
+Chưa lên production. Chữ y khoa của 4 công cụ này do Claude soạn từ nguồn đã ghi trên trang; **chưa đối chiếu được nguyên văn nguồn** vì mạng phiên làm việc chặn các trang tạp chí. Người duyệt cần kiểm tra:
+
+- 04: mốc 5 tiêu chí theo Alberti 2009 (Circulation 120:1640–1645); cách tính "đang dùng thuốc" là đạt; câu "có từ 3/5 tiêu chí là mốc bác sĩ dùng khi xác định hội chứng chuyển hóa".
+- 05: công thức và mốc 1,30 / 2,67 (Shah 2009), mốc 2,0 từ 65 tuổi (McPherson 2017), câu về tính lại sau 1–3 năm (AASLD 2023); số trang các trích dẫn.
+- 06: bản dịch 8 câu CDC/AAP (Eke 2013, J Dent Res 92:1041–1047; Eke 2009, J Periodontol 80:1371–1379); câu 9–10 do Viện bổ sung, không thuộc bộ gốc; quyết định không tính điểm.
+- 07: bản dịch mô tả loại I–VI (Fitzpatrick 1988); lời khuyên chống nắng (WHO UV Index 2002, AAD); câu dấu hiệu nốt ruồi do Viện bổ sung.
+
+Đối chiếu chữ trên site: `git diff --stat 94c8914 HEAD -- cong-cu/hoi-chung-chuyen-hoa.html cong-cu/fib-4.html cong-cu/suc-khoe-nuou.html cong-cu/fitzpatrick.html cong-cu/assets` phải trống.
+
+- [ ] Đồng ý chữ công cụ 04 — người ký: ______________ ngày: __________
+- [ ] Đồng ý chữ công cụ 05 — người ký: ______________ ngày: __________
+- [ ] Đồng ý chữ công cụ 06 — người ký: ______________ ngày: __________
+- [ ] Đồng ý chữ công cụ 07 — người ký: ______________ ngày: __________
+- [ ] Đã bấm lại trên preview các ca [tay] trong `TEST-04-07.md` — URL preview: ______________
