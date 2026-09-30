@@ -33,32 +33,41 @@
       about: "Đặc bẩm là cách gọi của y học cổ truyền cho một xu hướng thể chất được mô tả là mang tính đặc thù, liên quan đến yếu tố bẩm sinh.",
       guidance: ["Ăn uống điều độ, chế độ ăn cân đối.", "Vận động đều đặn, ngủ đủ giấc.", "Nếu cơ thể có phản ứng bất thường hoặc kéo dài, trao đổi với nhân viên y tế thay vì tự xử lý."] },
   };
-  var LEVEL = { definite: "phù hợp", tendency: "có xu hướng phù hợp", basic: "cơ bản phù hợp" };
+  var LEVEL = { definite: "đạt ngưỡng", tendency: "đạt ngưỡng xu hướng", basic: "đạt ngưỡng “cơ bản”" };
   var NOT_DIAGNOSIS = "Thể chất là một khái niệm phân loại sức khỏe truyền thống. Thể chất không phải là chẩn đoán bệnh.";
   var DISCLAIMER = "Công cụ này cung cấp thông tin tự đánh giá phục vụ giáo dục sức khỏe. Kết quả không phải là chẩn đoán bệnh, không thay thế khám, chẩn đoán hoặc điều trị bởi nhân viên y tế.";
+  var SYSTEM = " theo hệ thống phân loại được sử dụng trong công cụ này.";
+  var GENERAL = ["Ăn uống điều độ, chế độ ăn cân đối.", "Vận động đều đặn, tránh ngồi lâu liên tục.", "Ngủ đủ giấc, uống đủ nước, dành thời gian thư giãn."];
 
+  // Mọi thể lệch đạt ngưỡng, theo thứ tự cố định mà classify() trả về (không theo điểm).
+  function qualifyingBiased(cls) {
+    return cls.biased.filter(function (b) { return b.level !== "below"; }).map(function (b) { return { key: b.constitution, level: b.level }; });
+  }
+  // Câu kết quả. Không chọn nhóm thắng theo điểm: chỉ báo nhóm nào đạt ngưỡng.
   function headline(cls) {
-    var n = function (k) { return R[k].name; };
-    if (cls.primary === "balanced")
-      return "Kết quả tự đánh giá của bạn " + (cls.balanced === "definite" ? LEVEL.definite : LEVEL.basic) + " với nhóm " + n("balanced") + " theo hệ thống phân loại thể chất được sử dụng trong công cụ này.";
-    if (cls.primary === "biased" && cls.definite.length)
-      return "Kết quả tự đánh giá của bạn phù hợp nhất với nhóm " + n(cls.definite[0]) + " theo hệ thống phân loại thể chất được sử dụng trong công cụ này.";
-    if (cls.primary === "biased")
-      return "Kết quả tự đánh giá của bạn có xu hướng phù hợp với nhóm " + n(cls.tendency[0]) + " theo hệ thống phân loại thể chất được sử dụng trong công cụ này.";
-    return "Kết quả tự đánh giá của bạn chưa phù hợp rõ với nhóm nào theo ngưỡng của công cụ này.";
+    if (cls.balanced === "definite") return "Kết quả tự đánh giá của bạn " + LEVEL.definite + " của nhóm " + R.balanced.name + SYSTEM;
+    if (cls.balanced === "basic") return "Kết quả tự đánh giá của bạn " + LEVEL.basic + " của nhóm " + R.balanced.name + SYSTEM;
+    var q = qualifyingBiased(cls);
+    if (q.length === 1) return "Kết quả tự đánh giá của bạn " + LEVEL[q[0].level] + " của nhóm " + R[q[0].key].name + SYSTEM;
+    if (q.length > 1) return "Kết quả tự đánh giá của bạn đạt ngưỡng của nhiều nhóm thể chất.";
+    return "Kết quả tự đánh giá của bạn chưa đạt ngưỡng phân loại của nhóm nào trong công cụ này.";
   }
-  // Mọi nhóm đạt ngưỡng, không bỏ sót (trừ nhóm đã nêu ở câu chính).
-  function others(cls) {
-    var out = [];
-    cls.definite.forEach(function (k, i) { if (!(cls.primary === "biased" && i === 0)) out.push(R[k].name + " (" + LEVEL.definite + ")"); });
-    cls.tendency.forEach(function (k, i) { if (!(cls.primary === "biased" && !cls.definite.length && i === 0)) out.push(R[k].name + " (" + LEVEL.tendency + ")"); });
-    return out;
+  // Danh sách đầy đủ, không xếp hạng. Bình hòa "cơ bản" vẫn liệt kê các nhóm đạt ngưỡng xu hướng.
+  function groupList(cls) {
+    var q = qualifyingBiased(cls);
+    if (cls.balanced !== "no") {
+      return q.length ? { title: "Các nhóm đạt ngưỡng xu hướng:", items: q.map(function (x) { return R[x.key].name; }) } : null;
+    }
+    if (q.length > 1) return { title: "Các nhóm đạt ngưỡng:", items: q.map(function (x) { return R[x.key].name + (x.level === "tendency" ? " (xu hướng)" : ""); }) };
+    return null;
   }
-  function primaryKey(cls) {
-    return cls.primary === "balanced" ? "balanced" : cls.definite[0] || cls.tendency[0] || null;
+  // Nhóm nào được hiện phần giới thiệu + gợi ý lối sống: mọi nhóm đạt ngưỡng, cùng thứ tự cố định.
+  function contentKeys(cls) {
+    if (cls.balanced !== "no") return ["balanced"];
+    return qualifyingBiased(cls).map(function (x) { return x.key; });
   }
 
-  var api = { RESULTS: R, LEVEL: LEVEL, CARE: CARE, NOT_DIAGNOSIS: NOT_DIAGNOSIS, DISCLAIMER: DISCLAIMER, headline: headline, others: others, primaryKey: primaryKey };
+  var api = { RESULTS: R, LEVEL: LEVEL, CARE: CARE, NOT_DIAGNOSIS: NOT_DIAGNOSIS, DISCLAIMER: DISCLAIMER, GENERAL: GENERAL, headline: headline, groupList: groupList, contentKeys: contentKeys, qualifyingBiased: qualifyingBiased };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VSHTool01Results = api;
 })(this);

@@ -782,6 +782,26 @@ write("cong-cu/nguy-co-dai-thao-duong-findrisc.html", page(FR_PATH, f"Nguy cơ �
 # ---- Công cụ 01: Tự đánh giá thể chất Đông y. CỔNG PHÁP LÝ + Y KHOA nằm trong cong-cu/assets/tool01/config.js.
 # Trang này KHÔNG chứa câu hỏi CCMQ nào. Phần giải thích để tĩnh (đọc được khi không có JS, cho máy tìm kiếm).
 T01_PATH = "/cong-cu/tu-danh-gia-the-chat-dong-y"
+
+
+def t01_gate():
+    """Đọc cổng từ config.js (nguồn duy nhất). Không đọc được thì coi như khóa và dừng build (fail closed)."""
+    import re
+    with open(os.path.join(OUT, "cong-cu/assets/tool01/config.js"), encoding="utf-8") as f:
+        src = f.read()
+    vals = {}
+    for name in ("RIGHTS_APPROVED", "MEDICAL_CONTENT_REVIEWED"):
+        m = re.search(r"^\s*var " + name + r"\s*=\s*(true|false)\s*;", src, re.M)
+        if not m:
+            raise SystemExit(f"Không đọc được {name} trong cong-cu/assets/tool01/config.js")
+        vals[name] = m.group(1) == "true"
+    return vals["RIGHTS_APPROVED"] and vals["MEDICAL_CONTENT_REVIEWED"]
+
+
+# Khi bài tự đánh giá còn khóa: trang để noindex và không vào sitemap. Khi con người mở cả hai cổng trong config.js,
+# lần build sau tự chuyển sang index và thêm vào sitemap.
+T01_PUBLIC = t01_gate()
+T01_ROBOTS = "index,follow" if T01_PUBLIC else "noindex,follow"
 T01_DISCLAIMER = "Công cụ này cung cấp thông tin tự đánh giá phục vụ giáo dục sức khỏe. Kết quả không phải là chẩn đoán bệnh, không thay thế khám, chẩn đoán hoặc điều trị bởi nhân viên y tế."
 T01_CARE = "Nếu bạn có triệu chứng bất thường, kéo dài hoặc đang điều trị bệnh, hãy trao đổi với nhân viên y tế phù hợp."
 T01_PREG = "Công cụ này chưa được thiết kế để đưa ra khuyến nghị riêng cho phụ nữ mang thai. Nếu đang mang thai và có vấn đề sức khỏe, hãy trao đổi với nhân viên y tế."
@@ -832,10 +852,9 @@ t01_body = head("Tự đánh giá thể chất Đông y (9 thể)",
 <section class="tool-card result" id="t01-result" hidden tabindex="-1" aria-live="polite" aria-labelledby="t01-result-title">
 <h2 id="t01-result-title">Kết quả</h2>
 <p><strong id="t01-headline"></strong></p>
-<p id="t01-others" hidden></p>
+<div id="t01-list-box" hidden><p id="t01-list-title"></p><ul id="t01-list"></ul></div>
 <p>Thể chất là một khái niệm phân loại sức khỏe truyền thống. Thể chất không phải là chẩn đoán bệnh.</p>
-<p id="t01-about"></p>
-<div class="r-block"><p class="r-label">Gợi ý lối sống chung</p><ul id="t01-guidance"></ul></div>
+<div id="t01-groups"></div>
 <div class="r-block"><p class="r-label">Điểm từng nhóm (thang 0–100)</p>
 <table class="t01-scores"><thead><tr><th>Nhóm</th><th>Điểm</th><th>Mức</th></tr></thead><tbody id="t01-scores"></tbody></table></div>
 <p class="disclaimer">{T01_DISCLAIMER} {T01_CARE}</p>
@@ -846,7 +865,7 @@ t01_body = head("Tự đánh giá thể chất Đông y (9 thể)",
 <p id="t01-s-date"></p>
 <p id="t01-s-result"></p>
 <p id="t01-s-scores"></p>
-<p id="t01-s-about"></p>
+<p id="t01-s-groups"></p>
 <p>Thể chất không phải là chẩn đoán bệnh. {T01_DISCLAIMER}</p>
 <p>Có thể mang bản này khi trao đổi với bác sĩ hoặc nhân viên y tế nếu thấy hữu ích.</p>
 </div>
@@ -870,16 +889,12 @@ t01_body = head("Tự đánh giá thể chất Đông y (9 thể)",
 <h2>Thông tin có được lưu không?</h2>
 <p>Không. Câu trả lời và kết quả chỉ nằm trong trình duyệt của bạn trong lúc làm bài: không gửi về máy chủ, không lưu vào trình duyệt, không đưa vào đường dẫn, không đưa vào công cụ thống kê. Tải lại trang là mất. Bạn có thể tự in hoặc lưu bản tóm tắt.</p>
 <h2>Nguồn khoa học</h2>
-<h3>Bảng hỏi / tiêu chuẩn gốc</h3>
-<ul><li>Bảng hỏi thể chất Trung y (Constitution in Chinese Medicine Questionnaire, CCMQ), nhóm Vương Kỳ; tiêu chuẩn phân loại và xác định thể chất Trung y của Hội Trung y dược Trung Quốc (2009). <em>Thông tin trích dẫn đầy đủ và phiên bản cụ thể: đang chờ xác minh.</em></li></ul>
-<h3>Nghiên cứu thẩm định bản tiếng Việt</h3>
-<ul><li>Nghiên cứu thẩm định bản tiếng Việt (2022). <em>Thông tin trích dẫn đầy đủ: đang chờ xác minh và chờ xác nhận quyền sử dụng.</em></li></ul>
-<h3>Tài liệu y khoa và lối sống</h3>
-<ul><li><em>Sẽ bổ sung sau khi người duyệt y khoa hoàn tất.</em></li></ul>
+<p>Nguồn khoa học đang được hoàn thiện trước khi công cụ được phát hành chính thức. Các trích dẫn chưa được xác minh nên chưa được liệt kê ở đây.</p>
+<p>Khi phát hành, mục này sẽ tách riêng ba nhóm: bảng hỏi hoặc tiêu chuẩn gốc; nghiên cứu thẩm định bản tiếng Việt; tài liệu y khoa và lối sống.</p>
 </div></section>"""
 write("cong-cu/tu-danh-gia-the-chat-dong-y.html", page(T01_PATH, f"Tự đánh giá thể chất Đông y (9 thể) | {NAME}",
     "Tìm hiểu 9 thể chất Đông y và công cụ tự đánh giá thể chất theo khung CCMQ. Để tham khảo và giáo dục sức khỏe, không chẩn đoán bệnh, không lưu dữ liệu.",
-    t01_body, current="/cong-cu", tool=True,
+    t01_body, current="/cong-cu", tool=True, robots=T01_ROBOTS,
     extra_head=TOOL_HEAD + "".join(f'<script defer src="/cong-cu/assets/tool01/{f}"></script>\n' for f in ["config.js", "scoring.js", "questionnaire.js", "results.js", "ui.js"]),
     extra_ld=[faq_ld(T01_FAQ), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (T01_PATH, "Tự đánh giá thể chất Đông y")])]))
 # Địa chỉ chờ cũ: chuyển sang địa chỉ mới bằng thẻ meta (không đổi cấu hình deploy).
@@ -1060,7 +1075,9 @@ write("cong-cu.html", page("/cong-cu", f"Công cụ tự đánh giá sức khỏ
 
 # ---------------------------------------------------------------- sitemap
 urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/lien-he", "/quyen-rieng-tu"]
-urls += ["/cong-cu", BMI_PATH, FR_PATH, METS_PATH, FIB_PATH, NUOU_PATH, FITZ_PATH, T01_PATH]  # trang giới thiệu công cụ 01 được index; bài hỏi vẫn khóa  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
+urls += ["/cong-cu", BMI_PATH, FR_PATH, METS_PATH, FIB_PATH, NUOU_PATH, FITZ_PATH]
+if T01_PUBLIC:
+    urls.append(T01_PATH)  # công cụ 01 chỉ vào sitemap khi cả hai cổng trong config.js đã được con người mở
 urls += [h for h, _, _ in TOPICS]
 urls += [f"/kien-thuc/dong-trung-ha-thao/{s}" for s, _ in CORDYCEPS]
 urls += [h for h, *_ in NEWS]  # thời sự (CURRENT) is kept off the sitemap and noindexed

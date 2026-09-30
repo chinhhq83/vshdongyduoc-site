@@ -36,7 +36,8 @@
     return { ok: true, scores: scores, counts: n };
   }
 
-  /** Phân loại theo ngưỡng cấu hình. Không bỏ sót: trả về mọi thể lệch đạt "definite" hoặc "tendency".
+  /** Phân loại theo ngưỡng cấu hình. Không chọn nhóm thắng: mọi thể lệch đạt ngưỡng được trả về
+   *  theo THỨ TỰ CỐ ĐỊNH của config.constitutions (không xếp theo điểm, thứ tự không mang ý nghĩa ưu tiên y khoa).
    *  @returns {{balanced:"definite"|"basic"|"no", biased:{constitution:string, score:number, level:"definite"|"tendency"|"below"}[],
    *            primary:"balanced"|"biased"|"undetermined", definite:string[], tendency:string[]}} */
   function classify(scores) {
@@ -48,14 +49,18 @@
       return { constitution: c, score: s, level: level };
     });
     var maxBiased = Math.max.apply(null, biased.map(function (b) { return b.score; }));
-    var bal = "no";
-    if (scores.balanced >= T.balanced.minScore) {
-      if (maxBiased < T.balanced.definiteBiasedMax) bal = "definite";
-      else if (maxBiased < T.balanced.basicBiasedMax) bal = "basic";
-    }
-    var byScore = function (a, b) { return b.score - a.score; };
-    var definite = biased.filter(function (b) { return b.level === "definite"; }).sort(byScore).map(function (b) { return b.constitution; });
-    var tendency = biased.filter(function (b) { return b.level === "tendency"; }).sort(byScore).map(function (b) { return b.constitution; });
+
+    // Bình hòa: ba khả năng LOẠI TRỪ NHAU, xét theo thứ tự ưu tiên.
+    //   1. balanced >= 60 VÀ mọi thể lệch < 30  -> "definite"
+    //   2. NGƯỢC LẠI, balanced >= 60 VÀ mọi thể lệch < 40 -> "basic"
+    //   3. NGƯỢC LẠI -> "no"
+    var bal;
+    if (scores.balanced >= T.balanced.minScore && maxBiased < T.balanced.definiteBiasedMax) bal = "definite";
+    else if (scores.balanced >= T.balanced.minScore && maxBiased < T.balanced.basicBiasedMax) bal = "basic";
+    else bal = "no";
+
+    var keysAt = function (level) { return biased.filter(function (b) { return b.level === level; }).map(function (b) { return b.constitution; }); };
+    var definite = keysAt("definite"), tendency = keysAt("tendency");
     var primary = bal !== "no" ? "balanced" : definite.length || tendency.length ? "biased" : "undetermined";
     return { balanced: bal, biased: biased, primary: primary, definite: definite, tendency: tendency };
   }

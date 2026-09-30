@@ -8,6 +8,8 @@ MEDICAL_CONTENT_REVIEWED = false
 publicAssessmentEnabled = RIGHTS_APPROVED && MEDICAL_CONTENT_REVIEWED   // suy ra, không đặt tay
 ```
 
+Cổng này cũng quyết định SEO: khi còn khóa, `scripts/build_site.py` đọc `config.js`, đặt trang `noindex,follow` và không đưa vào `sitemap.xml`. Khi cả hai giá trị là `true`, lần build sau tự chuyển sang `index,follow` và thêm URL vào sitemap (không cần sửa chỗ khác).
+
 Chỉ con người được đổi hai giá trị trên, và chỉ sau khi các ô liên quan dưới đây đã có bằng chứng lưu trong hồ sơ. Không suy ra quyền sử dụng từ việc bài báo đã công bố hay có giấy phép open-access.
 
 ## Quyền sử dụng
@@ -35,6 +37,7 @@ Chỉ con người được đổi hai giá trị trên, và chỉ sau khi các 
 - [ ] Regulatory/device-status review completed
 - [ ] RIGHTS_APPROVED set by human
 - [ ] MEDICAL_CONTENT_REVIEWED set by human
+- [ ] Sau khi mở cổng: build lại, xác nhận trang `index,follow` và có trong sitemap
 - [ ] Production QA passed
 
 ## Ghi nhận người thực hiện (điền tay)

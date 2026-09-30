@@ -95,31 +95,44 @@
     function finish() {
       var r = S.assess(items.map(function (it) { return { id: it.id, constitution: it.constitution, reverse: it.reverse, answer: answers[it.id] }; }));
       if (!r.ok) { var err = $("t01-q-err"); err.textContent = "Không tính được kết quả. Vui lòng kiểm tra lại các câu trả lời."; err.hidden = false; return; }
-      var cls = r.classification, key = R.primaryKey(cls);
+      var cls = r.classification;
       $("t01-assess").hidden = true;
       var res = $("t01-result");
       res.hidden = false;
       $("t01-headline").textContent = R.headline(cls);
-      var oth = R.others(cls);
-      $("t01-others").hidden = !oth.length;
-      $("t01-others").textContent = oth.length ? "Các nhóm khác cũng đạt ngưỡng: " + oth.join("; ") + "." : "";
-      $("t01-about").textContent = key ? R.RESULTS[key].about : "";
-      var ul = $("t01-guidance"); ul.textContent = "";
-      (key ? R.RESULTS[key].guidance : ["Ăn uống điều độ, chế độ ăn cân đối.", "Vận động đều đặn, ngủ đủ giấc, uống đủ nước."]).forEach(function (g) { ul.appendChild(el("li", g)); });
+      var gl = R.groupList(cls), lb = $("t01-list-box"), ul = $("t01-list");
+      lb.hidden = !gl; ul.textContent = "";
+      $("t01-list-title").textContent = gl ? gl.title : "";
+      if (gl) gl.items.forEach(function (t) { ul.appendChild(el("li", t)); });
+      var keys = R.contentKeys(cls), box = $("t01-groups");
+      box.textContent = "";
+      if (keys.length) keys.forEach(function (k) {
+        var sec = el("div", null, "r-block");
+        sec.appendChild(el("h3", R.RESULTS[k].name));
+        sec.appendChild(el("p", R.RESULTS[k].about));
+        sec.appendChild(el("p", "Gợi ý lối sống chung:", "r-label"));
+        var g = el("ul"); R.RESULTS[k].guidance.forEach(function (t) { g.appendChild(el("li", t)); }); sec.appendChild(g);
+        box.appendChild(sec);
+      });
+      else {
+        var sec0 = el("div", null, "r-block");
+        sec0.appendChild(el("p", "Gợi ý lối sống chung:", "r-label"));
+        var g0 = el("ul"); R.GENERAL.forEach(function (t) { g0.appendChild(el("li", t)); }); sec0.appendChild(g0);
+        box.appendChild(sec0);
+      }
       var tb = $("t01-scores"); tb.textContent = "";
       CFG.constitutions.forEach(function (c) {
         var tr = el("tr");
         var b = cls.biased.filter(function (x) { return x.constitution === c; })[0];
-        var lv = c === "balanced" ? (cls.balanced === "no" ? "—" : cls.balanced === "definite" ? R.LEVEL.definite : R.LEVEL.basic)
-          : b.level === "definite" ? R.LEVEL.definite : b.level === "tendency" ? R.LEVEL.tendency : "—";
+        var lv = c === "balanced" ? (cls.balanced === "no" ? "—" : R.LEVEL[cls.balanced]) : b.level === "below" ? "—" : R.LEVEL[b.level];
         tr.appendChild(el("td", R.RESULTS[c].name)); tr.appendChild(el("td", fmt(r.scores[c]))); tr.appendChild(el("td", lv));
         tb.appendChild(tr);
       });
       // bản in
       $("t01-s-date").textContent = "Ngày tạo (trên máy của bạn): " + today() + (demo ? " · BẢN THỬ NGHIỆM, câu hỏi giả" : "");
-      $("t01-s-result").textContent = "Kết quả: " + R.headline(cls) + (oth.length ? " Các nhóm khác cũng đạt ngưỡng: " + oth.join("; ") + "." : "");
+      $("t01-s-result").textContent = "Kết quả: " + R.headline(cls) + (gl ? " " + gl.title + " " + gl.items.join("; ") + "." : "");
       $("t01-s-scores").textContent = "Điểm (0–100): " + CFG.constitutions.map(function (c) { return R.RESULTS[c].name + " " + fmt(r.scores[c]); }).join(" · ") + ".";
-      $("t01-s-about").textContent = key ? R.RESULTS[key].about : "";
+      $("t01-s-groups").textContent = keys.map(function (k) { return R.RESULTS[k].name + ": " + R.RESULTS[k].about; }).join(" ");
       res.focus();
     }
 
