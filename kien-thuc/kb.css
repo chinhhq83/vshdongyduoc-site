@@ -32,3 +32,4 @@ th{background:#e9f2ef;color:#123f3d}
 header nav{flex-wrap:wrap;justify-content:flex-end;gap:.35rem 1.1rem}
 @media(max-width:900px){header{flex-direction:column;align-items:flex-start;gap:.5rem;position:static}header nav{flex-wrap:nowrap;overflow-x:auto;width:100%;justify-content:flex-start;padding-bottom:4px;-webkit-overflow-scrolling:touch}header nav a,header nav a:not(:last-child){display:inline-block!important;white-space:nowrap}header>a span{font-size:.9rem}header img{height:40px}}
 @media(max-width:650px){table{display:block;overflow-x:auto;max-width:100%}article a{overflow-wrap:anywhere}}
+@media(min-width:901px) and (max-width:1200px){header nav{gap:.9rem;flex-wrap:nowrap}header nav a{font-size:15px;white-space:nowrap}}

@@ -24,6 +24,7 @@ NAV = [
     ("/san-pham", "Sản phẩm"),
     ("/du-an-noi-bat", "Nghiên cứu"),
     ("/kien-thuc", "Kiến thức"),
+    ("/cong-cu", "Công cụ"),
     ("/ban-tin", "Bản tin"),
     ("/lien-he", "Liên hệ"),
 ]
@@ -126,11 +127,14 @@ ORG = {
 }
 
 
-def page(path, title, desc, body, current=None, robots="index, follow", extra_ld=None, og_image="/images/site/og-vsh.jpg"):
+def page(path, title, desc, body, current=None, robots="index, follow", extra_ld=None, og_image="/images/site/og-vsh.jpg", tool=False, extra_head="", body_attr=""):
+    # tool=True: trang công cụ tự đánh giá — không có link /san-pham và không có câu về sản phẩm.
     url = SITE + (path if path != "/" else "/")
     ld = {"@context": "https://schema.org", "@graph": [ORG, {"@type": "WebSite", "@id": f"{SITE}/#website", "name": NAME, "url": SITE + "/", "inLanguage": "vi", "publisher": {"@id": f"{SITE}/#organization"}}] + (extra_ld or [])}
     cur = ' aria-current="page"'
-    nav = "".join(f'<a href="{h}"{cur if h == current else ""}>{t}</a>' for h, t in NAV)
+    nav = "".join(f'<a href="{h}"{cur if h == current else ""}>{t}</a>' for h, t in NAV if not (tool and h == "/san-pham"))
+    vien_links = '<li><a href="/gioi-thieu">Giới thiệu</a></li><li><a href="/du-an-noi-bat">Nghiên cứu</a></li>' + ("" if tool else '<li><a href="/san-pham">Sản phẩm</a></li>') + '<li><a href="/lien-he">Liên hệ</a></li>'
+    legal = "Nội dung trên website mang tính tham khảo, không thay thế chẩn đoán và điều trị của bác sĩ." + ("" if tool else f" Sản phẩm của Viện là thực phẩm bảo vệ sức khỏe. {LAW}")
     return f"""<!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -158,8 +162,8 @@ def page(path, title, desc, body, current=None, robots="index, follow", extra_ld
 <link rel="stylesheet" href="/assets/vsh.css">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <script defer src="/analytics.js"></script>
-</head>
-<body>
+{extra_head}</head>
+<body{body_attr}>
 <a class="skip" href="#main">Bỏ qua điều hướng</a>
 <header class="site-header"><div class="wrap">
 <a class="brand" href="/"><img src="/images/logo.png" alt="Logo {NAME}" width="94" height="46"><span><strong>{NAME}</strong><small>Tinh hoa cổ truyền · Nghiên cứu khoa học</small></span></a>
@@ -178,16 +182,16 @@ def page(path, title, desc, body, current=None, robots="index, follow", extra_ld
 </div>
 <div>
 <h3>Viện</h3>
-<ul><li><a href="/gioi-thieu">Giới thiệu</a></li><li><a href="/du-an-noi-bat">Nghiên cứu</a></li><li><a href="/san-pham">Sản phẩm</a></li><li><a href="/lien-he">Liên hệ</a></li></ul>
+<ul>{vien_links}</ul>
 </div>
 <div>
 <h3>Kiến thức</h3>
-<ul><li><a href="/kien-thuc">Thư viện kiến thức</a></li><li><a href="/kien-thuc/dong-trung-ha-thao">Đông trùng hạ thảo</a></li><li><a href="/ban-tin">Bản tin sức khỏe</a></li><li><a href="/quyen-rieng-tu">Quyền riêng tư</a></li></ul>
+<ul><li><a href="/kien-thuc">Thư viện kiến thức</a></li><li><a href="/cong-cu">Công cụ tự đánh giá</a></li><li><a href="/kien-thuc/dong-trung-ha-thao">Đông trùng hạ thảo</a></li><li><a href="/ban-tin">Bản tin sức khỏe</a></li><li><a href="/quyen-rieng-tu">Quyền riêng tư</a></li></ul>
 </div>
 </div>
 <div class="legal">
 <p>{REG}.</p>
-<p>Nội dung trên website mang tính tham khảo, không thay thế chẩn đoán và điều trị của bác sĩ. Sản phẩm của Viện là thực phẩm bảo vệ sức khỏe. {LAW}</p>
+<p>{legal}</p>
 <p>© <span data-year>2026</span> {NAME}.</p>
 </div>
 </div></footer>
@@ -590,8 +594,240 @@ nf = head("Không tìm thấy trang", "Trang bạn tìm có thể đã được 
 """
 write("404.html", page("/404", f"Không tìm thấy trang | {NAME}", "Trang không tồn tại.", nf, robots="noindex, follow"))
 
+
+# ---------------------------------------------------------------- CÔNG CỤ TỰ ĐÁNH GIÁ (/cong-cu)
+# Nội dung y khoa của công cụ 03 và 02 đã được khóa (xem cong-cu/TEST-*.md). Không diễn giải lại.
+# Trang công cụ dùng page(tool=True): không có link /san-pham, không có câu về sản phẩm.
+TOOL_UPDATED = "30/09/2026"
+TOOL_HEAD = '<link rel="stylesheet" href="/cong-cu/assets/tools.css">\n'
+NOSCRIPT = '<noscript><p class="stop">Công cụ cần bật JavaScript để tính. Khi JavaScript tắt, biểu mẫu không gửi dữ liệu đi đâu.</p></noscript>'
+
+
+def faq_ld(items):
+    return {"@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a, _ in items]}
+
+
+def faq_html(items):
+    return '<section class="block alt tool"><div class="wrap" id="faq"><h2>Câu hỏi thường gặp</h2>' + "".join(
+        f'<details class="faq"{f" id={chr(34)}{i}{chr(34)}" if i else ""}><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q, a, i in items) + "</div></section>"
+
+
+def summary_block(code, tool_name):
+    return f"""<div id="print-summary" aria-label="Bản tóm tắt mang đến bác sĩ">
+<h2 data-line>Tóm tắt tự đánh giá — không phải phiếu chẩn đoán</h2>
+<p data-line>{NAME} · vshdongyduoc.org · {code} · {tool_name}</p>
+<p data-line id="s-date"></p>
+<p data-line id="s-input"></p>
+<p data-line id="s-result"></p>
+<p data-line>Người dùng tự nhập. Cơ sở khám cần đo lại / khai thác lại. Công cụ không thay thế khám bệnh, không kê đơn.</p>
+<p data-line>Ghi chú của bác sĩ / điều dưỡng:</p>
+<div class="notes"><div></div><div></div><div></div><div></div></div>
+</div>
+<textarea id="summary-fallback" hidden readonly aria-label="Văn bản tóm tắt để sao chép"></textarea>"""
+
+
+def actions_row(primary=""):
+    return f"""<div class="btn-row no-print">{primary}
+<button type="button" class="btn-t ghost" id="copy-summary">Sao chép tóm tắt</button>
+<button type="button" class="btn-t ghost" id="print-btn">In</button>
+<button type="button" class="btn-t ghost" id="download-btn">Tải bản HTML</button>
+</div>
+<p class="r-small no-print">Muốn có PDF: bấm In rồi chọn “Lưu thành PDF”.</p>"""
+
+
+def history_block(cols):
+    th = "".join(f"<th>{c}</th>" for c in ["Ngày"] + cols)
+    return f"""<p class="btn-row no-print"><button type="button" class="btn-t ghost" id="save-btn">Lưu kết quả trên máy này</button> <span id="save-note" class="r-small" aria-live="polite"></span></p>
+<section class="tool-card history no-print" id="history" hidden>
+<h2>Kết quả đã lưu trên máy này</h2>
+<p class="r-small">Chỉ lưu trong trình duyệt của bạn (tối đa 12 lần). Viện không nhận được dữ liệu này.</p>
+<table><thead><tr>{th}</tr></thead><tbody></tbody></table>
+<button type="button" class="link-t" id="clear-history">Xóa lịch sử</button>
+</section>"""
+
+
+def radios(name, opts, required=True, col=False):
+    return f'<div class="opts{" col" if col else ""}">' + "".join(
+        f'<label class="opt"><input type="radio" name="{name}" value="{v}"{" required" if required and i == 0 else ""}> {t}</label>' for i, (v, t) in enumerate(opts)) + "</div>"
+
+
+SEX = [("nam", "Nam"), ("nu", "Nữ")]
+
+# ---- Công cụ 03: BMI và vòng eo chuẩn châu Á
+BMI_PATH = "/cong-cu/bmi-vong-eo-chau-a"
+BMI_FAQ = [
+    ("BMI 23 khác BMI 25 chỗ nào?", "Theo bảng phân loại cho người châu Á trong Quyết định 2892/QĐ-BYT, BMI từ 23 đã thuộc nhóm thừa cân và từ 25 thuộc nhóm béo phì độ I. Nhiều máy tính quốc tế dùng mốc 25 cho thừa cân và 30 cho béo phì. Người châu Á có thể tăng nguy cơ rối loạn chuyển hóa ở mức BMI thấp hơn (WHO Expert Consultation, Lancet 2004).", "faq-bmi23"),
+    ("Đo vòng eo thế nào mới đúng?", "Đứng thẳng, hai chân rộng khoảng 10 cm. Dùng thước dây mềm, không kéo căng, đặt ngang qua điểm giữa bờ trên xương chậu và bờ dưới xương sườn cuối (thường gần rốn). Đọc số lúc thở ra nhẹ, không co bụng. Đo hai lần; nếu lệch quá 1 cm thì lấy trung bình.", None),
+    ("Công cụ này có phải khám bệnh không?", "Không. Công cụ chỉ đối chiếu số đo bạn tự nhập với bảng phân loại đã công bố. Nó không chẩn đoán, không kê đơn và không thay thế khám bệnh.", None),
+]
+bmi_body = head("BMI và vòng eo theo chuẩn người châu Á",
+    "Người châu Á, kể cả người Việt, có thể tăng nguy cơ rối loạn chuyển hóa từ BMI 23 — sớm hơn mốc 25 trên nhiều máy tính quốc tế. Công cụ này đối chiếu số đo của bạn với bảng trong Quyết định 2892/QĐ-BYT; đây không phải chẩn đoán bệnh.",
+    [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], "Công cụ 03") + f"""
+<section class="block tool"><div class="wrap">
+{NOSCRIPT}
+<div class="tool-grid two">
+<div class="tool-card">
+<form id="tool-form" hidden novalidate>
+<fieldset><legend>Giới tính</legend>{radios("sex", SEX)}</fieldset>
+<label class="f">Chiều cao (cm) <input type="number" name="height" inputmode="decimal" min="120" max="220" step="0.5" required></label>
+<label class="f">Cân nặng (kg) <input type="number" name="weight" inputmode="decimal" min="30" max="200" step="0.1" required></label>
+<label class="f">Vòng eo (cm) <span class="hint">Không bắt buộc, nhưng nên có. Xem cách đo bên cạnh.</span><input type="number" name="waist" inputmode="decimal" min="50" max="160" step="0.1"></label>
+<label class="f">Tuổi <span class="hint">Không bắt buộc. Công cụ dành cho người từ 18 tuổi.</span><input type="number" name="age" inputmode="numeric" min="1" max="90" step="1"></label>
+<label class="check"><input type="checkbox" name="pregnant"> Tôi đang mang thai</label>
+<div class="btn-row"><button type="submit" class="btn-t">Tính BMI và đối chiếu vòng eo</button></div>
+</form>
+<p class="stop" id="stop-msg" role="alert" tabindex="-1" hidden></p>
+</div>
+<aside class="tool-card howto" id="cach-do-vong-eo">
+<h2>Cách đo vòng eo</h2>
+<ol>
+<li>Đứng thẳng, hai chân rộng khoảng 10 cm, sức nặng đều hai chân.</li>
+<li>Dùng thước dây mềm, không kéo căng.</li>
+<li>Đặt thước ngang qua điểm giữa bờ trên xương chậu và bờ dưới xương sườn cuối (thường gần rốn, không phải chỗ nhỏ nhất của quần).</li>
+<li>Thở đều, đọc số lúc thở ra nhẹ, không co bụng.</li>
+<li>Đo hai lần; nếu lệch quá 1 cm thì lấy trung bình.</li>
+</ol>
+</aside>
+</div>
+
+<section class="tool-card result" id="result" aria-live="polite" tabindex="-1" hidden>
+<h2>Kết quả</h2>
+<div class="r-block"><p class="r-label">Chỉ số của bạn</p><p id="r-main"></p></div>
+<div class="r-block"><p class="r-label">Việc nên làm tiếp</p><div id="r-next"></div></div>
+<div class="r-block"><p class="r-label">Vòng eo</p><p id="r-waist"></p><p class="r-small" id="r-muscle" hidden></p></div>
+<p class="r-small" id="r-range"></p>
+{actions_row('<a class="btn-t" id="to-findrisc" href="/cong-cu/nguy-co-dai-thao-duong-findrisc">Tính nguy cơ đái tháo đường 10 năm (ModAsian FINDRISC)</a>')}
+{summary_block("VSH-03", "BMI và vòng eo chuẩn châu Á")}
+<div class="sources">
+<p><strong>Nguồn</strong> (ngưỡng áp dụng theo văn bản ban hành ngày 22/10/2022; nội dung công cụ cập nhật {TOOL_UPDATED}):</p>
+<ol>
+<li>Bộ Y tế. Quyết định 2892/QĐ-BYT ngày 22/10/2022. Bảng 4.1 và mục 4.2 vòng bụng.</li>
+<li>WHO Expert Consultation. Appropriate body-mass index for Asian populations. Lancet. 2004;363:157–163.</li>
+<li>WHO/IASO/IOTF. The Asia-Pacific Perspective: Redefining Obesity and its Treatment. 2000.</li>
+<li>International Diabetes Federation. Worldwide definition of the metabolic syndrome — vòng eo Nam Á/Trung Quốc: nam 90 cm, nữ 80 cm.</li>
+</ol>
+<p class="disclaimer">Kết quả chỉ phản ánh số đo bạn tự nhập, đối chiếu với bảng phân loại công bố. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám bệnh. Nếu BMI ≥ 25 theo ngưỡng châu Á, vòng eo vượt mốc, hoặc bạn đang có triệu chứng, hãy đến cơ sở y tế.</p>
+</div>
+<div class="r-block no-print"><p class="r-label">Đọc thêm</p>
+<p><a href="#faq-bmi23">Vì sao BMI 23 đã cần lưu ý ở người Việt</a><br><a href="#cach-do-vong-eo">Cách đo vòng eo đúng</a><br><a href="/kien-thuc/tieu-duong">Đường huyết đói và HbA1c khác nhau chỗ nào</a></p></div>
+</section>
+{history_block(["BMI", "Nhóm", "Vòng eo"])}
+</div></section>
+{faq_html(BMI_FAQ)}"""
+TOOL_SCRIPTS_BMI = TOOL_HEAD + '<script defer src="/cong-cu/assets/bmi.js"></script>\n<script defer src="/cong-cu/assets/tools.js"></script>\n'
+write("cong-cu/bmi-vong-eo-chau-a.html", page(BMI_PATH, f"BMI và vòng eo chuẩn châu Á cho người Việt | {NAME}",
+    "Tính BMI theo ngưỡng Bộ Y tế cho người châu Á (từ 23 đã là thừa cân) và đối chiếu vòng eo 90/80. Không chẩn đoán, có bản mang đi khám.",
+    bmi_body, current="/cong-cu", tool=True, extra_head=TOOL_SCRIPTS_BMI, body_attr=' data-tool="bmi"',
+    extra_ld=[faq_ld(BMI_FAQ), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (BMI_PATH, "BMI và vòng eo chuẩn châu Á")])]))
+
+# ---- Công cụ 02: ModAsian FINDRISC
+FR_PATH = "/cong-cu/nguy-co-dai-thao-duong-findrisc"
+FR_FAQ = [
+    ("FINDRISC là gì?", "FINDRISC là thang điểm 8 câu hỏi của Phần Lan (Lindström và Tuomilehto, 2003) để ước lượng nguy cơ đái tháo đường type 2 trong 10 năm. Bản ModAsian dùng ngưỡng BMI và vòng eo cho người châu Á và đã được dùng trong nghiên cứu cộng đồng tại Việt Nam.", None),
+    ("Điểm cao có nghĩa là tôi đã có bệnh?", "Không. Đây là thang sàng lọc dựa trên câu hỏi, không phải xét nghiệm máu và không phải chẩn đoán đái tháo đường. Điểm cao là lý do để đi khám và làm xét nghiệm theo chỉ định của nhân viên y tế.", None),
+    ("Vì sao dùng BMI 23 và vòng eo 90/80?", "Người châu Á có thể tăng nguy cơ rối loạn chuyển hóa ở BMI và vòng eo thấp hơn người châu Âu. Công cụ dùng ngưỡng thống nhất với Quyết định 2892/QĐ-BYT và ngưỡng IDF cho người châu Á, giống công cụ BMI và vòng eo của Viện.", None),
+]
+fr_body = head("Tự ước lượng nguy cơ đái tháo đường type 2 trong 10 năm",
+    "Thang FINDRISC điều chỉnh BMI và vòng eo theo người châu Á. Điểm số giúp định hướng việc nên làm tiếp, không phải xét nghiệm và không phải chẩn đoán đái tháo đường. Đã được dùng trong nghiên cứu cộng đồng tại Việt Nam (ModAsian FINDRISC).",
+    [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], "Công cụ 02") + f"""
+<section class="block tool"><div class="wrap">
+{NOSCRIPT}
+<p class="stop" id="bridge-note" hidden>Đã điền sẵn số đo từ công cụ BMI và vòng eo. Bạn có thể sửa trước khi tính. <a href="{BMI_PATH}">← Quay lại BMI và vòng eo</a></p>
+<div class="tool-card">
+<form id="tool-form" hidden novalidate>
+<label class="check"><input type="checkbox" name="diagnosed"> Tôi đã được bác sĩ chẩn đoán đái tháo đường</label>
+<fieldset><legend>Giới tính</legend>{radios("sex", SEX)}</fieldset>
+<label class="f">Tuổi <input type="number" name="age" inputmode="numeric" min="1" max="110" step="1" required></label>
+<label class="f">Chiều cao (cm) <input type="number" name="height" inputmode="decimal" min="120" max="220" step="0.5" required></label>
+<label class="f">Cân nặng (kg) <input type="number" name="weight" inputmode="decimal" min="30" max="200" step="0.1" required></label>
+<label class="f">Vòng eo (cm) <span class="hint">Không bắt buộc. Nếu bỏ trống, kết quả có thể thấp hơn thực tế. <a href="{BMI_PATH}#cach-do-vong-eo">Cách đo</a></span><input type="number" name="waist" inputmode="decimal" min="50" max="160" step="0.1"></label>
+<fieldset><legend>Bạn có vận động ít nhất 30 phút mỗi ngày, hầu hết các ngày (gồm cả việc nhà, đi bộ)?</legend>{radios("active", [("co", "Có"), ("khong", "Không")])}</fieldset>
+<fieldset><legend>Bạn có ăn rau hoặc quả hằng ngày?</legend>{radios("veg", [("co", "Mọi ngày"), ("khong", "Không phải mọi ngày")])}</fieldset>
+<fieldset><legend>Bạn đã từng uống thuốc huyết áp?</legend>{radios("bp", [("khong", "Không"), ("co", "Có")])}</fieldset>
+<fieldset><legend>Bạn đã từng được báo đường huyết cao (khi khám, khi ốm, khi mang thai)?</legend>{radios("glucose", [("khong", "Không"), ("co", "Có")])}</fieldset>
+<fieldset><legend>Người thân được chẩn đoán đái tháo đường</legend>{radios("family", [("khong", "Không"), ("xa", "Ông/bà, cô/dì/chú/bác, hoặc anh chị em họ"), ("gan", "Bố/mẹ, anh/chị/em ruột, hoặc con")], col=True)}</fieldset>
+<div class="btn-row"><button type="submit" class="btn-t">Tính điểm</button></div>
+</form>
+<p class="stop" id="stop-msg" role="alert" tabindex="-1" hidden></p>
+</div>
+
+<section class="tool-card result" id="result" aria-live="polite" tabindex="-1" hidden>
+<h2>Kết quả</h2>
+<div class="r-block"><p class="r-label">Điểm của bạn</p><p class="r-score" id="r-score"></p><p><strong id="r-label"></strong></p><p class="r-small" id="r-ref"></p><p class="r-small" id="r-waistnote" hidden></p></div>
+<div class="r-block"><p class="r-label">Việc nên làm tiếp</p><div id="r-next"></div></div>
+<p id="r-always"></p>
+{actions_row(f'<a class="btn-t ghost" href="{BMI_PATH}">← Quay lại BMI và vòng eo</a>')}
+{summary_block("VSH-02", "ModAsian FINDRISC — nguy cơ đái tháo đường type 2 trong 10 năm")}
+<div class="sources">
+<p><strong>Nguồn</strong> (thang điểm công bố năm 2003; ngưỡng BMI/vòng eo theo văn bản ngày 22/10/2022; nội dung công cụ cập nhật {TOOL_UPDATED}):</p>
+<ol>
+<li>Lindström J, Tuomilehto J. The diabetes risk score. Diabetes Care. 2003;26:725–731.</li>
+<li>Doan et al. ModAsian FINDRISC as a screening tool… Vietnam. JMDH. 2023 (và các nghiên cứu FINDRISC châu Á tại Việt Nam).</li>
+<li>Ngưỡng BMI/vòng eo thống nhất Quyết định 2892/QĐ-BYT và IDF châu Á — xem <a href="{BMI_PATH}">công cụ BMI và vòng eo</a>.</li>
+</ol>
+<p class="disclaimer">Kết quả chỉ phản ánh câu trả lời bạn tự nhập, đối chiếu với thang điểm công bố. Đây không phải chẩn đoán, không phải lời khuyên điều trị, không thay thế khám bệnh hay xét nghiệm. Nếu điểm từ 12 trở lên hoặc bạn đang có triệu chứng, hãy đến cơ sở y tế.</p>
+</div>
+</section>
+{history_block(["Điểm", "Nhóm"])}
+</div></section>
+{faq_html(FR_FAQ)}"""
+TOOL_SCRIPTS_FR = TOOL_HEAD + '<script defer src="/cong-cu/assets/findrisc.js"></script>\n<script defer src="/cong-cu/assets/tools.js"></script>\n'
+write("cong-cu/nguy-co-dai-thao-duong-findrisc.html", page(FR_PATH, f"Nguy cơ đái tháo đường type 2 trong 10 năm (ModAsian FINDRISC) | {NAME}",
+    "8 câu hỏi FINDRISC điều chỉnh BMI và vòng eo cho người châu Á, đã dùng trong nghiên cứu tại Việt Nam. Không phải xét nghiệm, không chẩn đoán, có bản mang đi khám.",
+    fr_body, current="/cong-cu", tool=True, extra_head=TOOL_SCRIPTS_FR, body_attr=' data-tool="findrisc"',
+    extra_ld=[faq_ld(FR_FAQ), breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ"), (FR_PATH, "Nguy cơ đái tháo đường 10 năm")])]))
+
+# ---- Công cụ 01: trang chờ (không có câu hỏi cho tới khi có xác nhận quyền sử dụng)
+tc_body = head("Tự đánh giá thể chất Đông y (9 thể)",
+    "Công cụ đang được chuẩn bị. Trang này giải thích Viện sẽ làm gì và vì sao chưa mở.",
+    [("/", "Trang chủ"), ("/cong-cu", "Công cụ")], "Công cụ 01 · Sắp mở") + f"""
+<section class="block tool"><div class="wrap"><div class="tool-card">
+<p>Viện sẽ dùng bảng hỏi thể chất Trung y (CCMQ, Vương Kỳ / Hội Trung y dược Trung Quốc 2009) và bản tiếng Việt đã thẩm định. Viện không đưa 60 câu hỏi lên web cho đến khi có xác nhận quyền sử dụng.</p>
+<p>Khi mở, công cụ sẽ theo cùng nguyên tắc với các công cụ khác của Viện: dựa trên thang đo đã công bố, kết quả là việc nên làm tiếp và bản mang đến bác sĩ, không chẩn đoán và không bán sản phẩm.</p>
+<p class="btn-row"><a class="btn-t ghost" href="mailto:{EMAIL}?subject=Nh%E1%BA%AFn%20t%C3%B4i%20khi%20c%C3%B4ng%20c%E1%BB%A5%20th%E1%BB%83%20ch%E1%BA%A5t%20%C4%90%C3%B4ng%20y%20m%E1%BB%9F">Nhắn Viện khi công cụ mở (qua email)</a></p>
+<p class="r-small">Email được mở bằng ứng dụng thư của bạn; trang này không thu thập dữ liệu.</p>
+<p><a href="/cong-cu">← Xem các công cụ đang mở</a></p>
+</div></div></section>"""
+write("cong-cu/the-chat-dong-y.html", page("/cong-cu/the-chat-dong-y", f"Tự đánh giá thể chất Đông y (sắp mở) | {NAME}",
+    "Công cụ tự đánh giá thể chất Đông y 9 thể theo bảng hỏi CCMQ đang được chuẩn bị. Viện chỉ mở khi có xác nhận quyền sử dụng bảng hỏi.",
+    tc_body, current="/cong-cu", robots="noindex, follow", tool=True, extra_head=TOOL_HEAD))
+
+# ---- Hub
+HUB_TOOLS = [
+    ("03", "BMI và vòng eo chuẩn châu Á", "bmi-vong-eo-chau-a", True, "Đối chiếu BMI và vòng eo với ngưỡng cho người châu Á của Bộ Y tế."),
+    ("02", "Nguy cơ đái tháo đường 10 năm", "nguy-co-dai-thao-duong-findrisc", True, "8 câu hỏi ModAsian FINDRISC, đã dùng trong nghiên cứu tại Việt Nam."),
+    ("01", "Thể chất Đông y (9 thể)", "the-chat-dong-y", False, "Theo bảng hỏi CCMQ, chỉ mở khi có xác nhận quyền sử dụng."),
+    ("04", "Hội chứng chuyển hóa", "hoi-chung-chuyen-hoa", False, "Đối chiếu 5 chỉ số xét nghiệm và số đo với tiêu chí công bố."),
+    ("05", "Điểm FIB-4 (gan nhiễm mỡ)", "fib-4", False, "Tính từ tuổi, AST, ALT và tiểu cầu trong kết quả xét nghiệm."),
+    ("06", "Tự kiểm tra sức khỏe nướu", "suc-khoe-nuou", False, "Bộ câu hỏi tự báo cáo của CDC/AAP."),
+    ("07", "Loại da và mức nhạy nắng", "fitzpatrick", False, "Thang Fitzpatrick."),
+]
+cards = ""
+for num_, name_, slug_, open_, desc_ in HUB_TOOLS:
+    badge = '<span class="badge open">Đang mở</span>' if open_ else '<span class="badge soon">Sắp mở</span>'
+    inner = f'{badge}<span class="num">Công cụ {num_}</span><h3>{name_}</h3><p>{desc_}</p>'
+    if open_:
+        cards += f'<a class="hub-card" href="/cong-cu/{slug_}">{inner}</a>'
+    elif slug_ == "the-chat-dong-y":
+        cards += f'<a class="hub-card soon" href="/cong-cu/{slug_}">{inner}</a>'
+    else:
+        cards += f'<div class="hub-card soon">{inner}</div>'
+hub_body = head("Công cụ tự đánh giá sức khỏe",
+    "Các công cụ dựa trên thang đo đã công bố. Kết quả là việc nên làm tiếp và một bản tóm tắt để mang đến bác sĩ. Công cụ không chẩn đoán và không bán sản phẩm.",
+    [("/", "Trang chủ")], "Công cụ") + f"""
+<section class="block tool hub"><div class="wrap">
+<div class="hub-grid">{cards}</div>
+<p class="r-small" style="margin-top:18px">Số đo bạn nhập chỉ nằm trên máy của bạn; Viện không nhận được dữ liệu này. Nội dung trên trang không thay thế khám bệnh.</p>
+</div></section>"""
+write("cong-cu.html", page("/cong-cu", f"Công cụ tự đánh giá sức khỏe | {NAME}",
+    "BMI và vòng eo chuẩn châu Á, nguy cơ đái tháo đường 10 năm (ModAsian FINDRISC) và các công cụ sắp mở. Dựa trên thang đo công bố, không chẩn đoán, không bán sản phẩm.",
+    hub_body, current="/cong-cu", tool=True, extra_head=TOOL_HEAD,
+    extra_ld=[breadcrumb_ld([("/", "Trang chủ"), ("/cong-cu", "Công cụ")])]))
+
 # ---------------------------------------------------------------- sitemap
 urls = ["/", "/gioi-thieu", "/san-pham", "/du-an-noi-bat", "/kien-thuc", "/ban-tin", "/lien-he", "/quyen-rieng-tu"]
+urls += ["/cong-cu", BMI_PATH, FR_PATH]  # trang chờ công cụ 01 để noindex, không đưa vào sitemap
 urls += [h for h, _, _ in TOPICS]
 urls += [f"/kien-thuc/dong-trung-ha-thao/{s}" for s, _ in CORDYCEPS]
 urls += [h for h, *_ in NEWS]  # thời sự (CURRENT) is kept off the sitemap and noindexed
