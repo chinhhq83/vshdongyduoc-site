@@ -34,8 +34,8 @@
     rightsApprovedBy: "Professor Wan/China Association of Chinese Medicine",
     rightsApprovalDate: "2026-10-01",
     medicalContentReviewed: MEDICAL_CONTENT_REVIEWED,
-    medicalReviewer: "Dr. Nguyen Van Khiem",
-    medicalReviewDate: "Vietnam Academy of Traditional Medicine",
+    medicalReviewer: "Dr. Nguyen Van Khiem/Vietnam Academy of Traditional Medicine",
+    medicalReviewDate: "2026-10-01",
   };
 
   var TOOL01_CONFIG = {
