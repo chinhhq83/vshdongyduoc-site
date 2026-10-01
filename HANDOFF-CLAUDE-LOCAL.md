@@ -14,7 +14,7 @@ Tôi quản lý **2 website độc lập**. Không được trộn thương hi�
 |---|---|---|
 | Nội dung | Thông tin độc lập về thực phẩm bổ sung cho chó (tiếng Anh) | Site của Viện (tiếng Việt) |
 | Repo | `chinhhq83/vshdongyduoc-pet-site` | `chinhhq83/vshdongyduoc-site` |
-| Nhánh đang làm | `data-sync-2026-09-27` (HEAD `1cc9575`) | `claude/laughing-goldberg-qf8odi` (HEAD `a02e2c1`) |
+| Nhánh đang làm | `data-sync-2026-09-27` (HEAD `1cc9575`) | `claude/laughing-goldberg-qf8odi` (HEAD mới nhất trên GitHub; cờ công cụ 01 đổi ở `a02e2c1` và `acc3fab`) |
 | Công nghệ | Astro 7 (`npm run build`) | HTML tĩnh sinh bằng Python (`python scripts/build_site.py .`) |
 | Thư mục trên máy (theo các script cũ) | `G:\vshdongyduoc-site\pet-site` | `G:\vshdongyduoc-site\vsh-landing-site` |
 | Deploy | Vercel CLI từ thư mục máy | Vercel CLI từ thư mục máy (`vercel` = preview, `vercel --prod` = production) |
@@ -74,8 +74,8 @@ Hiến pháp của bộ công cụ (vi phạm là hỏng):
 - `build_site.py` đọc cổng này: khi khóa thì trang `noindex,follow` và không có trong sitemap; khi mở thì tự chuyển sang `index,follow` và thêm vào sitemap.
 - **Commit `a02e2c1` (tôi tự sửa trên GitHub) đã đổi cả hai cờ thành `true`, NHƯNG CHƯA ĐƯỢC BUILD LẠI.** Cần xử lý trước khi build hoặc deploy:
   1. `questionnaire.js` vẫn **rỗng** (`ITEMS: []`, `licensed: false`). Nếu build lúc này, trang sẽ được index trong khi vẫn hiện thông báo khóa. Cần tôi gửi **nguyên văn 60 câu** của bản tiếng Việt được cấp phép, kèm cách chia câu theo thể, các câu tính điểm ngược và thang trả lời. **Không tự viết, dịch hay tìm câu hỏi trên mạng.**
-  2. `medicalReviewDate` đang ghi tên cơ quan ("Vietnam Academy of Traditional Medicine") thay vì ngày, nên hỏi tôi ngày thật.
-  3. `rightsApprovedBy: "Professor Wan/China Association of Chinese Medicine"`: cần xác nhận có phải "Wang Qi (Vương Kỳ)" không, và đã có quyền dùng **bản tiếng Việt** (nhóm thẩm định 2022) chưa.
+  2. Metadata đã được tôi sửa (commit `acc3fab`): `rightsApprovedBy: "Professor Wang/China Association of Chinese Medicine"`, `rightsApprovalDate: "2026-10-01"`, `medicalReviewer: "Dr. Nguyen Van Khiem/Vietnam Academy of Traditional Medicine"`, `medicalReviewDate: "2026-10-01"`.
+  3. Còn cần xác nhận: đã có quyền dùng **bản tiếng Việt** (nhóm thẩm định 2022) chưa. Giấy phép đang ghi mới chỉ nói tới bản gốc.
   4. Ghi chú cạnh hai cờ vẫn ghi "CHƯA có", cần sửa cho khớp.
   5. `cong-cu/tests/tool01-tests.js` đang khẳng định cả hai cờ là `false`, nên sẽ báo lỗi. Khi mở thật, cập nhật test cho đúng trạng thái và thêm ca vàng tính tay từ bộ câu hỏi thật.
   6. Mục "Nguồn khoa học" cần trích dẫn thật (bảng hỏi gốc, nghiên cứu thẩm định bản tiếng Việt, tài liệu lối sống).
