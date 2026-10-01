@@ -31,7 +31,7 @@
     questionnaireVersion: null,
     validationReference: "Vietnamese validation publication, 2022",
     rightsApproved: RIGHTS_APPROVED,
-    rightsApprovedBy: "Professor Wan/China Association of Chinese Medicine",
+    rightsApprovedBy: "Professor Wang/China Association of Chinese Medicine",
     rightsApprovalDate: "2026-10-01",
     medicalContentReviewed: MEDICAL_CONTENT_REVIEWED,
     medicalReviewer: "Dr. Nguyen Van Khiem/Vietnam Academy of Traditional Medicine",
