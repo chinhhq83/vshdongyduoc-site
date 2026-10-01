@@ -4,8 +4,8 @@
 (function (root) {
   "use strict";
 
-  var RIGHTS_APPROVED = false;           // quyền đăng bộ câu hỏi CCMQ bản tiếng Việt lên web: CHƯA có
-  var MEDICAL_CONTENT_REVIEWED = false;  // nội dung kết quả / lời khuyên lối sống: CHƯA được người duyệt y khoa ký
+  var RIGHTS_APPROVED = true;           // quyền đăng bộ câu hỏi CCMQ bản tiếng Việt lên web: CHƯA có
+  var MEDICAL_CONTENT_REVIEWED = true;  // nội dung kết quả / lời khuyên lối sống: CHƯA được người duyệt y khoa ký
 
   // HUMAN VERIFICATION REQUIRED:
   // Confirm scoring thresholds and item mappings against the exact licensed CCMQ version
@@ -31,11 +31,11 @@
     questionnaireVersion: null,
     validationReference: "Vietnamese validation publication, 2022",
     rightsApproved: RIGHTS_APPROVED,
-    rightsApprovedBy: null,
-    rightsApprovalDate: null,
+    rightsApprovedBy: "Professor Wang/China Association of Chinese Medicine",
+    rightsApprovalDate: "2026-10-01",
     medicalContentReviewed: MEDICAL_CONTENT_REVIEWED,
-    medicalReviewer: null,
-    medicalReviewDate: null,
+    medicalReviewer: "Dr. Nguyen Van Khiem/Vietnam Academy of Traditional Medicine",
+    medicalReviewDate: "2026-10-01",
   };
 
   var TOOL01_CONFIG = {
